@@ -172,10 +172,10 @@ export const PRODUCTS: Product[] = [
     category: "teapots",
     collection: "slow-mornings",
     image: "https://images.unsplash.com/photo-1597481499750-3e6b22637e12?q=80&w=600&auto=format&fit=crop",
-    hoverImage: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=600&auto=format&fit=crop",
+    hoverImage: "https://images.unsplash.com/photo-1563822249548-9a72b6353cd1?q=80&w=600&auto=format&fit=crop",
     images: [
       "https://images.unsplash.com/photo-1597481499750-3e6b22637e12?q=80&w=600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1563822249548-9a72b6353cd1?q=80&w=600&auto=format&fit=crop",
     ],
     description: "Slow-steeping clay kettle · 650ml",
     details: "Slow-steeping teapot featuring a hand-carved teak wood handle. Coated with clean tin-white interior glaze, and raw terracotta exterior.",
@@ -184,7 +184,7 @@ export const PRODUCTS: Product[] = [
     care: "Hand wash only. Do not place directly on open flames or stovetops.",
     storyTitle: "THE TEAPOT RITUAL",
     storyDesc: "Designed to slow down tea brewing, keeping water warm while wood handle remains cool.",
-    storyImage: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=800&auto=format&fit=crop",
+    storyImage: "https://images.unsplash.com/photo-1563822249548-9a72b6353cd1?q=80&w=800&auto=format&fit=crop",
     options: [
       { name: "Finish", values: ["Raw Terracotta", "Smoked Black"] }
     ],

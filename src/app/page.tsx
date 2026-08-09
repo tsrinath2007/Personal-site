@@ -57,7 +57,7 @@ export default function Home() {
       <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-espresso/20 z-10" />
         <Image
-          src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=1600&auto=format&fit=crop"
+          src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=1600&auto=format&fit=crop"
           alt="Ceramelle slow morning ceramic tableware background"
           fill
           priority
