@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FAF8F5;
+  --foreground: #1C1613;
+  --primary-ivory: #FAF8F5;
+  --secondary-sand: #F3EFE9;
+  --accent-clay: #C56E52;
+  --accent-clay-dark: #A7543A;
+  --border-beige: #E7E2DA;
+}
+
+@theme {
+  --font-serif: var(--font-cormorant), serif;
+  --font-sans: var(--font-jakarta), sans-serif;
+  
+  --color-ivory: #FAF8F5;
+  --color-sand: #F3EFE9;
+  --color-espresso: #1C1613;
+  --color-clay: #C56E52;
+  --color-clay-dark: #A7543A;
+  --color-beige-border: #E7E2DA;
+  
+  --animate-fade-in: fade-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-slide-up: slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-image-reveal: image-reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes image-reveal {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+body {
+  background-color: var(--primary-ivory);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+.font-editorial {
+  font-family: var(--font-serif);
+}
+
+.font-functional {
+  font-family: var(--font-sans);
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Smooth zoom transition */
+.image-zoom-hover {
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.image-zoom-hover:hover {
+  transform: scale(1.05);
+}
