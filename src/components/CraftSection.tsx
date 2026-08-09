@@ -14,47 +14,48 @@ interface CraftStep {
 const CRAFT_STEPS: CraftStep[] = [
   {
     title: "THE CLAY",
-    subtitle: "Sourced from the Earth",
-    description: "Earthy, high-quality clay sourced locally in India. Each batch is refined, filtered, and aged to achieve the perfect tactile elasticity for the wheel.",
-    image: "https://images.unsplash.com/photo-1595181768407-3537c3850759?q=80&w=600&auto=format&fit=crop"
+    subtitle: "Refined Earth",
+    description: "Sourced locally, our grey stoneware clay is aged and refined to achieve organic tactile elasticity.",
+    image: "https://images.unsplash.com/photo-1595206133361-b1fe343e5e23?q=80&w=800&auto=format&fit=crop"
   },
   {
     title: "THE HANDS",
-    subtitle: "Thrown on the Wheel",
-    description: "Individually thrown by master potters. With patience and rhythmic flow, wet clay is shaped. Trimming and carving add the organic irregularities that define our style.",
-    image: "https://images.unsplash.com/photo-1565192647048-f997ded87958?q=80&w=600&auto=format&fit=crop"
+    subtitle: "Artisan Thrown",
+    description: "Each individual vessel is hand-thrown on the potter's wheel with deliberate intention and patience.",
+    image: "https://images.unsplash.com/photo-1565192647048-f997ded87958?q=80&w=800&auto=format&fit=crop"
   },
   {
     title: "THE GLAZE",
-    subtitle: "Dipped in Mineral Tones",
-    description: "Every piece is hand-dipped in mineral glazes formulated in-house. Natural drips, speckles, and flows emerge uniquely on every item.",
-    image: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?q=80&w=600&auto=format&fit=crop"
+    subtitle: "Dipped in Minerals",
+    description: "Every pot is hand-dipped in mineral glazes formulated in-house, creating natural, raw run patterns.",
+    image: "https://images.unsplash.com/photo-1535401991746-da3d9055713e?q=80&w=800&auto=format&fit=crop"
   },
   {
     title: "THE FIRE",
-    subtitle: "Vitrefied at 1220°C",
-    description: "Fired twice in high-temperature gas kilns. The intense heat permanently bonds the glaze and vitrifies the stoneware, making it highly durable for everyday use.",
-    image: "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?q=80&w=600&auto=format&fit=crop"
+    subtitle: "Vitrified at 1220°C",
+    description: "Twice kiln-fired under intense high heat to bond raw glazes and seal the durable stoneware.",
+    image: "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?q=80&w=800&auto=format&fit=crop"
   },
   {
     title: "YOUR HOME",
-    subtitle: "Objects for Slow Rituals",
-    description: "Arriving at your table, these objects cease to be just clay. They become silent, comforting companions for your slow mornings, dinners, and daily celebrations.",
-    image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=600&auto=format&fit=crop"
+    subtitle: "Slow Living Companion",
+    description: "A tactile, handformed companion for your quiet morning coffees and slow tablescape dinners.",
+    image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=800&auto=format&fit=crop"
   }
 ];
 
 export const CraftSection: React.FC = () => {
   return (
-    <section className="py-24 bg-sand/15 border-t border-b border-beige-border/50">
+    <section id="craft" className="py-24 bg-sand/15 border-t border-b border-beige-border/50">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
+        
         {/* Section Header */}
         <div className="max-w-2xl mx-auto text-center mb-20 space-y-4">
-          <h2 className="font-editorial text-xs font-semibold tracking-[0.25em] text-clay uppercase">
+          <h2 className="font-functional text-xs font-semibold tracking-[0.25em] text-clay uppercase">
             MADE SLOWLY. MADE TO LAST.
           </h2>
           <p className="font-editorial text-3xl md:text-4xl text-espresso font-light">
-            The Journey of a Ceramelle Piece
+            The Pottery Process
           </p>
           <div className="h-0.5 w-12 bg-clay/35 mx-auto mt-6" />
         </div>
@@ -66,7 +67,7 @@ export const CraftSection: React.FC = () => {
             return (
               <motion.div
                 key={step.title}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -75,7 +76,7 @@ export const CraftSection: React.FC = () => {
                 } gap-8 md:gap-16 items-center`}
               >
                 {/* Image */}
-                <div className="w-full md:w-1/2 aspect-[4/3] relative bg-sand/20 overflow-hidden">
+                <div className="w-full md:w-1/2 aspect-[16/10] relative bg-sand/20 overflow-hidden">
                   <Image
                     src={step.image}
                     alt={step.title}

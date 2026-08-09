@@ -24,7 +24,7 @@ const ARTICLES: JournalArticle[] = [
     excerpt: "Why manual coffee brewing is the ultimate meditation. How a ceramic dripper guides the flow of water and forces us to pause.",
     date: "June 24, 2026",
     readTime: "4 min read",
-    image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=600&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?q=80&w=600&auto=format&fit=crop"
   },
   {
     slug: "dinnerware-color-guide",
@@ -55,8 +55,8 @@ export default function StoryPage() {
           <h1 className="font-functional text-xs font-bold tracking-[0.3em] text-clay uppercase">
             OUR PURPOSE
           </h1>
-          <p className="font-editorial text-4xl md:text-6xl text-espresso font-light tracking-wide leading-tight">
-            MADE SLOWLY. <br /> MADE TO LAST.
+          <p className="font-editorial text-4xl md:text-6xl text-espresso font-light tracking-wide leading-tight uppercase">
+            Made Slowly. <br /> Made to Last.
           </p>
           <div className="h-0.5 w-12 bg-clay/35 mx-auto my-6" />
           <p className="font-editorial text-lg md:text-xl text-espresso/70 italic max-w-2xl mx-auto leading-relaxed">
@@ -69,46 +69,40 @@ export default function StoryPage() {
           
           {/* Block 1 */}
           <div className="flex flex-col md:flex-row gap-12 items-center">
-            <div className="w-full md:w-1/2 aspect-[4/3] relative bg-sand overflow-hidden">
+            <div className="w-full md:w-1/2 aspect-[16/10] relative bg-sand overflow-hidden">
               <Image
                 src="https://images.unsplash.com/photo-1565192647048-f997ded87958?q=80&w=800&auto=format&fit=crop"
-                alt="Working on clay potter wheel"
+                alt="Master potter shaping clay vessel on wheel"
                 fill
                 className="object-cover"
               />
             </div>
-            <div className="w-full md:w-1/2 space-y-6 text-left max-w-xl">
+            <div className="w-full md:w-1/2 space-y-4 text-left max-w-xl">
               <h2 className="font-editorial text-2xl md:text-3xl font-light">
                 The Clay We Shape
               </h2>
               <p className="font-functional text-sm text-espresso/70 leading-relaxed">
-                Ceramelle was born out of a desire to create a tactile connection between human hands and the soil of India. Every plate, cup, and bowl is formed using stoneware clay fired to high temperatures of 1220°C.
-              </p>
-              <p className="font-functional text-sm text-espresso/70 leading-relaxed">
-                We believe in keeping things earthy and raw. Our clay bases are left unglazed, showing the natural, speckled grain of the earth, providing a solid, comforting grip that connects you to the natural world.
+                We shape local clay to connect modern homes with raw, Indian soil. Every piece is twice-kilned at 1220°C, leaving raw textures exposed for a tactile connection to the earth.
               </p>
             </div>
           </div>
 
           {/* Block 2 */}
           <div className="flex flex-col md:flex-row-reverse gap-12 items-center">
-            <div className="w-full md:w-1/2 aspect-[4/3] relative bg-sand overflow-hidden">
+            <div className="w-full md:w-1/2 aspect-[16/10] relative bg-sand overflow-hidden">
               <Image
-                src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?q=80&w=800&auto=format&fit=crop"
-                alt="Glazing raw cups"
+                src="https://images.unsplash.com/photo-1535401991746-da3d9055713e?q=80&w=800&auto=format&fit=crop"
+                alt="Fresh dipped pots drying in clay studio"
                 fill
                 className="object-cover"
               />
             </div>
-            <div className="w-full md:w-1/2 space-y-6 text-left max-w-xl">
+            <div className="w-full md:w-1/2 space-y-4 text-left max-w-xl">
               <h2 className="font-editorial text-2xl md:text-3xl font-light">
                 Unique Glaze Fingerprints
               </h2>
               <p className="font-functional text-sm text-espresso/70 leading-relaxed">
-                We design and blend our glazes in our studio, selecting minerals that react naturally to the intense heat of the gas kiln. As the kiln fire flares, iron spots bloom and raw clay elements bleed into the glaze.
-              </p>
-              <p className="font-functional text-sm text-espresso/70 leading-relaxed">
-                This reaction creates slight shifts in speckling, drips, and glaze colors. These variations are not defects; they are the unique character of handthrown studio ceramics, certifying that your set is uniquely yours.
+                Our in-house glazes react organically to intense kiln flames. Natural iron speckles bloom uniquely on every piece, ensuring no two objects are identical.
               </p>
             </div>
           </div>
@@ -134,7 +128,7 @@ export default function StoryPage() {
               {ARTICLES.map((art) => (
                 <div key={art.slug} className="group flex flex-col justify-between space-y-4">
                   <div className="space-y-4">
-                    <div className="relative aspect-[4/3] w-full bg-sand overflow-hidden">
+                    <div className="relative aspect-[16/11] w-full bg-sand overflow-hidden">
                       <Image
                         src={art.image}
                         alt={art.title}
@@ -157,7 +151,7 @@ export default function StoryPage() {
                     </div>
                   </div>
                   <button
-                    onClick={() => alert(`Journal article "${art.title}" is currently a preview. Full reading experience coming soon.`)}
+                    onClick={() => alert(`Journal article "${art.title}" is currently a preview.`)}
                     className="font-functional text-xs font-bold tracking-widest uppercase border-b border-espresso pb-1 text-espresso hover:text-clay hover:border-clay transition-colors w-max flex items-center gap-1 cursor-pointer"
                   >
                     Read Story
@@ -175,7 +169,7 @@ export default function StoryPage() {
             Bring Art to Your Table
           </h2>
           <p className="font-functional text-xs text-espresso/60 leading-relaxed">
-            Our catalog changes throughout the year as our master artisans design new shapes and blend new glazes. Explore our current studio selection.
+            Our catalog changes throughout the year as our master artisans design new shapes and blend new glazes.
           </p>
           <div className="pt-2">
             <Link

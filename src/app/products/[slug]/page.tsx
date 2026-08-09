@@ -391,30 +391,101 @@ export default function ProductDetailPage() {
         </div>
 
         {/* 2. "MEET THE PIECE" STORYTELLING SECTION */}
-        <section className="mt-28 py-16 border-t border-beige-border flex flex-col md:flex-row gap-12 items-center">
-          <div className="w-full md:w-1/2 space-y-6 text-left max-w-xl">
+        <section className="mt-28 py-16 border-t border-beige-border space-y-12">
+          <div className="max-w-2xl text-left space-y-4">
             <h2 className="font-functional text-xs font-bold tracking-[0.25em] text-clay uppercase">
               STUDIO STORIES
             </h2>
-            <h3 className="font-editorial text-4xl font-light text-espresso uppercase leading-tight">
-              {product.storyTitle}
+            <h3 className="font-editorial text-3xl font-light text-espresso uppercase tracking-wide leading-tight">
+              Meet {product.name}
             </h3>
-            <p className="font-editorial text-base italic text-espresso/80 leading-relaxed font-medium">
+            <p className="font-editorial text-lg italic text-espresso/80 leading-relaxed font-medium">
               &ldquo;{product.storyDesc}&rdquo;
             </p>
-            <div className="h-0.5 w-12 bg-clay/35" />
-            <p className="font-functional text-xs text-espresso/60 leading-relaxed">
-              Because each Ceramelle item is hand-thrown and individually glazed, small variations in glaze flow, iron spots, and clay coloration are standard. These fingerprints of the kiln ensure that no two mugs or plates are identical, bringing character to your daily ritual.
-            </p>
+            <div className="h-0.5 w-12 bg-clay/35 mt-4" />
           </div>
-          <div className="w-full md:w-1/2 aspect-[4/3] relative bg-sand overflow-hidden">
-            <Image
-              src={product.storyImage || product.hoverImage}
-              alt="Crafting Ceramelle tableware on potter wheel"
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover"
-            />
+          
+          {/* 4-Column Visual Presentation Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-left">
+            {/* 1. PRODUCT */}
+            <div className="space-y-3">
+              <div className="relative aspect-[4/5] bg-sand/20 overflow-hidden">
+                <Image
+                  src={product.image}
+                  alt={`${product.name} Clean view`}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div>
+                <span className="font-functional text-[10px] font-bold tracking-widest uppercase text-clay">
+                  01 / Product
+                </span>
+                <p className="font-functional text-[11px] text-espresso/60 mt-1 leading-relaxed">
+                  Clean product lines highlighted in raw studio light.
+                </p>
+              </div>
+            </div>
+
+            {/* 2. DETAIL */}
+            <div className="space-y-3">
+              <div className="relative aspect-[4/5] bg-sand/20 overflow-hidden">
+                <Image
+                  src={product.images[2] || product.image}
+                  alt={`${product.name} Glaze macro detail`}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div>
+                <span className="font-functional text-[10px] font-bold tracking-widest uppercase text-clay">
+                  02 / Detail
+                </span>
+                <p className="font-functional text-[11px] text-espresso/60 mt-1 leading-relaxed">
+                  Macro detail of reacting mineral flows.
+                </p>
+              </div>
+            </div>
+
+            {/* 3. IN-HAND */}
+            <div className="space-y-3">
+              <div className="relative aspect-[4/5] bg-sand/20 overflow-hidden">
+                <Image
+                  src={product.images[0] || product.image}
+                  alt={`${product.name} held in hand`}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div>
+                <span className="font-functional text-[10px] font-bold tracking-widest uppercase text-clay">
+                  03 / In Hand
+                </span>
+                <p className="font-functional text-[11px] text-espresso/60 mt-1 leading-relaxed">
+                  Tactile sizing showing natural scale and ergonomic hold.
+                </p>
+              </div>
+            </div>
+
+            {/* 4. ON-TABLE */}
+            <div className="space-y-3">
+              <div className="relative aspect-[4/5] bg-sand/20 overflow-hidden">
+                <Image
+                  src={product.images[1] || product.image}
+                  alt={`${product.name} styled on dining table`}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div>
+                <span className="font-functional text-[10px] font-bold tracking-widest uppercase text-clay">
+                  04 / On Table
+                </span>
+                <p className="font-functional text-[11px] text-espresso/60 mt-1 leading-relaxed">
+                  Styled in setting coordinates for daily ritual presence.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
       </main>

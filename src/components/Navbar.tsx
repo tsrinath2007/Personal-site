@@ -40,12 +40,54 @@ export const Navbar: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between">
           {/* Left: Desktop Nav Links */}
           <nav className="hidden md:flex items-center space-x-8 flex-1">
-            <Link
-              href="/shop"
-              className="font-functional text-xs font-semibold tracking-widest uppercase text-espresso/80 hover:text-clay transition-colors"
-            >
-              Shop
-            </Link>
+            <div className="relative group py-2">
+              <Link
+                href="/shop"
+                className="font-functional text-xs font-semibold tracking-widest uppercase text-espresso/80 hover:text-clay transition-colors"
+              >
+                Shop
+              </Link>
+              {/* Category Dropdown */}
+              <div className="absolute top-full left-0 mt-2 w-48 bg-ivory border border-beige-border shadow-xl p-4 hidden group-hover:block transition-all z-50 text-left">
+                <ul className="space-y-3">
+                  <li>
+                    <Link href="/shop?category=mugs" className="font-functional text-[10px] font-bold tracking-widest uppercase text-espresso/70 hover:text-clay transition-colors block">
+                      Mugs & Cups
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/shop?category=plates" className="font-functional text-[10px] font-bold tracking-widest uppercase text-espresso/70 hover:text-clay transition-colors block">
+                      Plates
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/shop?category=bowls" className="font-functional text-[10px] font-bold tracking-widest uppercase text-espresso/70 hover:text-clay transition-colors block">
+                      Bowls
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/shop?category=teapots" className="font-functional text-[10px] font-bold tracking-widest uppercase text-espresso/70 hover:text-clay transition-colors block">
+                      Teapots
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/shop?category=vases" className="font-functional text-[10px] font-bold tracking-widest uppercase text-espresso/70 hover:text-clay transition-colors block">
+                      Vases
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/shop" className="font-functional text-[10px] font-bold tracking-widest uppercase text-espresso/70 hover:text-clay transition-colors block">
+                      Dinnerware
+                    </Link>
+                  </li>
+                  <li className="border-t border-beige-border/50 pt-2">
+                    <Link href="/shop?tab=set-builder" className="font-functional text-[10px] font-bold tracking-widest uppercase text-clay hover:text-clay-dark transition-colors block">
+                      Gift Sets
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
             <Link
               href="/shop?tab=collections"
               className="font-functional text-xs font-semibold tracking-widest uppercase text-espresso/80 hover:text-clay transition-colors"
