@@ -33,7 +33,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "go-focus-gen",
-    title: "GoFocusGen (FocusFlight)",
+    title: "GoFocusGen",
     tagline: "Gamified aviation-inspired study app mapping session durations to real flight paths",
     description: "A gamified productivity companion where study sessions are visual flights across India. Users select actual domestic aviation routes, and the countdown timer syncs with real flight times (e.g. Mumbai to Delhi = 2 hours). Displays an interactive map showing flight progression, elevation charts, and active aircraft noise generators for immersive focus.",
     techStack: ["Next.js", "Mapbox GL JS", "Tailwind CSS", "Framer Motion", "Vercel"],
