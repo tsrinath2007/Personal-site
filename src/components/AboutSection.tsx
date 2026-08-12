@@ -59,10 +59,10 @@ export function AboutSection() {
               Merging deep tech with intuitive UI.
             </h3>
             <p className="text-sm text-text-muted font-light leading-relaxed">
-              I am Thota Sai Eswar Srinath (often known simply as Srinath), a CS student and product builder based in Manipal. I thrive at the intersection of AI modeling, real-time protocols, and premium frontend layouts.
+              CS student and founder who cares less about flashy demos and more about solutions people will actually use.
             </p>
             <p className="text-sm text-text-muted font-light leading-relaxed">
-              Whether building spacecraft life support control modules or gamifying productivity sessions via Indian flight maps, my goal is to construct software that feels substantial, responsive, and tactile.
+              I'm currently all-in on GoFocusGen — turning study sessions into something people actually want to show up for — alongside AI copilots and edge IoT systems I've built along the way.
             </p>
           </motion.div>
 

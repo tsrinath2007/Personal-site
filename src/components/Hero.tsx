@@ -37,7 +37,7 @@ export function Hero() {
         >
           <Code2 size={12} className="text-gold-accent animate-pulse" />
           <span className="font-heading text-[10px] sm:text-xs font-semibold tracking-[0.2em] text-gold-accent uppercase">
-            CS Student @ Manipal // Hackathon Builder
+            FOUNDER, GOFOCUSGEN // CS STUDENT @ MANIPAL
           </span>
         </motion.div>
 
@@ -57,9 +57,9 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="font-heading text-lg sm:text-2xl font-light text-text-muted max-w-2xl mx-auto leading-relaxed"
+            className="font-heading text-lg sm:text-xl md:text-2xl font-light text-text-muted max-w-3xl mx-auto leading-relaxed"
           >
-            I build <span className="text-text-offwhite font-medium border-b border-gold-accent/40 pb-0.5">AI mission copilots</span>, gamified study platforms, and intelligent edge IoT systems.
+            I build things people <span className="text-text-offwhite font-medium border-b border-gold-accent/40 pb-0.5">actually need</span> — right now, that's GoFocusGen, a gamified study platform I'm building into a startup.
           </motion.p>
         </div>
 
