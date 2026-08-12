@@ -83,7 +83,7 @@ export function Footer() {
                 </li>
                 <li>
                   <a
-                    href="https://linkedin.com/in/tsrinath2007"
+                    href="https://www.linkedin.com/in/tses/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-text-muted hover:text-gold-accent transition-colors"
@@ -93,7 +93,7 @@ export function Footer() {
                 </li>
                 <li>
                   <a
-                    href="https://x.com/tsrinath2007"
+                    href="https://x.com/_tsrinath_"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-text-muted hover:text-gold-accent transition-colors"
@@ -119,7 +119,7 @@ export function Footer() {
         {/* Footer Meta */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-6 text-[10px] font-mono text-text-muted">
           <div>
-            &copy; {new Date().getFullYear()} Srinath Srinivas. All rights reserved.
+            &copy; {new Date().getFullYear()} Thota Sai Eswar Srinath. All rights reserved.
           </div>
           
           <div className="flex items-center gap-4">

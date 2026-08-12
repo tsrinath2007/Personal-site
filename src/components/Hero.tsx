@@ -47,9 +47,9 @@ export function Hero() {
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-heading text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-text-offwhite"
+            className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-text-offwhite"
           >
-            Srinath <span className="text-gold-accent">Srinivas</span>
+            Thota Sai Eswar <span className="text-gold-accent">Srinath</span>
           </motion.h1>
 
           {/* Tagline / Subtitle */}
@@ -115,7 +115,7 @@ export function Hero() {
             <GithubIcon size={20} />
           </a>
           <a
-            href="https://linkedin.com/in/tsrinath2007"
+            href="https://www.linkedin.com/in/tses/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-gold-accent transition-colors"
@@ -124,7 +124,7 @@ export function Hero() {
             <LinkedinIcon size={20} />
           </a>
           <a
-            href="https://x.com/tsrinath2007"
+            href="https://x.com/_tsrinath_"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-gold-accent transition-colors"

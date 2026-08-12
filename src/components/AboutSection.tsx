@@ -59,7 +59,7 @@ export function AboutSection() {
               Merging deep tech with intuitive UI.
             </h3>
             <p className="text-sm text-text-muted font-light leading-relaxed">
-              I am Srinath, a CS student and product builder based in Manipal. I thrive at the intersection of AI modeling, real-time protocols, and premium frontend layouts.
+              I am Thota Sai Eswar Srinath (often known simply as Srinath), a CS student and product builder based in Manipal. I thrive at the intersection of AI modeling, real-time protocols, and premium frontend layouts.
             </p>
             <p className="text-sm text-text-muted font-light leading-relaxed">
               Whether building spacecraft life support control modules or gamifying productivity sessions via Indian flight maps, my goal is to construct software that feels substantial, responsive, and tactile.

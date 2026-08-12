@@ -15,13 +15,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Srinath | CS Student & Hackathon Builder",
-  description: "Personal portfolio of Srinath, a CS student at Manipal and builder of AI, full-stack products, and gamified web applications.",
+  title: "Thota Sai Eswar Srinath | CS Student & Hackathon Builder",
+  description: "Personal portfolio of Thota Sai Eswar Srinath, a CS student at Manipal and builder of AI, full-stack products, and gamified web applications.",
   metadataBase: new URL("https://srinath.dev"),
   openGraph: {
-    title: "Srinath | CS Student & Hackathon Builder",
+    title: "Thota Sai Eswar Srinath | CS Student & Hackathon Builder",
     description: "CS Student at Manipal. Builder of AI agents, ECLSS space monitoring copilots, gamified learning systems, and edge IoT devices.",
-    siteName: "Srinath Portfolio",
+    siteName: "Thota Sai Eswar Srinath Portfolio",
     locale: "en_US",
     type: "website",
   },
