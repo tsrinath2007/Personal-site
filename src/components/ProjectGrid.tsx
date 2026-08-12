@@ -133,7 +133,7 @@ export function ProjectGrid() {
                 {/* Links */}
                 <div className="flex items-center justify-between pt-2">
                   <div className="font-mono text-[10px] text-text-muted uppercase">
-                    {project.event ? `Event: ${project.event}` : `Dev Build`}
+                    {project.event ? (project.event.startsWith("STARTUP") ? project.event : `Event: ${project.event}`) : `Dev Build`}
                   </div>
 
                   <div className="flex items-center gap-4">

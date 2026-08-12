@@ -24,7 +24,7 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/srinath/astro-copilot",
     status: "Live",
     event: "Samsung Solve for Tomorrow 2025 (AI Living for India)",
-    award: "National Finalist",
+    award: "Round 1 Qualifier // Top 1000",
     date: "Jan 2025",
     highlights: [
       "Streamed live telemetry streams using high-speed WebSockets",
@@ -40,31 +40,14 @@ export const PROJECTS: Project[] = [
     techStack: ["Next.js", "Mapbox GL JS", "Tailwind CSS", "Framer Motion", "Vercel"],
     liveUrl: "https://focusflight.vercel.app",
     githubUrl: "https://github.com/srinath/gofocusgen",
-    status: "Hackathon Build",
-    event: "Manipal Aero-Hack 2024",
-    award: "1st Place Winner",
+    status: "Live",
+    event: "STARTUP // SELF-FOUNDED",
+    award: "Startup",
     date: "Nov 2024",
     highlights: [
       "Integrated Mapbox GL JS for real-time path calculations and flight visual overlays",
       "Built custom web audio engines synthesizing ambient cabin, white noise, and high-altitude winds",
       "Created dynamic boarding pass generator to share study sessions and flight stats"
-    ]
-  },
-  {
-    id: "loop",
-    title: "Loop",
-    tagline: "AI desktop workflow miner passively suggesting keyboard/mouse macros",
-    description: "A low-overhead desktop application that runs in the background to log user interaction sequences. Employs a local Python-based prefix tree pattern mining algorithm to detect highly repetitive keystroke and click chains, proposing automated scripting and workflow macros to save active development hours.",
-    techStack: ["Electron", "React", "TypeScript", "Python", "Node.js Compiler"],
-    githubUrl: "https://github.com/srinath/loop-workflow-miner",
-    status: "Hackathon Build",
-    event: "Hackverse 2.0",
-    award: "Top 5 Hack",
-    date: "Dec 2024",
-    highlights: [
-      "Captured user activities using native low-level OS hooks, filtering out sensitive input fields",
-      "Implemented localized FP-growth algorithm in Python, running under a 15MB memory footprint",
-      "Auto-generated bash and AutoHotKey scripting code blocks for recognized workflow loops"
     ]
   },
   {
@@ -75,6 +58,8 @@ export const PROJECTS: Project[] = [
     techStack: ["C++", "Python", "Wavelet Packet Transform", "Raspberry Pi", "Kavach API", "React"],
     githubUrl: "https://github.com/srinath/pulse-rail",
     status: "Prototype",
+    award: "Hackathon Build",
+    event: "Zuup Hackathon",
     date: "Oct 2024",
     highlights: [
       "Decomposed accelerometer sensor inputs in real-time on edge Raspberry Pi processors",
@@ -130,14 +115,8 @@ export const HACKATHONS = [
   {
     event: "Samsung Solve for Tomorrow 2025",
     project: "AstroCopilot",
-    outcome: "National Finalist (AI Living for India)",
+    outcome: "Top 1000 // Round 1 Qualifier (AI Living for India)",
     date: "Jan 2025"
-  },
-  {
-    event: "Hackverse 2.0",
-    project: "Loop Workflow Miner",
-    outcome: "Top 5 Hack Winner",
-    date: "Dec 2024"
   },
   {
     event: "Manipal Aero-Hack 2024",

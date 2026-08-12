@@ -2,29 +2,29 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { GraduationCap, Users2, Compass, Zap } from "lucide-react";
+import { GraduationCap, Users2, Target, Zap } from "lucide-react";
 
 export function AboutSection() {
   const traits = [
     {
       icon: <GraduationCap size={20} className="text-gold-accent" />,
       title: "CS AT MANIPAL",
-      description: "Pursuing Computer Science at Manipal Academy of Higher Education (MAHE). Grounding product engineering in core systems and algorithms."
+      description: "Pursuing Computer Science at Manipal Academy of Higher Education (MAHE), 2025–2029. Based in Bengaluru, grounding product engineering in core systems and algorithms."
     },
     {
       icon: <Zap size={20} className="text-gold-accent" />,
       title: "VIBE CODING SPEED",
-      description: "A fast, iterative product builder. Leveraging modern developer agents and LLMs to transition ideas into deployable mockups in hours."
+      description: "A fast, iterative product builder. Vibe-codes the apps and sites he actually needs — leveraging modern developer agents and LLMs to turn ideas into deployable products in hours."
     },
     {
       icon: <Users2 size={20} className="text-gold-accent" />,
       title: "HACKATHON TEAM PLAYER",
-      description: "Thrives in tight-knit 3-person hackathon crews. Bridges the gap between complex backend architectures and high-fidelity UIs under intense pressure."
+      description: "Steps up to lead when it counts, especially under pressure. Hardworking to a fault — shows up, puts in the hours, and never skips on effort, no matter how tight the deadline."
     },
     {
-      icon: <Compass size={20} className="text-gold-accent" />,
-      title: "GAMIFIED & AVIATION UI",
-      description: "Fascinated by high-density cockpits and game mechanics. Infusing rich dashboard controls and flight instrument motifs into everyday productivity software."
+      icon: <Target size={20} className="text-gold-accent" />,
+      title: "BUILDS FOR REAL USE",
+      description: "Cares less about impressive demos, more about whether something actually gets used. Every project starts with a real problem, not a cool tech stack."
     }
   ];
 
@@ -56,13 +56,13 @@ export function AboutSection() {
             className="lg:col-span-1 space-y-6"
           >
             <h3 className="font-heading text-xl sm:text-2xl font-bold text-text-offwhite leading-relaxed">
-              Merging deep tech with intuitive UI.
+              Building things people actually need.
             </h3>
             <p className="text-sm text-text-muted font-light leading-relaxed">
-              CS student and founder who cares less about flashy demos and more about solutions people will actually use.
+              I am Thota Sai Eswar Srinath (often known simply as Srinath), a CS student based in Bengaluru (2025–2029) and a builder at heart.
             </p>
             <p className="text-sm text-text-muted font-light leading-relaxed">
-              I'm currently all-in on GoFocusGen — turning study sessions into something people actually want to show up for — alongside AI copilots and edge IoT systems I've built along the way.
+              I vibe-code the apps and sites I actually need — shipping fast, keeping what's useful, cutting what isn't. Whether it's spacecraft life-support modules or a study platform I'm turning into a startup, my goal is software that feels substantial, responsive, and genuinely useful.
             </p>
           </motion.div>
 
