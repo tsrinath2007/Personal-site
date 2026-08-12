@@ -1,32 +1,33 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
+import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
-import { CartProvider } from "@/context/CartContext";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
-  style: ["normal", "italic"],
 });
 
-const jakarta = Plus_Jakarta_Sans({
-  variable: "--font-jakarta",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Ceramelle — Handcrafted Contemporary Indian Ceramics",
-  description: "Premium handcrafted ceramics designed for slow mornings, beautiful tables, and everyday rituals. Meticulously shaped and fired in India.",
-  metadataBase: new URL("https://ceramelle.in"),
+  title: "Srinath | CS Student & Hackathon Builder",
+  description: "Personal portfolio of Srinath, a CS student at Manipal and builder of AI, full-stack products, and gamified web applications.",
+  metadataBase: new URL("https://srinath.dev"),
   openGraph: {
-    title: "Ceramelle — Handcrafted Contemporary Indian Ceramics",
-    description: "Premium handcrafted ceramics designed for slow mornings, beautiful tables, and everyday rituals.",
-    siteName: "Ceramelle",
-    locale: "en_IN",
+    title: "Srinath | CS Student & Hackathon Builder",
+    description: "CS Student at Manipal. Builder of AI agents, ECLSS space monitoring copilots, gamified learning systems, and edge IoT devices.",
+    siteName: "Srinath Portfolio",
+    locale: "en_US",
     type: "website",
   },
+  icons: {
+    icon: "/favicon.ico",
+  }
 };
 
 export default function RootLayout({
@@ -37,12 +38,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${jakarta.variable} h-full antialiased`}
+      className={`${spaceGrotesk.variable} ${inter.variable} h-full antialiased scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col bg-ivory text-espresso selection:bg-clay/10 selection:text-clay">
-        <CartProvider>
-          {children}
-        </CartProvider>
+      <body className="min-h-full flex flex-col bg-bg-dark text-text-offwhite selection:bg-gold-accent/20 selection:text-gold-accent font-sans">
+        {children}
       </body>
     </html>
   );
