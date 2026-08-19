@@ -8,23 +8,23 @@ export function AboutSection() {
   const traits = [
     {
       icon: <GraduationCap size={20} className="text-gold-accent" />,
-      title: "THE SCIENCE MAJOR",
-      description: "Pursuing Computer Science at Manipal Academy of Higher Education (MAHE), 2025–2029. Based in Bengaluru, grounding web formulations in core systems, algorithms, and clean engineering."
+      title: "CS DEPT ENGINEER @ MANIPAL",
+      description: "Computer Science at Manipal Academy of Higher Education (MAHE), 2025–2029. Based in Bengaluru, anchoring product engineering in systems and clean transit algorithms."
     },
     {
       icon: <Zap size={20} className="text-gold-accent" />,
-      title: "SPIDER-REFLEXES",
-      description: "A fast, iterative product builder. Swiftly codes the apps and grids he actually needs under pressure — using developer agents and quick reflexes to ship products in record time."
+      title: "RAPID TRANSIT CODE",
+      description: "A fast, iterative product builder. Swiftly designs systems and modular code under tight hackathon schedules — leveraging automated agents and quick deployment reflexes."
     },
     {
       icon: <Users2 size={20} className="text-gold-accent" />,
-      title: "TEAM-UP READY",
-      description: "Steps up to lead when the city needs it, especially under pressure. Hardworking to a fault — shows up, puts in the hours, and never skips out on a team rescue."
+      title: "COACH COORDINATOR",
+      description: "Steps up to coordinate systems and teams during tight schedules. Dedicated to shipping fast, keeping departments aligned, and meeting the transit deadline."
     },
     {
       icon: <Target size={20} className="text-gold-accent" />,
-      title: "GREAT RESPONSIBILITY",
-      description: "Believes that with great developer power comes great responsibility. Every project starts with a real-world problem. If it doesn't solve a user need, it doesn't get built."
+      title: "SAFETY PROTOCOLS FIRST",
+      description: "Believes that great code must serve real commuters. Every project starts with a real system need, ensuring robust logic that runs safely on every deployment loop."
     }
   ];
 
@@ -37,7 +37,7 @@ export function AboutSection() {
         {/* Section Header */}
         <div className="space-y-4 text-left">
           <span className="font-heading text-xs font-bold tracking-[0.25em] text-gold-accent uppercase block">
-            04 // ORIGIN STORY & SUIT SPECS
+            04 // PASSENGER BIO & DEPT CONTEXT
           </span>
           <h2 className="font-heading text-3xl sm:text-4xl font-bold tracking-tight text-text-offwhite">
             About Srinath
@@ -56,13 +56,13 @@ export function AboutSection() {
             className="lg:col-span-1 space-y-6"
           >
             <h3 className="font-heading text-xl sm:text-2xl font-bold text-text-offwhite leading-relaxed">
-              Weaving solutions that make an impact.
+              Engineering solutions that run on time.
             </h3>
             <p className="text-sm text-text-muted font-light leading-relaxed">
               I am Thota Sai Eswar Srinath, a CS student based in Bengaluru (2025–2029) and a builder at heart. 
             </p>
             <p className="text-sm text-text-muted font-light leading-relaxed">
-              I swing in to code the apps and sites I actually need — shipping fast, keeping what&apos;s useful, cutting what isn&apos;t. Whether it&apos;s spacecraft life-support modules or a study platform taking flight, my goal is software that feels substantial, responsive, and genuinely useful to the neighborhood.
+              I build systems and modular code that commuters actually need — shipping fast, keeping what&apos;s useful, and resolving structural bottlenecks. Whether it&apos;s spacecraft life-support telemetry or study platform algorithms, my goal is software that runs smoothly, handles load, and remains stable.
             </p>
           </motion.div>
 

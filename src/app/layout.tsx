@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
-import { WebShooter } from "@/components/WebShooter";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -16,13 +15,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Srinath | Web-Slinging Developer & Product Engineer",
-  description: "Personal portfolio of Srinath, a CS student at Manipal and neighborhood-friendly developer building spacecraft ECLSS copilots, rail monitors, and startup ventures.",
+  title: "Srinath | BMRCL Namma Metro Portfolio",
+  description: "Personal portfolio of Srinath, a CS student at Manipal and BMRCL systems engineer weaving spacecraft ECLSS copilots, railway warning sensors, and startup focus platforms.",
   metadataBase: new URL("https://srinath.dev"),
   openGraph: {
-    title: "Srinath | Web-Slinging Developer & Product Engineer",
-    description: "CS Student at Manipal. Builder of AI suit systems, ECLSS space monitoring copilots, gamified learning webs, and edge IoT devices.",
-    siteName: "Srinath's Spider-Web Portfolio",
+    title: "Srinath | BMRCL Namma Metro Portfolio",
+    description: "CS Student at Manipal. Transit-themed developer portfolio featuring telemetry dashboards, moving railway models, and study flight paths.",
+    siteName: "Srinath's Namma Metro Portfolio",
     locale: "en_US",
     type: "website",
   },
@@ -43,7 +42,6 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-bg-dark text-text-offwhite selection:bg-gold-accent/20 selection:text-gold-accent font-sans">
         {children}
-        <WebShooter />
       </body>
     </html>
   );

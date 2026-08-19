@@ -19,20 +19,20 @@ export function Footer() {
           {/* Tag and Email */}
           <div className="space-y-4 max-w-md">
             <span className="font-heading text-[10px] font-semibold tracking-[0.25em] text-gold-accent uppercase block">
-              05 // WEB-LINE TRANSMISSION
+              05 // BMRCL TRANSIT TRANSMISSION
             </span>
             <h3 className="font-heading text-2xl font-bold text-text-offwhite">
-              With great power comes great code.
+              Let&apos;s build systems that carry the load.
             </h3>
             <p className="text-sm text-text-muted font-light leading-relaxed">
-              If you want to collaborate on AI pipelines, interactive frontends, hackathon teams, or full-stack products, shoot a web transmission.
+              If you want to collaborate on automated pipelines, interactive frontends, hackathon teams, or full-stack software, shoot a BMRCL transit transmission.
             </p>
             <a
               href="mailto:tsrinath2007@gmail.com"
               className="inline-flex items-center gap-2 border border-border-gold bg-[#111113]/40 hover:bg-bg-card-hover hover:border-gold-accent text-gold-accent px-4 py-2.5 rounded font-heading text-xs tracking-wider transition-colors duration-300"
             >
               <Mail size={14} />
-              <span>TRANSMIT SIGNAL: tsrinath2007@gmail.com</span>
+              <span>TRANSMIT BMRCL SIGNAL: tsrinath2007@gmail.com</span>
             </a>
           </div>
 
