@@ -11,20 +11,21 @@ export function Hero() {
       {/* Absolute tech grids & glowing effects */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0C]/50 via-transparent to-[#0A0A0C]" />
       
-      {/* Technical ambient gold glow in the center */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] md:w-[600px] h-[350px] md:h-[600px] bg-gold-accent/5 rounded-full blur-[100px] pointer-events-none" />
+      {/* Dual Spidey Red & Blue ambient glows */}
+      <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-gold-accent/5 rounded-full blur-[100px] pointer-events-none animate-pulse" />
+      <div className="absolute top-1/2 left-2/3 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-spidey-blue/5 rounded-full blur-[100px] pointer-events-none animate-pulse" style={{ animationDelay: "1s" }} />
 
       {/* Decorative Technical Info overlay on corners */}
       <div className="absolute bottom-6 left-6 hidden lg:block text-left font-mono text-[10px] text-text-muted/60 leading-relaxed border-l border-border-gold/30 pl-3">
-        <div>LOC // MANIPAL ACADEMY OF HIGHER EDUCATION</div>
-        <div>IP // 172.16.8.109</div>
-        <div>SYS // DARWIN X86_64</div>
+        <div>LOC // QUEENS, NY & BENGALURU</div>
+        <div>SYS // STARK-SUIT OS V3.1.2</div>
+        <div>WEBS // 100% FLUID CAPACITY</div>
       </div>
 
       <div className="absolute bottom-6 right-6 hidden lg:block text-right font-mono text-[10px] text-text-muted/60 leading-relaxed border-r border-border-gold/30 pr-3">
-        <div>ENV // PRODUCTION</div>
-        <div>BUILD // V2.8.5-LATEST</div>
-        <div>PING // 14MS VERCEL-DELHI</div>
+        <div>PULSE // SPIDER-SENSE CALIBRATED</div>
+        <div>BUILD // SPIDER-BOT.V2-LATEST</div>
+        <div>PING // 14MS VERCEL-QUEENS</div>
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-8">
@@ -37,7 +38,7 @@ export function Hero() {
         >
           <Code2 size={12} className="text-gold-accent animate-pulse" />
           <span className="font-heading text-[10px] sm:text-xs font-semibold tracking-[0.2em] text-gold-accent uppercase">
-            FOUNDER, GOFOCUSGEN // CS STUDENT @ MANIPAL
+            WEB-SLINGER // SUIT ENGINEER // CS @ MANIPAL
           </span>
         </motion.div>
 
@@ -59,7 +60,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="font-heading text-lg sm:text-xl md:text-2xl font-light text-text-muted max-w-3xl mx-auto leading-relaxed"
           >
-            I build things people <span className="text-text-offwhite font-medium border-b border-gold-accent/40 pb-0.5">actually need</span> — right now, that's GoFocusGen, a gamified study platform I'm building into a startup.
+            I swing in to build things people <span className="text-text-offwhite font-medium border-b border-gold-accent/40 pb-0.5">actually need</span> — currently weaving GoFocusGen, a gamified focus platform taking flight.
           </motion.p>
         </div>
 
@@ -70,7 +71,7 @@ export function Hero() {
           transition={{ duration: 1, delay: 0.6 }}
           className="text-xs sm:text-sm text-text-muted/80 max-w-xl mx-auto font-light"
         >
-          Fast-paced product engineer specialized in rapid prototyping, complex API integrations, and robust real-time communication stacks. Focused on creating immersive user interfaces.
+          Neighborhood friendly product engineer with spider-like reflexes for rapid prototyping, complex API integrations, and crafting responsive user interfaces.
         </motion.p>
 
         {/* CTAs */}
@@ -84,7 +85,7 @@ export function Hero() {
             href="#projects"
             className="w-full sm:w-auto px-8 py-3.5 bg-gold-accent text-bg-dark font-heading text-xs font-bold tracking-[0.2em] uppercase rounded hover:bg-[#F3C63F] hover:shadow-lg hover:shadow-gold-accent/10 transition-all duration-300 flex items-center justify-center gap-2"
           >
-            View Projects
+            Shoot to Projects
             <ArrowDown size={14} className="animate-bounce" />
           </a>
           
@@ -137,7 +138,7 @@ export function Hero() {
 
       {/* Scroll Down Technical Arrow */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-text-muted/40 animate-pulse">
-        <span className="font-heading text-[8px] tracking-[0.3em] uppercase">SCROLL ENGINE</span>
+        <span className="font-heading text-[8px] tracking-[0.3em] uppercase">SWING DOWN</span>
         <ArrowDown size={12} />
       </div>
     </section>

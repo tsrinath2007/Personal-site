@@ -10,14 +10,21 @@
   --font-heading: var(--font-space-grotesk), sans-serif;
 
   --color-bg-dark: #0A0A0C;
-  --color-bg-card: #111113;
-  --color-bg-card-hover: #16161A;
-  --color-text-offwhite: #E2E2E6;
+  --color-bg-card: #0F0F12;
+  --color-bg-card-hover: #15151A;
+  --color-text-offwhite: #F5F5F7;
   --color-text-muted: #8E8E93;
-  --color-gold-accent: #D4AF37;
-  --color-gold-muted: #AA8010;
-  --color-border-gold: rgba(212, 175, 55, 0.12);
+  
+  /* Spider-Man Color Palette mappings (bound to old names to prevent class errors) */
+  --color-gold-accent: #E23636;        /* Crimson Spidey Red */
+  --color-gold-muted: #A82222;         /* Dark Spidey Red */
+  --color-border-gold: rgba(226, 54, 54, 0.15); /* Red Web Border */
   --color-border-dark: rgba(255, 255, 255, 0.05);
+
+  /* New Spider-Man Specific Colors */
+  --color-spidey-blue: #0066CC;
+  --color-spidey-blue-dark: #0A2342;
+  --color-spidey-web: rgba(255, 255, 255, 0.03);
 }
 
 body {
@@ -39,33 +46,38 @@ body {
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-gold-muted);
+  background: var(--color-gold-accent);
 }
 
 /* Grid & Dots decorative backgrounds */
 .grid-bg {
   background-image: 
-    linear-gradient(to right, rgba(212, 175, 55, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(212, 175, 55, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
+    linear-gradient(to right, rgba(226, 54, 54, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(226, 54, 54, 0.02) 1px, transparent 1px),
+    linear-gradient(45deg, rgba(0, 102, 204, 0.01) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(0, 102, 204, 0.01) 25%, transparent 25%);
+  background-size: 40px 40px, 40px 40px, 80px 80px, 80px 80px;
 }
 
 .dot-bg {
-  background-image: radial-gradient(rgba(212, 175, 55, 0.1) 1px, transparent 1px);
+  background-image: 
+    radial-gradient(rgba(226, 54, 54, 0.06) 1px, transparent 1px),
+    radial-gradient(rgba(0, 102, 204, 0.04) 1px, transparent 1px);
   background-size: 24px 24px;
+  background-position: 0 0, 12px 12px;
 }
 
-/* Gold glow utilities */
+/* Spider-Man glow utilities */
 .gold-glow {
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.05);
+  box-shadow: 0 0 20px rgba(226, 54, 54, 0.06);
 }
 
 .gold-glow-hover {
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .gold-glow-hover:hover {
-  box-shadow: 0 0 30px rgba(212, 175, 55, 0.12);
-  border-color: rgba(212, 175, 55, 0.3) !important;
+  box-shadow: 0 0 30px rgba(226, 54, 54, 0.12), 0 0 15px rgba(0, 102, 204, 0.06);
+  border-color: rgba(226, 54, 54, 0.3) !important;
 }
 
 /* Border gradient */
@@ -78,7 +90,7 @@ body {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, transparent, rgba(212, 175, 55, 0.15), transparent);
+  background: linear-gradient(135deg, transparent, rgba(226, 54, 54, 0.15), transparent);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -88,5 +100,6 @@ body {
 }
 .border-gradient-hover:hover::after {
   opacity: 1;
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.5), rgba(212, 175, 55, 0.1));
+  background: linear-gradient(135deg, rgba(226, 54, 54, 0.15), rgba(0, 102, 204, 0.3), rgba(226, 54, 54, 0.15));
 }
+

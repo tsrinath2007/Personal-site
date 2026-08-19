@@ -18,7 +18,7 @@ export const PROJECTS: Project[] = [
     id: "astro-copilot",
     title: "AstroCopilot",
     tagline: "AI mission copilot for spacecraft ECLSS telemetry monitoring",
-    description: "An intelligent space habitat cockpit assistant built for real-time monitoring of Environmental Control and Life Support System (ECLSS) telemetry. Implements a Proximal Policy Optimization (PPO) reinforcement learning agent for autonomous habitat adjustments and a fine-tuned Qwen2.5-1.5B model to generate natural language resolution logs during safety emergencies.",
+    description: "An intelligent life-support telemetry monitoring engine. Implements a Proximal Policy Optimization (PPO) reinforcement learning agent for autonomous adjustments and a fine-tuned Qwen2.5 model to handle safety anomalies — engineered like a Stark-tech spider suit life-support interface operating under extreme pressure.",
     techStack: ["Qwen2.5-1.5B", "PPO RL", "FastAPI", "WebSockets", "Recharts", "Next.js"],
     githubUrl: "https://github.com/tsrinath2007/Life-Support-ENV",
     status: "Live",
@@ -28,14 +28,14 @@ export const PROJECTS: Project[] = [
     highlights: [
       "Streamed live telemetry streams using high-speed WebSockets",
       "Achieved sub-250ms latency for LLM anomaly resolution advice using streaming token output",
-      "Modeled 12 spacecraft habitat parameters including pO2, pCO2, cabin pressure, and water loop status"
+      "Modeled 12 spacecraft parameters including pO2, pCO2, cabin pressure, and water loop status"
     ]
   },
   {
     id: "go-focus-gen",
     title: "GoFocusGen",
     tagline: "Gamified aviation-inspired study app mapping session durations to real flight paths",
-    description: "A gamified productivity companion where study sessions are visual flights across India. Users select actual domestic aviation routes, and the countdown timer syncs with real flight times (e.g. Mumbai to Delhi = 2 hours). Displays an interactive map showing flight progression, elevation charts, and active aircraft noise generators for immersive focus.",
+    description: "A flight-path gamified focus engine where study sessions are visual flights. Syncs countdown timers with domestic aviation durations (e.g. Mumbai to Delhi = 2 hours) with interactive flight paths, elevation charts, and ambient audio loops — reminiscent of charting web-slinging routes across Queens skyscrapers.",
     techStack: ["Next.js", "Mapbox GL JS", "Tailwind CSS", "Framer Motion", "Vercel"],
     liveUrl: "https://gofocusgen.vercel.app/",
     githubUrl: "https://github.com/tsrinath2007/FlightEdu",
@@ -53,7 +53,7 @@ export const PROJECTS: Project[] = [
     id: "pulse-rail",
     title: "PULSE RAIL",
     tagline: "Railway track vibration health monitor using WPT edge-processing",
-    description: "A specialized physical-computing prototype monitoring structural track stability. Uses axle box accelerometers to measure track impact vibrations. Decomposes high-frequency signals using a localized Wavelet Packet Transform (WPT) on-node to isolate anomaly signatures, linking to Kavach 4G-LTE anti-collision network protocols.",
+    description: "A physical edge-computing prototype monitoring structural track stability. Uses accelerometers to capture rail impact vibrations and a Wavelet Packet Transform (WPT) on-node to isolate anomaly signatures — linking to anti-collision protocols to act as a localized, real-world 'Spider-Sense' for moving train cars.",
     techStack: ["C++", "Python", "Wavelet Packet Transform", "Raspberry Pi", "Kavach API", "React"],
     liveUrl: "https://faraway-railway.vercel.app/",
     githubUrl: "https://github.com/tsrinath2007/FarAway",
@@ -71,7 +71,7 @@ export const PROJECTS: Project[] = [
     id: "life-support-env",
     title: "Life Support ENV",
     tagline: "Fine-tuned ECLSS habitat simulation sandbox",
-    description: "A simulated sandbox workspace mimicking life-support loop parameters. Combines a Proximal Policy Optimization (PPO) model with a Qwen2.5-1.5B model adapted using LoRA parameters (trained on historic NASA Apollo and ISS failure manuals) to optimize oxygen loop scrubbers and water reclamation systems.",
+    description: "A simulated sandbox environment mimicking life-support loop parameters. Combines a PPO model with a Qwen2.5 model fine-tuned on historic NASA Apollo and ISS logs to optimize oxygen loops and water scrubbers — essential for emergency simulation when suit oxygen systems fail at high altitudes.",
     techStack: ["PPO RL", "Qwen LoRA", "Python", "Gradio", "HuggingFace Spaces", "FastAPI"],
     liveUrl: "https://huggingface.co/spaces/tsrinath/Scaler-Round-2",
     githubUrl: "https://github.com/tsrinath2007/Scaler-Round-2",
@@ -98,15 +98,15 @@ export const SKILL_GROUPS: SkillGroup[] = [
     items: ["TypeScript", "JavaScript", "Python", "Go", "C++", "HTML/CSS", "SQL"]
   },
   {
-    category: "Frameworks & Libraries",
+    category: "Frameworks & Webs",
     items: ["Next.js", "React", "FastAPI", "WebSockets", "Express", "Node.js", "Electron"]
   },
   {
-    category: "AI / ML Stack",
+    category: "Web-Slinging AI Stack",
     items: ["PPO (RL)", "Qwen 2.5", "LoRA Fine-tuning", "PyTorch", "HuggingFace Transformers", "Gradio"]
   },
   {
-    category: "Tools & Clouds",
+    category: "Gadgets & Clouds",
     items: ["Vercel", "Mapbox GL JS", "HuggingFace Spaces", "Docker", "Git/GitHub", "Recharts", "PostgreSQL"]
   }
 ];
@@ -131,3 +131,4 @@ export const HACKATHONS = [
     date: "Sep 2024"
   }
 ];
+

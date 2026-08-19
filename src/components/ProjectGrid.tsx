@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ExternalLink, Code2, Award, Terminal } from "lucide-react";
+import { ExternalLink, Award, Terminal } from "lucide-react";
 import { GithubIcon } from "@/components/BrandIcons";
 import { PROJECTS, Project } from "@/data/projects";
 
@@ -17,10 +17,21 @@ export function ProjectGrid() {
     },
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 100, damping: 15 } },
-  };
+  const itemVariants = (index: number) => ({
+    hidden: { 
+      opacity: 0, 
+      x: index % 2 === 0 ? -120 : 120, 
+      scale: 0.95,
+      rotate: index % 2 === 0 ? -2 : 2
+    },
+    show: { 
+      opacity: 1, 
+      x: 0, 
+      scale: 1, 
+      rotate: 0, 
+      transition: { type: "spring" as const, stiffness: 85, damping: 12, mass: 0.9 } 
+    },
+  });
 
   const getStatusColor = (status: Project["status"]) => {
     switch (status) {
@@ -45,7 +56,7 @@ export function ProjectGrid() {
         {/* Section Header */}
         <div className="space-y-4 text-left">
           <span className="font-heading text-xs font-bold tracking-[0.25em] text-gold-accent uppercase block">
-            01 // PROTOTYPES & DEPLOYMENTS
+            01 // WEB-SHOOTER PROTOTYPES & DEPLOYMENTS
           </span>
           <h2 className="font-heading text-3xl sm:text-4xl font-bold tracking-tight text-text-offwhite">
             Featured Projects
@@ -61,10 +72,10 @@ export function ProjectGrid() {
           viewport={{ once: true, margin: "-100px" }}
           className="grid grid-cols-1 lg:grid-cols-2 gap-8"
         >
-          {PROJECTS.map((project) => (
+          {PROJECTS.map((project, idx) => (
             <motion.div
               key={project.id}
-              variants={itemVariants}
+              variants={itemVariants(idx)}
               className="group bg-[#111113] border border-border-gold/30 hover:border-gold-accent/40 rounded-lg p-6 flex flex-col justify-between transition-all duration-300 gold-glow-hover relative overflow-hidden"
             >
               {/* Subtle top indicator bar */}
@@ -105,7 +116,7 @@ export function ProjectGrid() {
                 {/* Technical highlights code block */}
                 <div className="bg-[#0A0A0C] border border-border-dark p-3.5 rounded font-mono text-[11px] text-text-muted space-y-2 relative">
                   <div className="absolute top-2 right-3 text-[9px] text-gold-accent/40 font-semibold tracking-wider flex items-center gap-1">
-                    <Terminal size={8} /> LOGS
+                    <Terminal size={8} /> SUIT_TELEMETRY.LOG
                   </div>
                   {project.highlights.map((highlight, index) => (
                     <div key={index} className="flex gap-2 items-start">

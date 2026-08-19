@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
+import { WebShooter } from "@/components/WebShooter";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -15,13 +16,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Thota Sai Eswar Srinath | CS Student & Hackathon Builder",
-  description: "Personal portfolio of Thota Sai Eswar Srinath, a CS student at Manipal and builder of AI, full-stack products, and gamified web applications.",
+  title: "Srinath | Web-Slinging Developer & Product Engineer",
+  description: "Personal portfolio of Srinath, a CS student at Manipal and neighborhood-friendly developer building spacecraft ECLSS copilots, rail monitors, and startup ventures.",
   metadataBase: new URL("https://srinath.dev"),
   openGraph: {
-    title: "Thota Sai Eswar Srinath | CS Student & Hackathon Builder",
-    description: "CS Student at Manipal. Builder of AI agents, ECLSS space monitoring copilots, gamified learning systems, and edge IoT devices.",
-    siteName: "Thota Sai Eswar Srinath Portfolio",
+    title: "Srinath | Web-Slinging Developer & Product Engineer",
+    description: "CS Student at Manipal. Builder of AI suit systems, ECLSS space monitoring copilots, gamified learning webs, and edge IoT devices.",
+    siteName: "Srinath's Spider-Web Portfolio",
     locale: "en_US",
     type: "website",
   },
@@ -42,7 +43,9 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-bg-dark text-text-offwhite selection:bg-gold-accent/20 selection:text-gold-accent font-sans">
         {children}
+        <WebShooter />
       </body>
     </html>
   );
 }
+
