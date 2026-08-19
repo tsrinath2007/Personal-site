@@ -13,7 +13,6 @@ interface WebStrand {
   state: "shooting" | "stuck" | "decaying";
   vibration: number;
   sideLines: { lengthRatio: number; angleOffset: number; waveOffset: number }[];
-  particles: { x: number; y: number; vx: number; vy: number; alpha: number; size: number }[];
 }
 
 export function WebShooter() {
@@ -39,8 +38,6 @@ export function WebShooter() {
 
     // Click handler to shoot web
     const handleClick = (e: MouseEvent) => {
-      // Ignore click if it's on a interactive item we don't want to visually cover, but allow it on backgrounds/cards
-      // Actually shooting everywhere is more fun and doesn't block standard clicks
       const width = window.innerWidth;
       const height = window.innerHeight;
 
@@ -70,7 +67,6 @@ export function WebShooter() {
         state: "shooting",
         vibration: 15,
         sideLines,
-        particles: [],
       };
 
       websRef.current.push(newWeb);
@@ -91,20 +87,6 @@ export function WebShooter() {
           if (web.progress >= 1) {
             web.progress = 1;
             web.state = "stuck";
-            
-            // Spawn web impact particles
-            for (let i = 0; i < 15; i++) {
-              const angle = Math.random() * Math.PI * 2;
-              const speed = 1 + Math.random() * 3;
-              web.particles.push({
-                x: web.targetX,
-                y: web.targetY,
-                vx: Math.cos(angle) * speed,
-                vy: Math.sin(angle) * speed,
-                alpha: 1.0,
-                size: 1 + Math.random() * 1.5,
-              });
-            }
           }
         } else if (web.state === "stuck") {
           web.vibration *= 0.85; // Dampen web string vibration
@@ -114,33 +96,9 @@ export function WebShooter() {
           }
         } else if (web.state === "decaying") {
           web.life -= 0.06;      // Dissolve speed
-          
-          // Generate falling particles along the web line
-          if (Math.random() < 0.3) {
-            const ratio = Math.random();
-            const px = web.startX + (web.targetX - web.startX) * ratio;
-            const py = web.startY + (web.targetY - web.startY) * ratio;
-            web.particles.push({
-              x: px,
-              y: py,
-              vx: (Math.random() - 0.5) * 1,
-              vy: 0.5 + Math.random() * 1.5,
-              alpha: 0.8,
-              size: 0.8 + Math.random() * 1,
-            });
-          }
         }
 
-        // Update particles
-        web.particles.forEach((p) => {
-          p.x += p.vx;
-          p.y += p.vy;
-          p.vy += 0.05; // gravity
-          p.alpha -= 0.03; // fade out
-        });
-        web.particles = web.particles.filter((p) => p.alpha > 0);
-
-        if (web.life <= 0 && web.particles.length === 0) {
+        if (web.life <= 0) {
           return false; // Remove web
         }
 
@@ -161,14 +119,6 @@ export function WebShooter() {
         ctx.shadowBlur = web.state === "shooting" ? 8 : 4;
         ctx.shadowColor = web.id % 2 === 0 ? "rgba(226, 54, 54, 0.8)" : "rgba(0, 102, 204, 0.8)";
         
-        // Render Web Particles
-        web.particles.forEach((p) => {
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
-          ctx.fill();
-        });
-
         // Setup stroke parameters for main web strand
         ctx.lineWidth = web.state === "shooting" ? 2.5 : 1.5;
         ctx.strokeStyle = `rgba(255, 255, 255, ${web.life})`;
