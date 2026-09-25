@@ -110,9 +110,7 @@ export function Navbar() {
             href="#"
             className="group font-heading font-bold text-base tracking-wider text-text-offwhite hover:text-gold-accent transition-colors hidden sm:block"
           >
-            <span>
-              SRINATH<span className="text-gold-accent font-light">.WEB</span>
-            </span>
+            <span>SES</span>
           </a>
         </div>
 

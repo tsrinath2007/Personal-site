@@ -22,16 +22,18 @@ import React, {
 } from "react";
 import { motion, useAnimate, stagger } from "framer-motion";
 
-// TODO: Replace these placeholder hand-drawn "SES" scribble paths with your final traced SVG path(s)
+// TODO: Replace these placeholder hand-drawn "SES" monogram paths with your final traced SVG path(s)
 export const SES_PATHS: string[] = [
-  // Cursive 'S' initial loop & curve
-  "M 28 66 C 30 46 42 22 56 22 C 68 22 68 36 56 46 C 42 58 36 72 48 80 C 60 88 74 78 82 66",
-  // Cursive 'E' connector and loops
-  "M 82 66 C 90 54 98 38 108 30 C 118 22 126 28 120 42 C 112 54 94 56 100 62 C 108 70 122 70 118 78 C 114 86 100 82 108 74",
-  // Cursive 'S' second loop & exit stroke
-  "M 116 74 C 126 58 138 38 150 24 C 162 12 172 20 168 34 C 160 48 142 58 148 70 C 154 82 172 82 186 68 C 192 62 196 54 198 46",
+  // Letter 1: 'S'
+  "M 64 26 C 46 16 26 26 26 42 C 26 58 66 50 66 66 C 66 82 46 88 26 78",
+  // Letter 2: 'E' (Outer frame)
+  "M 116 26 C 98 25 86 25 86 28 L 85 74 C 85 77 98 77 116 76",
+  // Letter 2: 'E' (Crossbar)
+  "M 85 51 L 108 51",
+  // Letter 3: 'S'
+  "M 174 26 C 156 16 136 26 136 42 C 136 58 176 50 176 66 C 176 82 156 88 136 78",
   // Signature dynamic underline flourish
-  "M 24 88 C 65 96 125 96 182 82",
+  "M 22 90 C 70 96 130 96 180 84",
 ];
 
 export interface SesLogoProps {
