@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowDown, FileText, Code2, Award, Zap } from "lucide-react";
+import { ArrowDown, FileText, Code2 } from "lucide-react";
 import { GithubIcon, LinkedinIcon, XIcon } from "@/components/BrandIcons";
 import { useIntro } from "@/components/IntroLogo";
 
@@ -93,40 +93,7 @@ export function Hero() {
           </p>
         </motion.div>
 
-        {/* 3. Hero Stat Counters */}
-        <motion.div
-          variants={itemVariants}
-          className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-2xl mx-auto py-2"
-        >
-          <div className="bg-[#111113] border border-border-gold/25 rounded-lg p-3 text-center gold-glow">
-            <div className="font-heading text-xl sm:text-2xl font-bold text-text-offwhite">5+</div>
-            <div className="font-mono text-[9px] sm:text-[10px] text-text-muted uppercase tracking-wider mt-0.5">
-              Live Projects
-            </div>
-          </div>
-          <div className="bg-[#111113] border border-border-gold/25 rounded-lg p-3 text-center gold-glow">
-            <div className="font-heading text-xl sm:text-2xl font-bold text-gold-accent flex items-center justify-center gap-1">
-              <Award size={16} /> 1st
-            </div>
-            <div className="font-mono text-[9px] sm:text-[10px] text-text-muted uppercase tracking-wider mt-0.5">
-              Aero-Hack
-            </div>
-          </div>
-          <div className="bg-[#111113] border border-border-gold/25 rounded-lg p-3 text-center gold-glow">
-            <div className="font-heading text-xl sm:text-2xl font-bold text-spidey-blue">7.25</div>
-            <div className="font-mono text-[9px] sm:text-[10px] text-text-muted uppercase tracking-wider mt-0.5">
-              MAHE CGPA
-            </div>
-          </div>
-          <div className="bg-[#111113] border border-border-gold/25 rounded-lg p-3 text-center gold-glow">
-            <div className="font-heading text-xl sm:text-2xl font-bold text-emerald-400 flex items-center justify-center gap-1">
-              <Zap size={14} /> &lt;250ms
-            </div>
-            <div className="font-mono text-[9px] sm:text-[10px] text-text-muted uppercase tracking-wider mt-0.5">
-              AI Latency
-            </div>
-          </div>
-        </motion.div>
+
 
         {/* 4. Hero Visual: Action CTAs & Telemetry */}
         <motion.div
