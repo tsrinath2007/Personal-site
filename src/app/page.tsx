@@ -2,6 +2,7 @@ import React from "react";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { ProjectGrid } from "@/components/ProjectGrid";
+import { HackerHouseSection } from "@/components/HackerHouseSection";
 import { Timeline } from "@/components/Timeline";
 import { SkillsDashboard } from "@/components/SkillsDashboard";
 import { AboutSection } from "@/components/AboutSection";
@@ -21,6 +22,9 @@ export default function Home() {
 
         {/* Section 1: Projects card grid */}
         <ProjectGrid />
+
+        {/* Section 1.B: Hacker House Goa 2026 Sprint */}
+        <HackerHouseSection />
 
         {/* Section 2: Competitive Timeline */}
         <Timeline />
