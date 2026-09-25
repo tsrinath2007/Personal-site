@@ -27,10 +27,10 @@ export default function Home() {
         {/* Section 1: Projects card grid */}
         <ProjectGrid />
 
-        {/* Section 1.B: Hacker House Goa 2026 Sprint */}
+        {/* Section 2.A: Hacker House Goa 2026 Sprint (#hackathons) */}
         <HackerHouseSection />
 
-        {/* Section 2: Competitive Timeline */}
+        {/* Section 2.B: Hackathons & Achievements Timeline */}
         <Timeline />
 
         {/* Section 3: Tech Stack tags */}

@@ -37,14 +37,14 @@ const SpiderIcon = ({ className }: { className?: string }) => (
 
 export function Timeline() {
   return (
-    <section id="hackathons" className="py-24 relative border-b border-border-gold bg-[#111113]">
+    <section id="timeline" className="py-24 relative border-b border-border-gold bg-[#111113] scroll-mt-20">
       <div className="absolute inset-0 dot-bg opacity-30" />
       
       <div className="max-w-7xl mx-auto px-6 relative z-10 space-y-16">
         {/* Section Header */}
         <div className="space-y-4 text-left">
           <span className="font-heading text-xs font-bold tracking-[0.25em] text-gold-accent uppercase block">
-            02 // SPIDER-SENSE & HACKATHONS
+            02.B // COMPETITIVE TIMELINE & ACHIEVEMENTS
           </span>
           <h2 className="font-heading text-3xl sm:text-4xl font-bold tracking-tight text-text-offwhite">
             Hackathons & Achievements

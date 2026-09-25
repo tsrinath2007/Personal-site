@@ -27,13 +27,13 @@ export function HackerHouseSection() {
   };
 
   return (
-    <section className="py-20 relative border-b border-border-gold bg-[#0E0E11]">
+    <section id="hackathons" className="py-20 relative border-b border-border-gold bg-[#0E0E11] scroll-mt-20">
       <div className="max-w-7xl mx-auto px-6 space-y-12">
         {/* Header Block with Team Note Callout */}
         <div className="space-y-4">
           <div className="flex items-center gap-2 flex-wrap">
             <span className="font-heading text-xs font-bold tracking-[0.25em] text-gold-accent uppercase">
-              01.B // SPECIAL DEPLOYMENT SPRINT
+              02.A // HACKATHON SPRINT: HACKER HOUSE GOA
             </span>
             <span className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded border border-gold-accent/40 bg-gold-accent/10 text-gold-accent font-semibold">
               {HACKER_HOUSE_GOA.badge}

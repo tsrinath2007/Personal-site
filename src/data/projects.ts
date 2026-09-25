@@ -157,6 +157,29 @@ export interface HackathonItem {
 
 export const HACKATHONS: HackathonItem[] = [
   {
+    event: "Hacker House Goa 2026",
+    project: "Voice RAG Dashboard & Sentinel",
+    projectId: "hh-voice-rag",
+    outcome: "Competitive 10-Team Selection · Team of 3",
+    date: "2026",
+    liveUrl: "https://goat-task2.vercel.app/",
+    githubUrl: "https://github.com/tsrinath2007/Task-2"
+  },
+  {
+    event: "Smart India Hackathon 2026",
+    project: "Parallax",
+    projectId: "parallax",
+    outcome: "SIH26171 (ISRO) · Team of 6 (Feasibility Lead)",
+    date: "2026"
+  },
+  {
+    event: "Nexora Hackathon (MIT Bengaluru)",
+    project: "resume_ranker",
+    projectId: "resume-ranker",
+    outcome: "Solo Build · InternLoom UI",
+    date: "2026"
+  },
+  {
     event: "Samsung Solve for Tomorrow",
     project: "Life Support ENV",
     projectId: "life-support-env",
@@ -179,20 +202,6 @@ export const HACKATHONS: HackathonItem[] = [
     outcome: "Top 1000 // Round 1 Qualifier (AI Living for India)",
     date: "Apr 2026",
     githubUrl: "https://github.com/tsrinath2007/Life-Support-ENV"
-  },
-  {
-    event: "Smart India Hackathon 2026",
-    project: "Parallax",
-    projectId: "parallax",
-    outcome: "SIH26171 (ISRO) · Team of 6 (Feasibility Lead)",
-    date: "2026"
-  },
-  {
-    event: "Nexora Hackathon (MIT Bengaluru)",
-    project: "resume_ranker",
-    projectId: "resume-ranker",
-    outcome: "Solo Build · InternLoom UI",
-    date: "2026"
   }
 ];
 
