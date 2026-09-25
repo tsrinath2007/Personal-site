@@ -66,6 +66,11 @@ export function Footer() {
                     /about
                   </a>
                 </li>
+                <li>
+                  <a href="#connect" className="text-text-muted hover:text-gold-accent transition-colors">
+                    /connect
+                  </a>
+                </li>
               </ul>
             </div>
 

@@ -91,7 +91,7 @@ export function Hero() {
           
           <a
             href="/resume.pdf"
-            download
+            download="Thota_Sai_Eswar_Srinath_Resume.pdf"
             className="w-full sm:w-auto px-8 py-3.5 border border-border-gold bg-[#111113]/40 hover:bg-bg-card-hover font-heading text-xs font-bold tracking-[0.2em] uppercase rounded hover:border-gold-accent transition-all duration-300 flex items-center justify-center gap-2"
           >
             <FileText size={14} className="text-gold-accent" />

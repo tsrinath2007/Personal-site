@@ -51,6 +51,7 @@ export function Header() {
     { label: "HACKATHONS", href: "#hackathons" },
     { label: "STACK", href: "#stack" },
     { label: "ABOUT", href: "#about" },
+    { label: "CONNECT", href: "#connect" },
   ];
 
   return (

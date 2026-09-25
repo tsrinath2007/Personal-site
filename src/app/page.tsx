@@ -5,6 +5,7 @@ import { ProjectGrid } from "@/components/ProjectGrid";
 import { Timeline } from "@/components/Timeline";
 import { SkillsDashboard } from "@/components/SkillsDashboard";
 import { AboutSection } from "@/components/AboutSection";
+import { ConnectSection } from "@/components/ConnectSection";
 import { Footer } from "@/components/Footer";
 
 export default function Home() {
@@ -29,6 +30,9 @@ export default function Home() {
 
         {/* Section 4: Bio / Education context */}
         <AboutSection />
+
+        {/* Section 5: Connect & Collaborate */}
+        <ConnectSection />
       </main>
 
       {/* Minimal technical footer */}
