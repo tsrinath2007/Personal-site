@@ -74,7 +74,7 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/tsrinath2007/Scaler-Round-2",
     status: "Hackathon Build",
     event: "Samsung Solve for Tomorrow",
-    award: "Top 10 Finalist (Round 2)",
+    award: "Top 1000 Qualifier",
     date: "Jun 2026",
     highlights: [
       "Fine-tuned Qwen2.5-1.5B with custom LoRA adapter on 1,200+ pages of NASA life-support reports",
@@ -183,7 +183,7 @@ export const HACKATHONS: HackathonItem[] = [
     event: "Samsung Solve for Tomorrow",
     project: "Life Support ENV",
     projectId: "life-support-env",
-    outcome: "Top 10 Finalist (Round 2)",
+    outcome: "Top 1000 Qualifier",
     date: "Jun 2026",
     githubUrl: "https://github.com/tsrinath2007/Scaler-Round-2"
   },
