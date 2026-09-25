@@ -1,4 +1,5 @@
 import React from "react";
+import { SesOpeningAnimation } from "@/components/SesOpeningAnimation";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { ProjectGrid } from "@/components/ProjectGrid";
@@ -11,8 +12,11 @@ import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-bg-dark text-text-offwhite selection:bg-gold-accent/20 selection:text-gold-accent font-sans">
-      {/* Sleek navigation header with SES logo & SRINATH.DEV branding */}
+    <div className="flex flex-col min-h-screen bg-bg-dark text-text-offwhite selection:bg-gold-accent/20 selection:text-gold-accent font-sans relative">
+      {/* Start Page SES Cut-in-Half Opening Animation */}
+      <SesOpeningAnimation />
+
+      {/* Sleek navigation header with SRINATH.DEV branding */}
       <Header />
 
       {/* Main sections */}

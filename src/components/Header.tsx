@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Terminal } from "lucide-react";
 
 const SpiderIcon = ({ className }: { className?: string }) => (
   <svg
@@ -63,35 +63,14 @@ export function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        {/* Brand: SES Monogram + SRINATH.DEV */}
+        {/* Brand: SRINATH.DEV (No logo) */}
         <a
           href="#"
-          className="flex items-center gap-3 group font-heading font-bold text-lg tracking-wider text-text-offwhite hover:text-gold-accent transition-colors"
+          className="flex items-center gap-2 group font-heading font-bold text-lg tracking-wider text-text-offwhite hover:text-gold-accent transition-colors"
           aria-label="Home - SrinathDev"
         >
-          {/* Hand-drawn SES Monogram Logo Mark */}
-          <div className="w-8 h-8 rounded border border-border-gold/30 bg-[#111113] p-1 flex items-center justify-center text-gold-accent group-hover:border-gold-accent transition-colors shadow-sm">
-            <svg
-              viewBox="0 0 200 100"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={4.5}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-full h-full"
-            >
-              {/* S */}
-              <path d="M 64 26 C 46 16 26 26 26 42 C 26 58 66 50 66 66 C 66 82 46 88 26 78" />
-              {/* E */}
-              <path d="M 116 26 C 98 25 86 25 86 28 L 85 74 C 85 77 98 77 116 76" />
-              <path d="M 85 51 L 108 51" />
-              {/* S */}
-              <path d="M 174 26 C 156 16 136 26 136 42 C 136 58 176 50 176 66 C 176 82 156 88 136 78" />
-              {/* Underline flourish */}
-              <path d="M 22 90 C 70 96 130 96 180 84" />
-            </svg>
-          </div>
-          <span className="font-heading font-bold text-base tracking-wider">
+          <Terminal size={18} className="text-gold-accent group-hover:rotate-12 transition-transform duration-300" />
+          <span>
             SRINATH<span className="text-gold-accent font-light">.DEV</span>
           </span>
         </a>
