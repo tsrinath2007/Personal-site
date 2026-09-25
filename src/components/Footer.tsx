@@ -1,16 +1,19 @@
 "use client";
 
 import React from "react";
-import { Mail, FileText, ArrowUp } from "lucide-react";
+import { ArrowUp, Mail, FileText } from "lucide-react";
 
 export function Footer() {
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   };
 
   return (
-    <footer className="bg-[#0A0A0C] border-t border-border-gold/30 py-16 relative overflow-hidden">
-      {/* Decorative vertical border lines on bottom edges */}
+    <footer className="relative border-t border-border-gold bg-[#0A0A0C] py-16">
+      {/* Decorative vertical grid lines on container edges */}
       <div className="absolute inset-y-0 left-6 border-l border-border-gold/5 pointer-events-none hidden xl:block" />
       <div className="absolute inset-y-0 right-6 border-r border-border-gold/5 pointer-events-none hidden xl:block" />
 
@@ -19,20 +22,20 @@ export function Footer() {
           {/* Tag and Email */}
           <div className="space-y-4 max-w-md">
             <span className="font-heading text-[10px] font-semibold tracking-[0.25em] text-gold-accent uppercase block">
-              05 // BMRCL TRANSIT TRANSMISSION
+              05 // WEB-LINE TRANSMISSION
             </span>
             <h3 className="font-heading text-2xl font-bold text-text-offwhite">
-              Let&apos;s build systems that carry the load.
+              With great power comes great code.
             </h3>
             <p className="text-sm text-text-muted font-light leading-relaxed">
-              If you want to collaborate on automated pipelines, interactive frontends, hackathon teams, or full-stack software, shoot a BMRCL transit transmission.
+              If you want to collaborate on AI pipelines, interactive frontends, hackathon teams, or full-stack products, shoot a web transmission.
             </p>
             <a
               href="mailto:tsrinath2020@gmail.com"
               className="inline-flex items-center gap-2 border border-border-gold bg-[#111113]/40 hover:bg-bg-card-hover hover:border-gold-accent text-gold-accent px-4 py-2.5 rounded font-heading text-xs tracking-wider transition-colors duration-300"
             >
               <Mail size={14} />
-              <span>TRANSMIT BMRCL SIGNAL: tsrinath2020@gmail.com</span>
+              <span>TRANSMIT SIGNAL: tsrinath2020@gmail.com</span>
             </a>
           </div>
 
