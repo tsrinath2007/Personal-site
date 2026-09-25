@@ -243,18 +243,19 @@ export interface HackerHouseTask {
 export const HACKER_HOUSE_GOA = {
   title: "Hacker House Goa 2026",
   badge: "COMPETITIVE 10-TEAM SELECTION",
-  liveUrl: "https://hhgoa.vercel.app/",
+  eventUrl: "https://hhgoa.com",
   teamNote: "Team of 3 // Built with Antigravity + Groq free tier",
   blurb: "A high-intensity, competitive 10-team selection engineering sprint in Goa with multiple specialized task submissions spanning voice-enabled RAG pipelines, biometric blockchain identity anchoring, and agentic graph fraud investigations.",
   tasks: [
     {
       id: "hh-voice-rag",
-      title: "Task 2 — Voice RAG Pipeline",
+      title: "Task 2 — Voice RAG Dashboard",
       tagline: "Voice-enabled RAG targeting sub-200ms latency on Vercel",
       description: "Voice-enabled RAG system using ElevenLabs STT, multi-strategy chunking, and the ai4bharat/MSMARCO-XI dataset, targeting sub-200ms latency, deployed on Vercel. Included comprehensive UI redesign work.",
-      techStack: ["ElevenLabs", "RAG", "Vercel"],
+      techStack: ["ElevenLabs", "RAG", "Vercel", "Next.js"],
       status: "Live",
-      liveUrl: "https://hhgoa.vercel.app/",
+      liveUrl: "https://goat-task2.vercel.app/",
+      githubUrl: "https://github.com/tsrinath2007/Task-2",
       highlights: [
         "Voice-enabled RAG pipeline with ElevenLabs STT and multi-strategy chunking",
         "Benchmarked retrieval over ai4bharat/MSMARCO-XI dataset targeting sub-200ms latency",
@@ -266,8 +267,9 @@ export const HACKER_HOUSE_GOA = {
       title: "Task 3 — Face Detection + Blockchain CLI",
       tagline: "Reverse image search with Polygon Amoy state anchoring",
       description: "Face detection and reverse image search extraction pipeline with cryptographic blockchain state anchoring on the Polygon Amoy testnet.",
-      techStack: ["Face Detection", "Reverse Image Search", "Polygon"],
-      status: "Sprint Submission",
+      techStack: ["Face Detection", "Reverse Image Search", "Polygon", "CLI"],
+      status: "Local CLI",
+      githubUrl: "https://github.com/tsrinath2007/task-3",
       highlights: [
         "Face detection & reverse image search visual feature extraction pipeline",
         "Cryptographic proof state anchoring on Polygon Amoy testnet",
@@ -275,16 +277,18 @@ export const HACKER_HOUSE_GOA = {
       ]
     },
     {
-      id: "hh-tigergraph-fraud",
-      title: "TigerGraph Agentic Fraud Investigation",
+      id: "hh-sentinel-fraud",
+      title: "Task 4 — SENTINEL: Fraud Intelligence & Investigation Platform",
       tagline: "Autonomous GraphRAG agent on 590k-transaction IEEE-CIS dataset",
       description: "Built an autonomous investigative agent on a 590k-transaction IEEE-CIS/Vesta-derived dataset (5,565 closed cases, 20-case benchmark pack) using TigerGraph + MCP + GraphRAG, producing structured JSON verdicts per case.",
-      techStack: ["TigerGraph", "MCP", "GraphRAG", "Groq (llama-3.3-70b)"],
-      status: "Sprint Submission",
+      techStack: ["TigerGraph", "MCP", "GraphRAG", "Groq (llama-3.3-70b)", "Render"],
+      status: "Live",
+      liveUrl: "https://task-4-nvan.onrender.com/",
+      githubUrl: "https://github.com/tsrinath2007/Task-4",
       highlights: [
         "Investigated 5,565 closed fraud cases on 590k IEEE-CIS/Vesta transaction graph",
         "Evaluated on a 20-case benchmark suite using TigerGraph + Model Context Protocol (MCP)",
-        "GraphRAG pipeline producing deterministic JSON decision verdicts powered by Groq (llama-3.3-70b)"
+        "GraphRAG pipeline producing deterministic JSON decision verdicts deployed to Render"
       ]
     }
   ] as HackerHouseTask[]

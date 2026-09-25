@@ -38,15 +38,14 @@ export function HackerHouseSection() {
             <span className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded border border-gold-accent/40 bg-gold-accent/10 text-gold-accent font-semibold">
               {HACKER_HOUSE_GOA.badge}
             </span>
-            {HACKER_HOUSE_GOA.liveUrl && (
+            {HACKER_HOUSE_GOA.eventUrl && (
               <a
-                href={HACKER_HOUSE_GOA.liveUrl}
+                href={HACKER_HOUSE_GOA.eventUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 font-semibold flex items-center gap-1.5 hover:bg-emerald-500/20 hover:border-emerald-500/60 transition-all"
+                className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded border border-gold-accent/40 bg-gold-accent/10 text-gold-accent font-semibold flex items-center gap-1.5 hover:bg-gold-accent/20 hover:border-gold-accent/60 transition-all"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                <span>LIVE // hhgoa.vercel.app</span>
+                <span>OFFICIAL SITE // hhgoa.com</span>
                 <ExternalLink size={10} />
               </a>
             )}
@@ -94,6 +93,8 @@ export function HackerHouseSection() {
                   <span className={`text-[10px] font-heading font-semibold uppercase tracking-wider px-2 py-0.5 rounded border ${
                     task.status === "Live"
                       ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-400"
+                      : task.status === "Local CLI" || task.status === "Local"
+                      ? "border-amber-500/30 bg-amber-500/10 text-amber-400"
                       : "border-spidey-blue/30 bg-spidey-blue/10 text-spidey-blue"
                   }`}>
                     {task.status}
