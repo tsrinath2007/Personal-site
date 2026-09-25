@@ -41,7 +41,6 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/tsrinath2007/FlightEdu",
     status: "Live",
     event: "STARTUP // SELF-FOUNDED",
-    award: "1st Place (Aviation Innovation) · Manipal Aero-Hack",
     date: "May 2026 – Present",
     highlights: [
       "Built interactive flight route visualization mapping study sessions to domestic Indian flight paths",
@@ -157,12 +156,6 @@ export const HACKATHONS = [
     project: "AstroCopilot",
     outcome: "Top 1000 // Round 1 Qualifier (AI Living for India)",
     date: "Apr 2026"
-  },
-  {
-    event: "Manipal Aero-Hack",
-    project: "GoFocusGen",
-    outcome: "1st Place Winner (Aviation Innovation)",
-    date: "Nov 2024"
   }
 ];
 

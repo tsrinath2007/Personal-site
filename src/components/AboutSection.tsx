@@ -10,7 +10,7 @@ export function AboutSection() {
     {
       icon: <Rocket size={18} className="text-gold-accent" />,
       title: "FOUNDER — GOFOCUSGEN",
-      description: "Founded a gamified productivity startup mapping study durations to domestic flight routes. Built with Next.js & Mapbox GL JS; won 1st Place (Aviation Innovation) at Manipal Aero-Hack."
+      description: "Founded a gamified productivity startup mapping study durations to domestic flight routes. Built with Next.js, Mapbox GL JS, and multiplayer focus lounges."
     },
     {
       icon: <Zap size={18} className="text-spidey-blue" />,
