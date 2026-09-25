@@ -28,11 +28,11 @@ export function Footer() {
               If you want to collaborate on automated pipelines, interactive frontends, hackathon teams, or full-stack software, shoot a BMRCL transit transmission.
             </p>
             <a
-              href="mailto:tsrinath2007@gmail.com"
+              href="mailto:tsrinath2020@gmail.com"
               className="inline-flex items-center gap-2 border border-border-gold bg-[#111113]/40 hover:bg-bg-card-hover hover:border-gold-accent text-gold-accent px-4 py-2.5 rounded font-heading text-xs tracking-wider transition-colors duration-300"
             >
               <Mail size={14} />
-              <span>TRANSMIT BMRCL SIGNAL: tsrinath2007@gmail.com</span>
+              <span>TRANSMIT BMRCL SIGNAL: tsrinath2020@gmail.com</span>
             </a>
           </div>
 

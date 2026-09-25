@@ -15,12 +15,12 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Srinath | BMRCL Namma Metro Portfolio",
-  description: "Personal portfolio of Srinath, a CS student at Manipal and BMRCL systems engineer weaving spacecraft ECLSS copilots, railway warning sensors, and startup focus platforms.",
-  metadataBase: new URL("https://srinath.dev"),
+  title: "Thota Sai Eswar Srinath | CS Student & Founder — GoFocusGen",
+  description: "Personal portfolio of Thota Sai Eswar Srinath, CS student at MAHE Bengaluru and Founder of GoFocusGen, building spacecraft ECLSS copilots, railway safety sensors, and applied AI systems.",
+  metadataBase: new URL("https://srinathdev.vercel.app"),
   openGraph: {
-    title: "Srinath | BMRCL Namma Metro Portfolio",
-    description: "CS Student at Manipal. Transit-themed developer portfolio featuring telemetry dashboards, moving railway models, and study flight paths.",
+    title: "Thota Sai Eswar Srinath | CS Student & Founder — GoFocusGen",
+    description: "CS Student at MAHE Bengaluru & Founder of GoFocusGen. Portfolio featuring telemetry dashboards, moving railway models, and study flight paths.",
     siteName: "Srinath's Namma Metro Portfolio",
     locale: "en_US",
     type: "website",

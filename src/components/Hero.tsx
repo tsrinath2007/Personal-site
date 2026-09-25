@@ -123,10 +123,10 @@ export function Hero() {
           className="text-center max-w-2xl space-y-4"
         >
           <p className="font-heading text-lg sm:text-xl font-light text-text-muted leading-relaxed">
-            I build things people <span className="text-text-offwhite font-medium border-b border-[#5A2D82]/40 pb-0.5">actually need</span> — right now, that&apos;s GoFocusGen, a gamified focus platform taking flight.
+            I build things people <span className="text-text-offwhite font-medium border-b border-[#5A2D82]/40 pb-0.5">actually need</span> — founder of <span className="text-text-offwhite font-medium">GoFocusGen</span>, a gamified study platform taking flight.
           </p>
           <p className="text-xs sm:text-sm text-text-muted/70 font-light max-w-xl mx-auto">
-            CS Student at Manipal & transit product engineer specialized in telemetry loops, real-time WebSockets, and building responsive user interfaces.
+            CS Student at MAHE Bengaluru & Founder · Building applied software spanning ed-tech, spacecraft ECLSS copilots, and IoT railway monitors.
           </p>
         </motion.div>
 
@@ -162,7 +162,7 @@ export function Hero() {
             <div className="space-y-1 font-mono text-[9px] text-text-muted mt-2">
               <div className="flex justify-between">
                 <span>CARD HOLDER:</span>
-                <span className="text-text-offwhite font-bold">SRINATH.DEV</span>
+                <span className="text-text-offwhite font-bold">T.S.E. SRINATH</span>
               </div>
               <div className="flex justify-between">
                 <span>TRANSIT FARE:</span>

@@ -42,10 +42,11 @@ export function ProjectGrid() {
 
   // Bengaluru Namma Metro stations map corresponding to projects
   const stations = [
-    { name: "Majestic Interchange (St. 1)", leftPercent: 15 },
-    { name: "MG Road Terminal (St. 2)", leftPercent: 38 },
-    { name: "Vidhana Soudha (St. 3)", leftPercent: 61 },
-    { name: "Whitefield Terminal (St. 4)", leftPercent: 85 }
+    { name: "Majestic Interchange (St. 1)", leftPercent: 10 },
+    { name: "MG Road Terminal (St. 2)", leftPercent: 30 },
+    { name: "Vidhana Soudha (St. 3)", leftPercent: 50 },
+    { name: "Indiranagar Station (St. 4)", leftPercent: 70 },
+    { name: "Whitefield Terminal (St. 5)", leftPercent: 90 }
   ];
 
   const currentProject = PROJECTS[activeIdx];
@@ -179,7 +180,7 @@ export function ProjectGrid() {
                   <span>CURRENT STATION: {stations[activeIdx].name.toUpperCase()}</span>
                 </div>
                 <div className="hidden sm:block">
-                  <span>NEXT DEPARTURE: {activeIdx < 3 ? stations[activeIdx + 1].name.toUpperCase() : "TERMINAL END"}</span>
+                  <span>NEXT DEPARTURE: {activeIdx < stations.length - 1 ? stations[activeIdx + 1].name.toUpperCase() : "TERMINAL END"}</span>
                 </div>
               </div>
 
