@@ -38,6 +38,18 @@ export function HackerHouseSection() {
             <span className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded border border-gold-accent/40 bg-gold-accent/10 text-gold-accent font-semibold">
               {HACKER_HOUSE_GOA.badge}
             </span>
+            {HACKER_HOUSE_GOA.liveUrl && (
+              <a
+                href={HACKER_HOUSE_GOA.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 font-semibold flex items-center gap-1.5 hover:bg-emerald-500/20 hover:border-emerald-500/60 transition-all"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>LIVE // hhgoa.vercel.app</span>
+                <ExternalLink size={10} />
+              </a>
+            )}
           </div>
 
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
@@ -79,7 +91,11 @@ export function HackerHouseSection() {
               <div className="space-y-3.5">
                 {/* Task Badge & Status */}
                 <div className="flex items-center justify-between gap-2">
-                  <span className="text-[10px] font-heading font-semibold uppercase tracking-wider px-2 py-0.5 rounded border border-spidey-blue/30 bg-spidey-blue/10 text-spidey-blue">
+                  <span className={`text-[10px] font-heading font-semibold uppercase tracking-wider px-2 py-0.5 rounded border ${
+                    task.status === "Live"
+                      ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-400"
+                      : "border-spidey-blue/30 bg-spidey-blue/10 text-spidey-blue"
+                  }`}>
                     {task.status}
                   </span>
                   <div className="text-[10px] font-mono text-text-muted/60 flex items-center gap-1">

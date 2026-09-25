@@ -21,7 +21,7 @@ export const PROJECTS: Project[] = [
     description: "An intelligent life-support telemetry monitoring copilot built to predict spacecraft ECLSS failures before alarms trigger, framed around ISRO's Gaganyaan program. Implements a PPO reinforcement-learning agent for autonomous adjustments and a fine-tuned Qwen2.5 model for structured anomaly explanations.",
     techStack: ["Qwen2.5", "PPO RL", "ISRO Gaganyaan ECLSS", "FastAPI", "WebSockets", "Next.js"],
     githubUrl: "https://github.com/tsrinath2007/Life-Support-ENV",
-    status: "Live",
+    status: "Hackathon Build",
     event: "Scaler OpenEnv Hackathon",
     award: "Top 1000 // Round 1 Qualifier (AI Living for India)",
     date: "Apr 2026",
@@ -54,7 +54,6 @@ export const PROJECTS: Project[] = [
     tagline: "Railway track vibration health monitor using WPT edge-processing",
     description: "A physical edge-computing prototype monitoring structural track stability. Uses axle box accelerometers to measure track impact vibrations and on-node Wavelet Packet Transform (WPT) to isolate anomaly signatures in real-time, integrating into India's Kavach anti-collision network protocols.",
     techStack: ["C++", "Python", "Wavelet Packet Transform", "Raspberry Pi", "Kavach API", "React"],
-    liveUrl: "https://faraway-railway.vercel.app/",
     githubUrl: "https://github.com/tsrinath2007/FarAway",
     status: "Prototype",
     award: "Hackathon Build",
@@ -72,7 +71,6 @@ export const PROJECTS: Project[] = [
     tagline: "ECLSS habitat simulation sandbox with fine-tuned LLM recovery",
     description: "A simulated sandbox environment mimicking life-support loop parameters. Combines a PPO RL model with a Qwen2.5-1.5B model adapted using a custom LoRA adapter on 1,200+ pages of NASA life-support reports to optimize oxygen scrubbers and water reclamation loops during failures.",
     techStack: ["PPO RL", "Qwen2.5-1.5B", "LoRA", "Python", "Gradio", "HuggingFace Spaces"],
-    liveUrl: "https://huggingface.co/spaces/tsrinath/Scaler-Round-2",
     githubUrl: "https://github.com/tsrinath2007/Scaler-Round-2",
     status: "Hackathon Build",
     event: "Samsung Solve for Tomorrow",
@@ -164,7 +162,6 @@ export const HACKATHONS: HackathonItem[] = [
     projectId: "life-support-env",
     outcome: "Top 10 Finalist (Round 2)",
     date: "Jun 2026",
-    liveUrl: "https://huggingface.co/spaces/tsrinath/Scaler-Round-2",
     githubUrl: "https://github.com/tsrinath2007/Scaler-Round-2"
   },
   {
@@ -173,7 +170,6 @@ export const HACKATHONS: HackathonItem[] = [
     projectId: "pulse-rail",
     outcome: "Railway Track Health Monitor Prototype",
     date: "May 2026",
-    liveUrl: "https://faraway-railway.vercel.app/",
     githubUrl: "https://github.com/tsrinath2007/FarAway"
   },
   {
@@ -247,6 +243,7 @@ export interface HackerHouseTask {
 export const HACKER_HOUSE_GOA = {
   title: "Hacker House Goa 2026",
   badge: "COMPETITIVE 10-TEAM SELECTION",
+  liveUrl: "https://hhgoa.vercel.app/",
   teamNote: "Team of 3 // Built with Antigravity + Groq free tier",
   blurb: "A high-intensity, competitive 10-team selection engineering sprint in Goa with multiple specialized task submissions spanning voice-enabled RAG pipelines, biometric blockchain identity anchoring, and agentic graph fraud investigations.",
   tasks: [
@@ -256,7 +253,8 @@ export const HACKER_HOUSE_GOA = {
       tagline: "Voice-enabled RAG targeting sub-200ms latency on Vercel",
       description: "Voice-enabled RAG system using ElevenLabs STT, multi-strategy chunking, and the ai4bharat/MSMARCO-XI dataset, targeting sub-200ms latency, deployed on Vercel. Included comprehensive UI redesign work.",
       techStack: ["ElevenLabs", "RAG", "Vercel"],
-      status: "Sprint Submission",
+      status: "Live",
+      liveUrl: "https://hhgoa.vercel.app/",
       highlights: [
         "Voice-enabled RAG pipeline with ElevenLabs STT and multi-strategy chunking",
         "Benchmarked retrieval over ai4bharat/MSMARCO-XI dataset targeting sub-200ms latency",
