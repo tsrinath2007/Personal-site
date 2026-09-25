@@ -83,23 +83,6 @@ export const PROJECTS: Project[] = [
       "Simulated system failures (leaks, blockages, filter decay) and trained a PPO RL model to recover optimal ranges",
       "Hosted public Gradio app on HuggingFace Spaces with live Python simulator back-end"
     ]
-  },
-  {
-    id: "loop",
-    title: "Loop",
-    tagline: "Passive workflow automation detector observing behavior patterns",
-    description: "An AI-powered desktop automation utility that passively observes user behavior patterns and suggests intelligent workflow automations without requiring explicit user prompts or triggers.",
-    techStack: ["Python", "Machine Learning", "Workflow Automation", "Desktop Telemetry", "Local LLM"],
-    githubUrl: "https://github.com/tsrinath2007",
-    status: "Hackathon Build",
-    event: "Hackverse 2.0",
-    award: "Hackathon Build",
-    date: "Aug 2026",
-    highlights: [
-      "Built an AI-powered desktop tool that passively observes user behavior patterns across apps",
-      "Detects repeated multi-step actions and generates suggestions for workflow automation",
-      "Runs locally with privacy-preserving telemetry and non-intrusive notification interfaces"
-    ]
   }
 ];
 
@@ -133,12 +116,6 @@ export const APPROACH_DETAILS = {
 };
 
 export const HACKATHONS = [
-  {
-    event: "Hackverse 2.0",
-    project: "Loop",
-    outcome: "Built Passive Workflow Automation Tool",
-    date: "Aug 2026"
-  },
   {
     event: "Samsung Solve for Tomorrow",
     project: "Life Support ENV",
