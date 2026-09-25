@@ -2,7 +2,8 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Award, Calendar, Trophy, ChevronRight } from "lucide-react";
+import { Award, Calendar, Trophy, ChevronRight, ExternalLink } from "lucide-react";
+import { GithubIcon } from "@/components/BrandIcons";
 import { HACKATHONS } from "@/data/projects";
 
 const SpiderIcon = ({ className }: { className?: string }) => (
@@ -78,12 +79,46 @@ export function Timeline() {
                         {event.event}
                       </h3>
                     </div>
-                    <div className="flex items-center gap-1 text-xs text-text-muted font-mono">
+                    <div className="flex items-center gap-2 flex-wrap text-xs text-text-muted font-mono pt-0.5">
                       <span>PROJECT:</span>
-                      <span className="text-text-offwhite/90 font-sans font-medium hover:text-gold-accent hover:underline cursor-pointer flex items-center gap-0.5">
-                        {event.project}
-                        <ChevronRight size={10} />
-                      </span>
+                      <a
+                        href={event.liveUrl || event.githubUrl || `#${event.projectId}`}
+                        target={event.liveUrl || event.githubUrl ? "_blank" : undefined}
+                        rel={event.liveUrl || event.githubUrl ? "noopener noreferrer" : undefined}
+                        className="text-text-offwhite/90 font-sans font-medium hover:text-gold-accent hover:underline flex items-center gap-1 transition-colors"
+                        title={event.liveUrl ? `Open live demo for ${event.project}` : `View ${event.project}`}
+                      >
+                        <span>{event.project}</span>
+                        <ChevronRight size={12} className="text-gold-accent shrink-0" />
+                      </a>
+
+                      {/* Direct Action Links */}
+                      <div className="flex items-center gap-1.5 ml-1">
+                        {event.githubUrl && (
+                          <a
+                            href={event.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[10px] text-text-muted hover:text-gold-accent transition-colors flex items-center gap-1 border border-border-gold/25 hover:border-gold-accent/50 px-2 py-0.5 rounded bg-[#111113]"
+                            title="View source code on GitHub"
+                          >
+                            <GithubIcon size={11} />
+                            <span>SRC</span>
+                          </a>
+                        )}
+                        {event.liveUrl && (
+                          <a
+                            href={event.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[10px] text-gold-accent hover:text-[#F3C63F] transition-colors flex items-center gap-1 border border-gold-accent/30 hover:border-gold-accent px-2 py-0.5 rounded bg-gold-accent/5"
+                            title="Open live deployment"
+                          >
+                            <ExternalLink size={10} />
+                            <span>LIVE</span>
+                          </a>
+                        )}
+                      </div>
                     </div>
                   </div>
 

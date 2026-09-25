@@ -75,8 +75,9 @@ export function ProjectGrid() {
           {PROJECTS.map((project, idx) => (
             <motion.div
               key={project.id}
+              id={project.id}
               variants={itemVariants(idx)}
-              className="group bg-[#111113] border border-border-gold/30 hover:border-gold-accent/40 rounded-lg p-6 flex flex-col justify-between transition-all duration-300 gold-glow-hover relative overflow-hidden"
+              className="scroll-mt-28 group bg-[#111113] border border-border-gold/30 hover:border-gold-accent/40 rounded-lg p-6 flex flex-col justify-between transition-all duration-300 gold-glow-hover relative overflow-hidden"
             >
               {/* Subtle top indicator bar */}
               <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

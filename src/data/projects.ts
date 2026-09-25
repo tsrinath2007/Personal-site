@@ -115,24 +115,42 @@ export const APPROACH_DETAILS = {
   currentlyLearning: "Machine Learning & AI, with a growing interest in building AI applications"
 };
 
-export const HACKATHONS = [
+export interface HackathonItem {
+  event: string;
+  project: string;
+  projectId: string;
+  outcome: string;
+  date: string;
+  liveUrl?: string;
+  githubUrl?: string;
+}
+
+export const HACKATHONS: HackathonItem[] = [
   {
     event: "Samsung Solve for Tomorrow",
     project: "Life Support ENV",
+    projectId: "life-support-env",
     outcome: "Top 10 Finalist (Round 2)",
-    date: "Jun 2026"
+    date: "Jun 2026",
+    liveUrl: "https://huggingface.co/spaces/tsrinath/Scaler-Round-2",
+    githubUrl: "https://github.com/tsrinath2007/Scaler-Round-2"
   },
   {
     event: "Zuup Hackathon",
     project: "PULSE RAIL",
+    projectId: "pulse-rail",
     outcome: "Railway Track Health Monitor Prototype",
-    date: "May 2026"
+    date: "May 2026",
+    liveUrl: "https://faraway-railway.vercel.app/",
+    githubUrl: "https://github.com/tsrinath2007/FarAway"
   },
   {
     event: "Scaler OpenEnv Hackathon",
     project: "AstroCopilot",
+    projectId: "astro-copilot",
     outcome: "Top 1000 // Round 1 Qualifier (AI Living for India)",
-    date: "Apr 2026"
+    date: "Apr 2026",
+    githubUrl: "https://github.com/tsrinath2007/Life-Support-ENV"
   }
 ];
 
