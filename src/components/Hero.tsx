@@ -60,7 +60,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="font-heading text-lg sm:text-xl md:text-2xl font-light text-text-muted max-w-3xl mx-auto leading-relaxed"
           >
-            I swing in to build things people <span className="text-text-offwhite font-medium border-b border-gold-accent/40 pb-0.5">actually need</span> — founder of <span className="text-text-offwhite font-medium">GoFocusGen</span>, a gamified focus platform taking flight.
+            I swing in to build things people <span className="text-text-offwhite font-medium border-b border-gold-accent/40 pb-0.5">actually need</span> — founder of <span className="text-text-offwhite font-medium">GoFocusGen</span> &amp; <span className="text-text-offwhite font-medium">Bujji</span>.
           </motion.p>
         </div>
 
@@ -71,7 +71,7 @@ export function Hero() {
           transition={{ duration: 1, delay: 0.6 }}
           className="text-xs sm:text-sm text-text-muted/80 max-w-xl mx-auto font-light leading-relaxed"
         >
-          CS student at MAHE Bengaluru building applied, real-world software across startup ed-tech, spacecraft ECLSS telemetry copilots, and IoT railway monitors.
+          CS student at MAHE Bengaluru building applied, real-world software across startup ed-tech, voice RAG pipelines, on-device AI perception, and IoT railway monitors.
         </motion.p>
 
         {/* CTAs */}

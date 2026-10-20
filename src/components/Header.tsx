@@ -63,15 +63,15 @@ export function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        {/* Brand: SRINATH.DEV (No logo) */}
+        {/* Brand: SES.BUILDS (No logo) */}
         <a
           href="#"
           className="flex items-center gap-2 group font-heading font-bold text-lg tracking-wider text-text-offwhite hover:text-gold-accent transition-colors"
-          aria-label="Home - SrinathDev"
+          aria-label="Home - SES.BUILDS"
         >
           <Terminal size={18} className="text-gold-accent group-hover:rotate-12 transition-transform duration-300" />
           <span>
-            SRINATH<span className="text-gold-accent font-light">.DEV</span>
+            SES<span className="text-gold-accent font-light">.BUILDS</span>
           </span>
         </a>
 

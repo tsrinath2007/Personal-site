@@ -9,8 +9,8 @@ export function AboutSection() {
   const traits = [
     {
       icon: <Rocket size={18} className="text-gold-accent" />,
-      title: "FOUNDER — GOFOCUSGEN",
-      description: "Founded a gamified productivity startup mapping study durations to domestic flight routes. Built with Next.js, Mapbox GL JS, and multiplayer focus lounges."
+      title: "FOUNDER — GOFOCUSGEN & BUJJI",
+      description: "Founded GoFocusGen (gamified flight focus rooms) and Bujji (AI active recall study companion turning passive cramming into Feynman learning at heybujji.vercel.app)."
     },
     {
       icon: <Zap size={18} className="text-spidey-blue" />,
@@ -25,7 +25,7 @@ export function AboutSection() {
     {
       icon: <Target size={18} className="text-spidey-blue" />,
       title: "GREAT RESPONSIBILITY // SAFETY FIRST",
-      description: "Believes that with great developer power comes great responsibility. Built ISRO Gaganyaan ECLSS telemetry copilots and Kavach rail safety edge sensors that run reliably."
+      description: "Believes that with great developer power comes great responsibility. Built on-device visual PII redaction gates (Parallax) and Kavach rail vibration edge sensors that run reliably."
     }
   ];
 
@@ -60,10 +60,10 @@ export function AboutSection() {
               Weaving solutions that make an impact.
             </h3>
             <p className="text-sm text-text-muted font-light leading-relaxed">
-              I am <span className="text-text-offwhite font-medium">Thota Sai Eswar Srinath</span>, a Computer Science student at MAHE Bengaluru (2025–2029) and founder of <span className="text-gold-accent font-medium">GoFocusGen</span>.
+              I am <span className="text-text-offwhite font-medium">Thota Sai Eswar Srinath</span>, a Computer Science student at MAHE Bengaluru (2025–2029) and founder of <span className="text-gold-accent font-medium">GoFocusGen</span> &amp; <span className="text-gold-accent font-medium">Bujji</span>.
             </p>
             <p className="text-sm text-text-muted font-light leading-relaxed">
-              I swing in to code applied, real-world software rather than demo-ware — spanning startup product development, AI/ML pipelines, and full-stack engineering across gamified ed-tech, spacecraft telemetry monitoring, and IoT edge systems.
+              I swing in to code applied, real-world software rather than demo-ware — spanning startup product development, AI/ML pipelines, and full-stack engineering across gamified ed-tech, voice RAG systems, on-device AI privacy, and IoT edge monitors.
             </p>
             <div className="pt-2 flex items-center gap-2 text-xs font-mono text-text-muted">
               <MapPin size={12} className="text-gold-accent" />

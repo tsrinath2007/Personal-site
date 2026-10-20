@@ -15,23 +15,6 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
-    id: "astro-copilot",
-    title: "AstroCopilot",
-    tagline: "AI mission copilot for spacecraft ECLSS telemetry monitoring",
-    description: "An intelligent life-support telemetry monitoring copilot built to predict spacecraft ECLSS failures before alarms trigger, framed around ISRO's Gaganyaan program. Implements a PPO reinforcement-learning agent for autonomous adjustments and a fine-tuned Qwen2.5 model for structured anomaly explanations.",
-    techStack: ["Qwen2.5", "PPO RL", "ISRO Gaganyaan ECLSS", "FastAPI", "WebSockets", "Next.js"],
-    githubUrl: "https://github.com/tsrinath2007/Life-Support-ENV",
-    status: "Hackathon Build",
-    event: "Scaler OpenEnv Hackathon",
-    award: "Top 1000 // Round 1 Qualifier (AI Living for India)",
-    date: "Apr 2026",
-    highlights: [
-      "Built an AI copilot monitoring spacecraft ECLSS telemetry (oxygen, CO2, pressure, power) before alarms trigger",
-      "Implemented a PPO reinforcement-learning agent and fine-tuned Qwen2.5 model for structured anomaly explanations",
-      "Streamed live telemetry via WebSockets with sub-250ms latency; modeled 12 spacecraft parameters"
-    ]
-  },
-  {
     id: "go-focus-gen",
     title: "GoFocusGen",
     tagline: "Gamified study-productivity platform mapping session durations to real flight paths",
@@ -49,37 +32,20 @@ export const PROJECTS: Project[] = [
     ]
   },
   {
-    id: "pulse-rail",
-    title: "PULSE RAIL",
-    tagline: "Railway track vibration health monitor using WPT edge-processing",
-    description: "A physical edge-computing prototype monitoring structural track stability. Uses axle box accelerometers to measure track impact vibrations and on-node Wavelet Packet Transform (WPT) to isolate anomaly signatures in real-time, integrating into India's Kavach anti-collision network protocols.",
-    techStack: ["C++", "Python", "Wavelet Packet Transform", "Raspberry Pi", "Kavach API", "React"],
-    githubUrl: "https://github.com/tsrinath2007/FarAway",
-    status: "Prototype",
-    award: "Hackathon Build",
-    event: "Zuup Hackathon",
-    date: "May 2026 – Present",
+    id: "bujji",
+    title: "Bujji",
+    tagline: "AI active recall study companion turning passive cramming into Feynman learning",
+    description: "An evolving AI study companion that turns learning upside-down using the Feynman Technique. Instead of passive cramming, students explain concepts to Bujji via voice or chat, while the system dynamically constructs concept knowledge graphs and pinpoints missing links in real-time.",
+    techStack: ["Next.js", "AI Active Recall", "Feynman Technique", "Voice Sessions", "Knowledge Graphs", "Vercel"],
+    liveUrl: "https://heybujji.vercel.app/",
+    githubUrl: "https://github.com/tsrinath2007/bujji",
+    status: "Live",
+    event: "STARTUP // NEW VENTURE",
+    date: "2026 – Present",
     highlights: [
-      "Built edge-computing prototype using accelerometers and on-node WPT to detect rail vibration anomalies in real time",
-      "Constructed simulation dashboard displaying track decay hotspots and stress heatmaps",
-      "Simulated packet relay payloads for India's Kavach anti-collision beacon interfaces"
-    ]
-  },
-  {
-    id: "life-support-env",
-    title: "Life Support ENV",
-    tagline: "ECLSS habitat simulation sandbox with fine-tuned LLM recovery",
-    description: "A simulated sandbox environment mimicking life-support loop parameters. Combines a PPO RL model with a Qwen2.5-1.5B model adapted using a custom LoRA adapter on 1,200+ pages of NASA life-support reports to optimize oxygen scrubbers and water reclamation loops during failures.",
-    techStack: ["PPO RL", "Qwen2.5-1.5B", "LoRA", "Python", "Gradio", "HuggingFace Spaces"],
-    githubUrl: "https://github.com/tsrinath2007/Scaler-Round-2",
-    status: "Hackathon Build",
-    event: "Samsung Solve for Tomorrow",
-    award: "Top 1000 Qualifier",
-    date: "Jun 2026",
-    highlights: [
-      "Fine-tuned Qwen2.5-1.5B with custom LoRA adapter on 1,200+ pages of NASA life-support reports",
-      "Simulated system failures (leaks, blockages, filter decay) and trained a PPO RL model to recover optimal ranges",
-      "Hosted public Gradio app on HuggingFace Spaces with live Python simulator back-end"
+      "Built Feynman-technique study platform where students master topics by teaching an evolving AI companion",
+      "Features dynamic concept knowledge graph mapping, real-time misconception diagnosis, and voice sessions",
+      "Designed public beta waitlist & survey dashboard with community pricing at heybujji.vercel.app"
     ]
   },
   {
@@ -113,6 +79,23 @@ export const PROJECTS: Project[] = [
       "Built automated Job Description (JD) bias auditing and side-by-side candidate comparison matrix",
       "Packaged in an interactive Python & Streamlit dashboard under custom 'InternLoom' branding"
     ]
+  },
+  {
+    id: "pulse-rail",
+    title: "PULSE RAIL",
+    tagline: "Railway track vibration health monitor using WPT edge-processing",
+    description: "A physical edge-computing prototype monitoring structural track stability. Uses axle box accelerometers to measure track impact vibrations and on-node Wavelet Packet Transform (WPT) to isolate anomaly signatures in real-time, integrating into India's Kavach anti-collision network protocols.",
+    techStack: ["C++", "Python", "Wavelet Packet Transform", "Raspberry Pi", "Kavach API", "React"],
+    githubUrl: "https://github.com/tsrinath2007/FarAway",
+    status: "Prototype",
+    award: "Hackathon Build",
+    event: "Zuup Hackathon",
+    date: "May 2026 – Present",
+    highlights: [
+      "Built edge-computing prototype using accelerometers and on-node WPT to detect rail vibration anomalies in real time",
+      "Constructed simulation dashboard displaying track decay hotspots and stress heatmaps",
+      "Simulated packet relay payloads for India's Kavach anti-collision beacon interfaces"
+    ]
   }
 ];
 
@@ -124,19 +107,19 @@ export interface SkillGroup {
 export const SKILL_GROUPS: SkillGroup[] = [
   {
     category: "Languages",
-    items: ["Python", "Java", "C", "TypeScript", "JavaScript", "SQL", "HTML/CSS"]
+    items: ["TypeScript", "JavaScript", "Python", "C++", "C", "Java", "SQL", "HTML/CSS"]
   },
   {
     category: "Frameworks & Libraries",
-    items: ["Next.js", "React", "FastAPI", "WebSockets", "Framer Motion", "Node.js", "Express"]
+    items: ["Next.js", "React", "Node.js", "FastAPI", "WebSockets", "Streamlit", "Framer Motion", "Tailwind CSS"]
   },
   {
     category: "AI / ML & Systems",
-    items: ["PPO (RL)", "Qwen 2.5", "LoRA Fine-tuning", "PyTorch", "HuggingFace", "Gradio"]
+    items: ["GraphRAG", "TigerGraph", "RAG Systems", "ElevenLabs Voice STT", "Groq / LLMs", "Tesseract.js / WASM", "Model Context Protocol (MCP)"]
   },
   {
     category: "Tools & Deployment",
-    items: ["Mapbox GL JS", "Vercel", "Docker", "Git/GitHub", "HuggingFace Spaces", "PostgreSQL", "Google OAuth"]
+    items: ["Vercel", "Render", "Mapbox GL JS", "Git/GitHub", "Docker", "Polygon Amoy", "PostgreSQL", "IndexedDB"]
   }
 ];
 
@@ -181,11 +164,11 @@ export const HACKATHONS: HackathonItem[] = [
   },
   {
     event: "Samsung Solve for Tomorrow",
-    project: "Life Support ENV",
-    projectId: "life-support-env",
-    outcome: "Top 1000 Qualifier",
-    date: "Jun 2026",
-    githubUrl: "https://github.com/tsrinath2007/Scaler-Round-2"
+    project: "National Qualifier Entry",
+    projectId: "samsung-solve",
+    outcome: "Top 1000 National Qualifier",
+    date: "2025 – 2026",
+    githubUrl: "https://github.com/tsrinath2007/Samsung-Solve-for-Tomorrow"
   },
   {
     event: "Zuup Hackathon",
@@ -194,14 +177,6 @@ export const HACKATHONS: HackathonItem[] = [
     outcome: "Railway Track Health Monitor Prototype",
     date: "May 2026",
     githubUrl: "https://github.com/tsrinath2007/FarAway"
-  },
-  {
-    event: "Scaler OpenEnv Hackathon",
-    project: "AstroCopilot",
-    projectId: "astro-copilot",
-    outcome: "Top 1000 // Round 1 Qualifier (AI Living for India)",
-    date: "Apr 2026",
-    githubUrl: "https://github.com/tsrinath2007/Life-Support-ENV"
   }
 ];
 

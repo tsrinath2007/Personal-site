@@ -17,12 +17,12 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Thota Sai Eswar Srinath | Web-Slinging Developer & Founder — GoFocusGen",
-  description: "Personal portfolio of Thota Sai Eswar Srinath, CS student at MAHE Bengaluru and Founder of GoFocusGen, building spacecraft ECLSS copilots, railway safety sensors, and applied AI systems.",
-  metadataBase: new URL("https://srinathdev.vercel.app"),
+  description: "Personal portfolio of Thota Sai Eswar Srinath, CS student at MAHE Bengaluru and Founder of GoFocusGen & Bujji, building voice RAG systems, on-device AI perception, and real-time edge computing.",
+  metadataBase: new URL("https://sesbuilds.vercel.app"),
   openGraph: {
     title: "Thota Sai Eswar Srinath | Web-Slinging Developer & Founder — GoFocusGen",
-    description: "CS Student at MAHE Bengaluru & Founder of GoFocusGen. Builder of AI suit systems, ECLSS space monitoring copilots, gamified learning webs, and edge IoT devices.",
-    siteName: "Srinath's Spider-Web Portfolio",
+    description: "CS Student at MAHE Bengaluru & Founder of GoFocusGen & Bujji. Builder of voice RAG systems, on-device AI privacy shields, and real-time edge devices.",
+    siteName: "SES Builds // Portfolio",
     locale: "en_US",
     type: "website",
   },
