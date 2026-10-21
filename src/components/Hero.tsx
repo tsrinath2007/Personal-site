@@ -125,11 +125,11 @@ export function Hero() {
             <LinkedinIcon size={20} />
           </a>
           <a
-            href="https://x.com/_tsrinath_"
+            href="https://x.com/sesbuilds"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-gold-accent transition-colors"
-            aria-label="Twitter Profile"
+            aria-label="Twitter Profile (@sesbuilds)"
           >
             <XIcon size={20} />
           </a>

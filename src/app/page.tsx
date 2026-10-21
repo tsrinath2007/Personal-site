@@ -16,7 +16,7 @@ export default function Home() {
       {/* Start Page SES Cut-in-Half Opening Animation */}
       <SesOpeningAnimation />
 
-      {/* Sleek navigation header with SRINATH.DEV branding */}
+      {/* Sleek navigation header with sesbuilds branding */}
       <Header />
 
       {/* Main sections */}

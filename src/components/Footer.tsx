@@ -101,7 +101,7 @@ export function Footer() {
                 </li>
                 <li>
                   <a
-                    href="https://x.com/_tsrinath_"
+                    href="https://x.com/sesbuilds"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-text-muted hover:text-gold-accent transition-colors"

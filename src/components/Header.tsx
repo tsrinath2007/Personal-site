@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Menu, X, Terminal } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const SpiderIcon = ({ className }: { className?: string }) => (
   <svg
@@ -63,15 +63,17 @@ export function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        {/* Brand: SES.BUILDS (No logo) */}
+        {/* Brand: sesbuilds (Terminal prompt logo) */}
         <a
           href="#"
           className="flex items-center gap-2 group font-heading font-bold text-lg tracking-wider text-text-offwhite hover:text-gold-accent transition-colors"
-          aria-label="Home - SES.BUILDS"
+          aria-label="Home - sesbuilds"
         >
-          <Terminal size={18} className="text-gold-accent group-hover:rotate-12 transition-transform duration-300" />
+          <span className="text-gold-accent font-mono font-bold text-lg tracking-tight select-none group-hover:translate-x-0.5 transition-transform duration-200">
+            &gt;_
+          </span>
           <span>
-            SES<span className="text-gold-accent font-light">.BUILDS</span>
+            SES<span className="text-gold-accent font-light">BUILDS</span>
           </span>
         </a>
 
