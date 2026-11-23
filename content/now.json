@@ -1,0 +1,43 @@
+{
+  "header": "Boarding pass · where I am right now",
+  "origin": {
+    "code": "BLR",
+    "city": "Bengaluru"
+  },
+  "destination": {
+    "code": "Coonoor",
+    "city": "idk"
+  },
+  "fields": [
+    {
+      "label": "Passenger",
+      "value": "Srinath"
+    },
+    {
+      "label": "Studying",
+      "value": "B.Tech CS at MAHE, semester 3"
+    },
+    {
+      "label": "Building",
+      "value": "GoFocusGen and Bujji"
+    },
+    {
+      "label": "Learning",
+      "value": "Machine learning and AI"
+    },
+    {
+      "label": "Looking for",
+      "value": "Software engineering, AI/ML systems and startup roles"
+    }
+  ],
+  "stubText": "NEXT STOP",
+  "focus": {
+    "title": "Current focus",
+    "items": [
+      "Semester 3",
+      "Build projects",
+      "Hackathons",
+      "Explore"
+    ]
+  }
+}

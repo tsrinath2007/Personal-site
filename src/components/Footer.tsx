@@ -31,11 +31,11 @@ export function Footer() {
               If you want to collaborate on AI pipelines, interactive frontends, hackathon teams, or full-stack products, shoot a web transmission.
             </p>
             <a
-              href="mailto:tsrinath2020@gmail.com"
+              href="mailto:sesbuilds@gmail.com"
               className="inline-flex items-center gap-2 border border-border-gold bg-[#111113]/40 hover:bg-bg-card-hover hover:border-gold-accent text-gold-accent px-4 py-2.5 rounded font-heading text-xs tracking-wider transition-colors duration-300"
             >
               <Mail size={14} />
-              <span>TRANSMIT SIGNAL: tsrinath2020@gmail.com</span>
+              <span>TRANSMIT SIGNAL: sesbuilds@gmail.com</span>
             </a>
           </div>
 

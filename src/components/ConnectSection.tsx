@@ -19,7 +19,7 @@ export function ConnectSection() {
     const body = encodeURIComponent(
       `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message || "Hi Srinath, let's connect!"}`
     );
-    window.open(`mailto:tsrinath2020@gmail.com?subject=${subject}&body=${body}`, "_blank");
+    window.open(`mailto:sesbuilds@gmail.com?subject=${subject}&body=${body}`, "_blank");
 
     setIsSubmitted(true);
   };
@@ -72,7 +72,7 @@ export function ConnectSection() {
                   Transmission Dispatched!
                 </h4>
                 <p className="text-xs text-text-muted font-mono max-w-sm mx-auto">
-                  Thank you, <span className="text-gold-accent">{name}</span>. Your mail client has opened to route this directly to <span className="text-text-offwhite font-medium">tsrinath2020@gmail.com</span>.
+                  Thank you, <span className="text-gold-accent">{name}</span>. Your mail client has opened to route this directly to <span className="text-text-offwhite font-medium">sesbuilds@gmail.com</span>.
                 </p>
                 <button
                   type="button"
@@ -174,10 +174,10 @@ export function ConnectSection() {
               <div className="space-y-1">
                 <div className="text-xs text-text-muted font-mono">PRIMARY INBOX:</div>
                 <a
-                  href="mailto:tsrinath2020@gmail.com"
+                  href="mailto:sesbuilds@gmail.com"
                   className="font-heading text-lg font-bold text-text-offwhite hover:text-gold-accent transition-colors block break-all"
                 >
-                  tsrinath2020@gmail.com
+                  sesbuilds@gmail.com
                 </a>
               </div>
               <div className="h-[1px] bg-border-dark" />

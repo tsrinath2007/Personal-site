@@ -163,12 +163,11 @@ export const HACKATHONS: HackathonItem[] = [
     date: "2026"
   },
   {
-    event: "Samsung Solve for Tomorrow",
-    project: "National Qualifier Entry",
-    projectId: "samsung-solve",
-    outcome: "Top 1000 National Qualifier",
-    date: "2025 – 2026",
-    githubUrl: "https://github.com/tsrinath2007/Samsung-Solve-for-Tomorrow"
+    event: "Scaler OpenEnv Hackathon",
+    project: "Scaler OpenEnv",
+    projectId: "scaler-openenv",
+    outcome: "Round 2 Finalist · Top 10 Team",
+    date: "2024"
   },
   {
     event: "Zuup Hackathon",

@@ -1,30 +1,58 @@
-import type { Metadata } from "next";
-import { Space_Grotesk, Inter } from "next/font/google";
-import { WebShooter } from "@/components/WebShooter";
+import type { Metadata, Viewport } from "next";
+import { Newsreader, IBM_Plex_Mono, Caveat } from "next/font/google";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "600", "700"],
+  style: ["normal", "italic"]
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: "--font-ibm-plex-mono",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
 });
+
+const caveat = Caveat({
+  variable: "--font-caveat",
+  subsets: ["latin"],
+  weight: ["500", "700"],
+});
+
+export const viewport: Viewport = {
+  viewportFit: "cover",
+  width: "device-width",
+  initialScale: 1
+};
 
 export const metadata: Metadata = {
-  title: "Thota Sai Eswar Srinath | Web-Slinging Developer & Founder — GoFocusGen",
-  description: "Personal portfolio of Thota Sai Eswar Srinath, CS student at MAHE Bengaluru and Founder of GoFocusGen & Bujji, building voice RAG systems, on-device AI perception, and real-time edge computing.",
+  title: "SES.Builds",
+  description: "Srinath, CS student at MAHE Bengaluru and founder of GoFocusGen and Bujji. Voice RAG, on-device AI privacy and edge computing.",
   metadataBase: new URL("https://sesbuilds.vercel.app"),
   openGraph: {
-    title: "Thota Sai Eswar Srinath | Web-Slinging Developer & Founder — GoFocusGen",
-    description: "CS Student at MAHE Bengaluru & Founder of GoFocusGen & Bujji. Builder of voice RAG systems, on-device AI privacy shields, and real-time edge devices.",
-    siteName: "SES Builds // Portfolio",
+    title: "SES.Builds",
+    description: "Srinath, CS student at MAHE Bengaluru and founder of GoFocusGen and Bujji. Voice RAG, on-device AI privacy and edge computing.",
+    url: "https://sesbuilds.vercel.app",
+    siteName: "SES.Builds",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "SES.Builds - Painted desk workspace"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SES.Builds",
+    description: "Srinath, CS student at MAHE Bengaluru and founder of GoFocusGen and Bujji. Voice RAG, on-device AI privacy and edge computing.",
+    images: ["/og-image.png"],
+    creator: "@sesbuilds"
   },
   icons: {
     icon: "/favicon.ico",
@@ -39,11 +67,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${inter.variable} h-full antialiased scroll-smooth`}
+      className={`${newsreader.variable} ${ibmPlexMono.variable} ${caveat.variable}`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-bg-dark text-text-offwhite selection:bg-gold-accent/20 selection:text-gold-accent font-sans">
+      <body suppressHydrationWarning>
         {children}
-        <WebShooter />
       </body>
     </html>
   );

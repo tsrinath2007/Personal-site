@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SES//BUILDS — Srinath's Portfolio (Desk Redesign)
+
+Interactive painted desk portfolio for Srinath (Thota Sai Eswar Srinath), CS student at MAHE Bengaluru and founder of GoFocusGen & Bujji.
+
+## Features
+- **Interactive Desk Scene**: Painted desk illustration (`scene.webp`) with accessible hotspot buttons and live note popovers.
+- **Interactive Laptop Drawer**: Drag-and-drop charger plug with physics tween, boot sequence, and OS folder navigation (Projects, Hackathons, Stack).
+- **Drawer Modals**: Accessible native `<dialog>` drawers for Blog, Now, Photos, About, and Contact.
+- **Content Data Layer**: Clean separation of content in `content/` (`projects.ts`, `hackathons.ts`, `stack.ts`, `now.ts`, `photos.ts`, `about.ts`, `contact.ts`, `desk.ts`).
+- **Markdown Blog**: Real Next.js routes at `/blog` and `/blog/[slug]` driven by markdown files in `content/blog/`.
+- **Dynamic Sitemap**: Generates `/sitemap.xml` including published (non-draft) posts.
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build and Lint
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run lint
+```
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## TODO: Scene Image Regeneration
+- **Known Limit of `scene.webp`**: The hero paragraph, book spine labels (`DS`, `DCCN`, `DSCO`, `DA`), and folder names on the painted laptop screen (`Projects`, `Notes`, `Ideas`) are currently baked into the raster `scene.webp` illustration.
+- **TODO**: In a future asset update, regenerate or inpaint `scene.webp` without that embedded text so all labels are exclusively rendered by dynamic DOM overlays.

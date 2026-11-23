@@ -1,0 +1,901 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Srinath, CS student at MAHE Bengaluru and founder of GoFocusGen and Bujji. Voice RAG, on-device AI privacy and edge computing.">
+<style>html{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}</style>
+<title>SES//BUILDS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600;1,6..72,700&display=swap">
+<style>
+/* Layout concept: one painted desk. Tap an object, a small note pops up beside it, press Enter to go inside.
+   Single light theme by choice: the desk is a fixed daylight illustration, so every colour is set explicitly. */
+:root{
+  --wall:#f0e8e1; --wall-2:#e6dccf; --paper:#fbf6ed; --paper-2:#f4ecdf;
+  --ink:#1e2536; --ink-2:#586076; --line:#d9cec0;
+  --pencil:#3a5ea8; --focus:#2c55a6; --hi:#bcd0ec;
+  --sticky:#f4dfb6; --sage:#9ba38c; --blue:#9fb2d2; --peach:#deaa8a; --tan:#e0caab;
+  --ok:#2f9e5f; --warn:#e0594f; --bezel:#232c44; --metal:#d3d6dc; --metal-dk:#a4a9b5; --amber:#e8a21a;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --hand:"Caveat","Bradley Hand","Segoe Print",cursive;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{
+  background:var(--wall);color:var(--ink);font:400 1.0625rem/1.6 var(--serif);
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:0 40px;
+}
+body.lock{overflow:hidden}
+p{margin:0}
+h1,h2,h3,h4{margin:0;font-weight:600;line-height:1.12;text-wrap:balance}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+kbd{font:500 .72em var(--mono);padding:1px 6px;border:1px solid currentColor;border-radius:5px;opacity:.8}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.k{font:500 .72rem/1.4 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2)}
+.linkbtn{background:none;border:0;padding:0;color:var(--ink);cursor:pointer;text-decoration:underline;text-decoration-color:var(--pencil);text-decoration-thickness:2px;text-underline-offset:3px}
+
+/* header */
+.top{border-bottom:none;background:transparent;pointer-events:none}
+.top-in{max-width:1672px;margin-inline:auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 28px;padding-block:18px;pointer-events:auto}
+.brand{font:600 1.45rem var(--serif);letter-spacing:-.01em;color:var(--ink);background:transparent;border:none;padding:0;display:inline-flex;align-items:center}
+.nav{display:flex;flex-wrap:wrap;gap:4px 26px;font:500 .9rem var(--mono)}
+.nav button{background:none;border:0;padding:4px 0;cursor:pointer;border-bottom:2px solid transparent}
+.nav button:hover{border-bottom-color:var(--ink)}
+.pill{display:inline-flex;align-items:center;gap:9px;padding:7px 14px;border-radius:999px;border:0;background:#fffdf9;box-shadow:0 1px 0 var(--line),0 6px 14px -8px rgba(30,37,54,.4);font:500 .8rem var(--mono);cursor:pointer}
+.pill .dot{width:9px;height:9px;border-radius:50%;background:var(--ok)}
+.pill:hover{background:#fff}
+
+/* hero copy for phones (the desktop copy is painted into the image) */
+.m-hero{display:grid;gap:6px;padding-block:22px 16px;max-width:34rem}
+.m-hero .hi{font:700 1.7rem/1 var(--hand)}
+.m-hero h1{font-size:clamp(2.2rem,11vw,3rem);font-weight:700}
+.m-hero h1 em{background:linear-gradient(transparent 70%,var(--hi) 70%)}
+.m-hero p{font:400 .9rem/1.6 var(--mono);color:var(--ink-2)}
+
+/* the desk */
+.stage{position:relative;max-width:1672px;margin:18px auto 0}
+.scene-scroll{overflow-x:auto;overflow-y:hidden;border-radius:22px;background:var(--wall-2);box-shadow:0 1px 0 var(--line),0 28px 44px -30px rgba(30,37,54,.45);scrollbar-width:thin}
+.scene{position:relative;width:100%}
+.art{display:block;width:100%;height:auto;user-select:none;-webkit-user-drag:none}
+.hot{position:absolute;padding:0;border:0;background:transparent;cursor:pointer;-webkit-tap-highlight-color:transparent;border-radius:16px}
+.hot .ring{position:absolute;inset:-5px;border:2px dashed var(--pencil);border-radius:18px;opacity:0;transition:opacity .15s;pointer-events:none}
+.hot:hover .ring,.hot.sel .ring{opacity:.95}
+.hot:focus-visible{outline:none}
+.hot:focus-visible .ring{opacity:1;border-style:solid;border-color:var(--focus)}
+.hot .tag,.hw>.tag{position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%);white-space:nowrap;font:700 1.2rem/1 var(--hand);background:var(--paper);padding:3px 11px 4px;border-radius:8px;box-shadow:0 6px 14px -8px rgba(30,37,54,.5);opacity:0;pointer-events:none;transition:opacity .15s}
+.hot:hover .tag,.hot:hover~.tag{opacity:1}
+.hot.nudge .ring{animation:nudge 1.5s ease-in-out 3}
+@media (hover:none){.hot .tag,.hw>.tag{display:none}}
+/* the laptop is not a rectangle, so its hit area and its outline follow its shape */
+.hw{position:absolute}
+.hot.poly{inset:0;border-radius:0;clip-path:polygon(26.2% 3.9%,99.7% .4%,95.6% 80%,94.4% 100%,.3% 95.2%,17% 82.6%)}
+.pring{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;opacity:0;transition:opacity .15s}
+.pring polygon{fill:none;stroke:var(--pencil);stroke-width:2.2;stroke-dasharray:7 6;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.hot:hover~.pring,.hot.sel~.pring{opacity:.95}
+.hot:focus-visible~.pring{opacity:1}
+.hot:focus-visible~.pring polygon{stroke-dasharray:none;stroke:var(--focus)}
+.hot.nudge~.pring{animation:nudge 1.5s ease-in-out 3}
+.hint{max-width:1672px;margin:14px auto 0;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;color:var(--ink-2)}
+.hint b{font:700 1.5rem/1 var(--hand);color:var(--ink)}
+.hint span{font:400 .84rem/1.5 var(--mono)}
+
+/* the small note beside an object */
+.pop{position:absolute;z-index:20;width:244px;padding:16px 16px 14px;background:var(--paper);border:1px solid var(--line);border-radius:6px;box-shadow:0 18px 30px -14px rgba(30,37,54,.5),0 2px 0 rgba(30,37,54,.06);display:grid;gap:6px}
+.pop.in{animation:popin .18s ease-out}
+.pop::after{content:"";position:absolute;top:-9px;left:50%;width:54px;height:16px;background:rgba(188,208,236,.8);transform:translateX(-50%) rotate(-3deg)}
+.pop::before{content:"";position:absolute;width:12px;height:12px;background:var(--paper);top:var(--ny,40px);margin-top:-6px;transform:rotate(45deg);display:none}
+.pop[data-side="right"]::before{display:block;left:-7px;border-left:1px solid var(--line);border-bottom:1px solid var(--line)}
+.pop[data-side="left"]::before{display:block;right:-7px;border-right:1px solid var(--line);border-top:1px solid var(--line)}
+.pop-x{position:absolute;top:6px;right:6px;width:28px;height:28px;border:0;background:none;border-radius:50%;font-size:1.3rem;line-height:1;color:var(--ink-2);cursor:pointer}
+.pop-x:hover{background:var(--paper-2);color:var(--ink)}
+.pop-t{font:700 1.6rem/1.05 var(--hand);padding-right:22px}
+.pop-d{font-size:.98rem;line-height:1.45;color:var(--ink-2)}
+.pop-l{list-style:none;margin:2px 0 0;padding:0;display:grid;gap:3px;font:700 1.2rem/1.1 var(--hand)}
+.pop-l li{display:flex;gap:9px;align-items:center}
+.pop-l li::before{content:"";width:12px;height:12px;border:1.5px solid var(--ink);border-radius:2px;flex:none}
+.pop-go{justify-self:start;margin-top:6px;display:inline-flex;align-items:center;gap:9px;padding:8px 16px;border-radius:999px;border:0;background:var(--ink);color:var(--paper);font:600 .9rem var(--mono);cursor:pointer}
+.pop-go:hover{background:var(--pencil)}
+.pop-go kbd{border-color:rgba(255,255,255,.5)}
+
+/* the page that opens */
+dialog{width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;background:transparent;color:inherit;overflow:hidden}
+dialog::backdrop{background:rgba(30,37,54,.5)}
+.sheet{position:absolute;top:0;right:0;bottom:0;width:min(780px,100%);background:var(--paper);overflow-y:auto;overscroll-behavior:contain;box-shadow:-24px 0 48px -24px rgba(30,37,54,.45);padding-bottom:max(32px,env(safe-area-inset-bottom,0px))}
+.sheet.wide{width:min(1120px,100%)}
+dialog[open] .sheet{animation:drawer .26s ease-out}
+.sh-head{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:max(14px,env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) 12px max(20px,env(safe-area-inset-left,0px));background:var(--paper);border-bottom:1px solid var(--line)}
+.sh-head h2{font:700 2.2rem/1 var(--hand)}
+.sh-x{display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border-radius:999px;border:1.5px solid var(--ink);background:transparent;font:500 .82rem var(--mono);cursor:pointer}
+.sh-x:hover{background:var(--ink);color:var(--paper)}
+.sh-body{display:grid;gap:26px;padding:24px max(20px,env(safe-area-inset-right,0px)) 0 max(20px,env(safe-area-inset-left,0px))}
+.sh-body h3{font-size:1.5rem}
+.sh-body p{color:var(--ink-2)}
+.lead{font-size:1.25rem;line-height:1.5;color:var(--ink)!important;max-width:40ch}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:999px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);font:600 .86rem var(--mono);text-decoration:none;cursor:pointer}
+.btn:hover{background:var(--ink);color:var(--paper)}
+.btn.solid{background:var(--ink);color:var(--paper)}
+.btn.solid:hover{background:var(--pencil);border-color:var(--pencil)}
+.row{display:flex;flex-wrap:wrap;gap:10px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:0}
+.chips li{font:500 .74rem var(--mono);padding:3px 10px;border:1px solid var(--line);border-radius:999px;color:var(--ink-2);background:var(--paper-2)}
+.links{display:flex;flex-wrap:wrap;gap:6px 18px;font:600 .84rem var(--mono)}
+.links a{color:var(--ink);text-decoration-color:var(--pencil);text-decoration-thickness:2px;text-underline-offset:3px}
+.facts{margin:0;padding:0;list-style:none;display:grid;gap:5px;color:var(--ink-2);font-size:1rem}
+.facts li{position:relative;padding-left:18px}
+.facts li::before{content:"";position:absolute;left:0;top:.72em;width:8px;height:2px;background:var(--pencil)}
+
+/* laptop page */
+.lapwrap{display:grid;grid-template-columns:minmax(0,430px) minmax(0,1fr);gap:30px;align-items:start}
+.lstage{position:relative;min-width:0}
+.lap{container-type:inline-size;position:relative;z-index:1;width:100%}
+.lap-lid{width:92%;margin-inline:auto;padding:2.2cqw 2.2cqw 2.6cqw;background:var(--bezel);border-radius:2.4cqw 2.4cqw .6cqw .6cqw}
+.lap-screen{position:relative;aspect-ratio:16/10;background:#0b101d;border-radius:1cqw;overflow:hidden;color:#e8eefb;font-family:var(--mono);display:flex;flex-direction:column}
+.lap.on .lap-screen{background:radial-gradient(ellipse 30% 14% at 78% 24%,rgba(255,255,255,.85),transparent 70%),radial-gradient(ellipse 26% 12% at 30% 70%,rgba(255,255,255,.7),transparent 70%),linear-gradient(180deg,#8fb0dc 0%,#bcd2ec 62%,#dce8f6 100%)}
+.lap-base{position:relative;height:3.6cqw;background:linear-gradient(180deg,var(--metal-dk),var(--metal));border-radius:0 0 2.6cqw 2.6cqw}
+.lap-base::before{content:"";position:absolute;left:50%;top:0;width:16cqw;height:1.2cqw;transform:translateX(-50%);background:var(--metal-dk);border-radius:0 0 1cqw 1cqw}
+.lport{position:absolute;left:24%;top:100%;width:46px;height:14px;margin-top:-2px;transform:translateX(-50%);background:var(--metal-dk);border-radius:0 0 7px 7px}
+.lport::before{content:"";position:absolute;left:9px;right:9px;top:0;height:6px;background:#0b101d;border-radius:0 0 4px 4px}
+.lport::after{content:"";position:absolute;inset:-9px -10px -7px;border:2px dashed var(--amber);border-radius:12px;animation:pulse 1.6s ease-in-out infinite}
+.is-plugged .lport::after{display:none}
+.l-off{flex:1;display:grid;place-content:center;justify-items:center;gap:1.8cqw;text-align:center;color:#8d9ab4;font-size:max(8.5px,2.1cqw)}
+.l-off b{font-size:max(12px,4cqw);color:#ff8d84;font-weight:600}
+.bat{position:relative;display:inline-block;width:9cqw;height:4.4cqw;border:.45cqw solid #ff8d84;border-radius:.9cqw}
+.bat::after{content:"";position:absolute;right:-1.5cqw;top:.9cqw;width:.9cqw;height:1.6cqw;background:#ff8d84;border-radius:0 .4cqw .4cqw 0}
+.bat i{position:absolute;inset:.45cqw;background:#ff8d84;transform-origin:0 50%;transform:scaleX(.1)}
+.l-os{position:absolute;inset:0;display:flex;flex-direction:column}
+.os-bar{display:flex;justify-content:space-between;padding:1.1cqw 2.2cqw;font-size:max(8px,2cqw);background:rgba(255,255,255,.4);color:var(--ink)}
+.os-boot{position:absolute;inset:0;top:4.6cqw;padding:2.4cqw 3cqw;background:#0b101d;color:#cfe7d8;font-size:max(8.5px,2.3cqw);line-height:1.65;z-index:2}
+.os-boot .ln{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;animation:in .2s ease-out}
+.os-boot .ln.dim{color:#8d9ab4}
+.os-icons{position:absolute;left:2.2cqw;top:6.6cqw;display:grid;gap:1.2cqw}
+.ico{display:grid;justify-items:center;gap:.5cqw;min-width:11cqw;background:none;border:0;padding:.7cqw 1cqw;border-radius:1cqw;color:var(--ink);font:500 max(8.5px,2.05cqw) var(--mono);cursor:pointer}
+.ico .fold{width:6cqw;height:auto}
+.ico[aria-pressed="true"]{background:rgba(255,255,255,.6)}
+.ico:hover{background:rgba(255,255,255,.4)}
+.fold path{fill:#fdfaf3;stroke:var(--ink);stroke-width:2;stroke-linejoin:round}
+.os-term{position:absolute;right:3cqw;bottom:5cqw;width:46%;background:#12161f;border-radius:.8cqw;overflow:hidden;box-shadow:0 1cqw 2cqw -.6cqw rgba(0,0,0,.45)}
+.os-term .tb{background:#cfd2d8;color:var(--ink);padding:.6cqw 1.3cqw;font-size:max(7.5px,1.75cqw)}
+.os-term .tt{padding:1.3cqw 1.6cqw;font-size:max(8px,2cqw);line-height:1.55;color:#e8eefb}
+.lcharge{position:relative;z-index:0;height:170px;margin-top:-2px;background:var(--wall-2);border-radius:0 0 18px 18px}
+.ladapter{position:absolute;left:8%;bottom:16px;width:64px;height:60px;background:var(--paper);border:1.5px solid var(--line);border-radius:14px;box-shadow:0 10px 16px -10px rgba(30,37,54,.5)}
+.ladapter::before{content:"";position:absolute;left:18px;bottom:-8px;width:5px;height:9px;background:var(--metal-dk);border-radius:0 0 2px 2px;box-shadow:19px 0 0 var(--metal-dk)}
+.ladapter .led{position:absolute;top:10px;right:10px;width:7px;height:7px;border-radius:50%;background:var(--line)}
+.ladapter .lbl{position:absolute;left:10px;bottom:9px;font:500 .6rem var(--mono);color:var(--ink-2);letter-spacing:.06em}
+.is-plugged .led{background:var(--amber);box-shadow:0 0 8px var(--amber)}
+.lwires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:4}
+#lcable{fill:none;stroke:var(--bezel);stroke-width:5;stroke-linecap:round}
+#lflow{fill:none;stroke:var(--amber);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:2 14;opacity:0}
+.is-plugged #lflow{opacity:1;animation:flow .9s linear infinite}
+.plug{position:absolute;left:0;top:0;width:30px;height:64px;padding:0;border:0;background:none;cursor:grab;touch-action:none;z-index:6;-webkit-tap-highlight-color:transparent}
+.plug.grab{cursor:grabbing}
+.plug .tip{position:absolute;left:7px;top:0;width:16px;height:22px;border-radius:3px 3px 0 0;background:linear-gradient(90deg,var(--metal-dk),#f2f4f8 45%,var(--metal-dk))}
+.plug .tip::after{content:"";position:absolute;left:5px;right:5px;top:5px;height:4px;border-radius:2px;background:rgba(0,0,0,.28)}
+.plug .pb{position:absolute;left:0;top:20px;width:30px;height:44px;border-radius:8px 8px 15px 15px;background:var(--amber);box-shadow:inset 0 -6px 0 rgba(0,0,0,.12),0 6px 10px -4px rgba(0,0,0,.35)}
+.plug .pb::before{content:"";position:absolute;left:6px;right:6px;top:9px;height:2px;background:rgba(0,0,0,.18);box-shadow:0 6px 0 rgba(0,0,0,.18),0 12px 0 rgba(0,0,0,.18)}
+.plug.near .pb{box-shadow:0 0 0 4px rgba(232,162,26,.35),0 0 18px var(--amber)}
+.plug:focus-visible{outline:2px solid var(--focus);outline-offset:6px;border-radius:10px}
+.lnote{position:absolute;right:5%;top:16px;max-width:10.5em;font:700 1.3rem/1.05 var(--hand);color:var(--ink-2);transform:rotate(-4deg)}
+.is-plugged .lnote{display:none}
+.lunplug{margin-top:10px;font:500 .8rem var(--mono)}
+.lwin{min-width:0}
+.lhint{display:grid;gap:10px;padding:8px 0;max-width:34ch}
+.lhint .big{font:700 2rem/1.05 var(--hand);color:var(--ink)}
+.win{border:1px solid var(--line);border-radius:10px;background:var(--paper);overflow:hidden;animation:swap .25s ease-out}
+.win-bar{display:flex;gap:12px;align-items:center;padding:9px 14px;background:var(--wall-2);border-bottom:1px solid var(--line);font:500 .78rem var(--mono);color:var(--ink-2)}
+.win-bar .dots{display:inline-flex;gap:5px}
+.win-bar .dots i{width:9px;height:9px;border-radius:50%;background:#cbbfae}
+.win-body{padding:18px 20px 22px;display:grid;gap:22px}
+.item{display:grid;gap:10px}
+.item+.item{padding-top:20px;border-top:1px solid var(--line)}
+.item h3{font-size:1.45rem}
+.item p{color:var(--ink-2);font-size:1rem}
+.item .kick{font:500 .72rem/1.4 var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-2)}
+.item h4{font-size:1.12rem;font-weight:600}
+.sub{display:grid;gap:7px;padding-top:12px}
+.srow{display:grid;grid-template-columns:minmax(0,130px) minmax(0,1fr);gap:8px 16px;padding-block:12px;border-top:1px solid var(--line)}
+.srow h4{font:500 .74rem/1.6 var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-2)}
+
+/* blog page */
+.shelf{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.book{display:grid;grid-template-columns:18px minmax(0,1fr) auto;gap:16px;align-items:center;padding:14px 16px 14px 0;background:var(--paper-2);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.book .spine{align-self:stretch;min-height:52px;background:var(--spine);box-shadow:inset -4px 0 0 rgba(30,37,54,.12)}
+.book h3{font-size:1.2rem}
+.book p{font-size:.95rem;margin-top:3px}
+.book .tagd{font:500 .68rem var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border:1px solid var(--line);border-radius:999px;color:var(--ink-2)}
+
+/* now page */
+.pass{display:grid;grid-template-columns:minmax(0,1fr) 64px;background:var(--paper-2);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.pass-main{padding:22px;display:grid;gap:18px;min-width:0}
+.route{display:flex;align-items:center;gap:14px}
+.route b{display:block;font:700 2.6rem/1 var(--serif);letter-spacing:-.02em}
+.route span.c{display:block;font:500 .74rem var(--mono);color:var(--ink-2)}
+.plane{flex:1;min-width:40px;max-width:160px;height:24px;stroke:var(--ink-2);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.fields{margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px 22px}
+.fields div{min-width:0}
+.fields dt{font:500 .68rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.fields dd{margin:2px 0 0;font-size:1.05rem;line-height:1.35}
+.stub{position:relative;border-left:2px dashed var(--line);display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:22px 0}
+.stub::before,.stub::after{content:"";position:absolute;left:-10px;width:18px;height:18px;border-radius:50%;background:var(--paper);border:1px solid var(--line)}
+.stub::before{top:-10px}
+.stub::after{bottom:-10px}
+.stub span{writing-mode:vertical-rl;font:500 .66rem var(--mono);letter-spacing:.2em;color:var(--ink-2)}
+.stub .bars{width:26px;height:64px;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 5px,var(--ink) 5px 6px,transparent 6px 10px);opacity:.75}
+.focus{display:grid;gap:10px;padding:18px 20px;background:var(--sticky);border-radius:4px;max-width:340px;transform:rotate(-1deg);box-shadow:0 14px 22px -14px rgba(30,37,54,.45)}
+.focus h3{font:700 1.7rem/1 var(--hand)}
+.focus ul{list-style:none;margin:0;padding:0;display:grid;gap:4px;font:700 1.35rem/1.1 var(--hand);color:var(--ink)}
+.focus li{display:flex;gap:10px;align-items:center}
+.focus li::before{content:"";width:13px;height:13px;border:1.5px solid var(--ink);border-radius:2px;flex:none}
+
+/* photos page */
+.polas{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:22px 18px;padding-block:10px}
+.pola{position:relative;display:block;background:#fffdf8;padding:9px 9px 12px;border-radius:3px;box-shadow:0 14px 22px -14px rgba(30,37,54,.55),0 1px 2px rgba(30,37,54,.2);transform:rotate(var(--tilt,0deg));cursor:pointer;transition:transform .2s}
+.pola:hover{transform:rotate(0deg) translateY(-3px)}
+.pola::before{content:"";position:absolute;top:-9px;left:50%;width:42%;height:16px;transform:translateX(-50%) rotate(-2deg);background:rgba(188,208,236,.8)}
+.pola:focus-within{outline:2px solid var(--focus);outline-offset:4px}
+.pola .ph{position:relative;display:grid;place-items:center;aspect-ratio:4/5;background:#e9e3d8;overflow:hidden}
+.pola .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pola .ph svg{width:34%;height:auto;fill:none;stroke:#b6ab98;stroke-width:2.4}
+.pola .add{position:absolute;left:0;right:0;bottom:8px;text-align:center;font:500 .62rem var(--mono);letter-spacing:.06em;text-transform:uppercase;color:#85796a}
+.pola.has .add,.pola.has .ph svg{display:none}
+.pola .cap{display:block;margin-top:9px;text-align:center;font:700 1.25rem/1 var(--hand)}
+
+/* about, contact */
+.about{display:grid;gap:16px;max-width:52ch}
+.meta{display:grid;gap:6px;margin:0;padding:0;list-style:none;font:500 .84rem/1.5 var(--mono)}
+.mail{font:600 clamp(1.05rem,4.4vw,1.6rem) var(--mono);overflow-wrap:anywhere}
+
+@keyframes pulse{50%{opacity:.3}}
+@keyframes flow{to{stroke-dashoffset:-32}}
+@keyframes in{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+@keyframes swap{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes popin{from{opacity:0;transform:translateY(6px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes drawer{from{opacity:.6;transform:translateX(28px)}to{opacity:1;transform:none}}
+@keyframes nudge{50%{opacity:.9}0%,100%{opacity:0}}
+
+@media (min-width:761px){
+  .m-hero{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);padding:0}
+}
+@media (max-width:900px){
+  .lapwrap{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:760px){
+  .scene{width:max(100%,860px)}
+  .pop{left:max(16px,env(safe-area-inset-left,0px))!important;right:max(16px,env(safe-area-inset-right,0px))!important;top:auto!important;bottom:max(16px,env(safe-area-inset-bottom,0px))!important;width:auto;position:fixed}
+  .pop::before,.pop::after{display:none!important}
+}
+@media (max-width:600px){
+  .srow{grid-template-columns:minmax(0,1fr)}
+  .pass{grid-template-columns:minmax(0,1fr) 46px}
+  .book{grid-template-columns:14px minmax(0,1fr)}
+  .book .tagd{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+
+<header class="top" style="border-bottom:none">
+  <div class="top-in" style="padding-block:14px 6px">
+    <span class="brand">SES.Builds</span>
+  </div>
+</header>
+
+<main id="top">
+  <div class="m-hero">
+    <p class="hi">Hey there!</p>
+    <h1>I'm <em>Srinath</em>.</h1>
+    <p>A software engineer who likes building cool stuff, solving interesting problems and turning ideas into products.</p>
+  </div>
+
+  <div class="stage" id="stage">
+    <div class="scene-scroll" id="sceneScroll">
+      <div class="scene" id="scene">
+        <img class="art" src="scene.webp" width="1672" height="867" alt="A painted desk with a laptop, a stack of books, a coffee mug, a boarding pass, a sticky note and pinned photos." draggable="false">
+        <button type="button" class="hot" data-id="explore" style="left:7.66%;top:52.02%;width:11.48%;height:7.73%" aria-label="Explore the desk" aria-expanded="false"><span class="ring"></span></button>
+        <div class="hw" style="left:29.01%;top:27.45%;width:40.37%;height:53.06%">
+          <button type="button" class="hot poly" data-id="laptop" aria-label="Laptop" aria-expanded="false"></button>
+          <svg class="pring" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polygon points="26.2,3.9 99.7,0.4 95.6,80 94.4,100 0.3,95.2 17,82.6"/></svg>
+          <span class="tag">Laptop</span>
+        </div>
+        <button type="button" class="hot" data-id="photo1" style="left:49.04%;top:7.61%;width:12.56%;height:19.84%" aria-label="Photos, pinned on the wall" aria-expanded="false"><span class="ring"></span><span class="tag">Photos</span></button>
+        <button type="button" class="hot" data-id="sticky" style="left:74.04%;top:15.11%;width:13.64%;height:25.95%" aria-label="Sticky note, current focus" aria-expanded="false"><span class="ring"></span><span class="tag">Current focus</span></button>
+        <button type="button" class="hot" data-id="books" style="left:71.77%;top:53.52%;width:17.82%;height:19.38%" aria-label="Books, the blog" aria-expanded="false"><span class="ring"></span><span class="tag">Blog</span></button>
+        <button type="button" class="hot" data-id="mug" style="left:90.19%;top:53.75%;width:9.81%;height:20.18%" aria-label="Mug, GoFocusGen" aria-expanded="false"><span class="ring"></span><span class="tag">GoFocusGen</span></button>
+        <button type="button" class="hot" data-id="ticket" style="left:73.56%;top:76.36%;width:15.19%;height:8.54%" aria-label="Boarding pass, where I am now" aria-expanded="false"><span class="ring"></span><span class="tag">Where I am</span></button>
+        <button type="button" class="hot" data-id="photo2" style="left:9.39%;top:85.81%;width:8.07%;height:14.19%" aria-label="Photos, pinned on the desk" aria-expanded="false"><span class="ring"></span><span class="tag">Photos</span></button>
+      </div>
+    </div>
+
+    <div class="pop" id="pop" role="group" aria-labelledby="popT" hidden>
+      <button type="button" class="pop-x" id="popX" aria-label="Close note">×</button>
+      <p class="k" id="popK"></p>
+      <h2 class="pop-t" id="popT"></h2>
+      <p class="pop-d" id="popD"></p>
+      <ul class="pop-l" id="popL" hidden></ul>
+      <button type="button" class="pop-go" id="popGo">Enter <kbd aria-hidden="true">↵</kbd></button>
+    </div>
+  </div>
+
+  <p class="hint"><b>tap anything on the desk</b><span>A small note opens beside it. Press Enter to go inside.</span></p>
+</main>
+
+<dialog id="sheet" aria-labelledby="shT">
+  <div class="sheet" id="sheetPanel">
+    <div class="sh-head">
+      <h2 id="shT"></h2>
+      <button type="button" class="sh-x" id="shX">Back to desk <kbd aria-hidden="true">Esc</kbd></button>
+    </div>
+    <div class="sh-body" id="shBody"></div>
+  </div>
+</dialog>
+
+<!-- Laptop: asks for charging first -->
+<template id="t-laptop">
+  <div class="lapwrap">
+    <div>
+      <div class="lstage" id="lstage">
+        <svg class="lwires" aria-hidden="true"><path id="lcable"/><path id="lflow"/></svg>
+        <div class="lap" id="lap">
+          <div class="lap-lid">
+            <div class="lap-screen">
+              <div class="l-off" id="loff">
+                <span class="bat" id="lbatbig"><i></i></span>
+                <b>1%</b>
+                <span>Battery critically low.<br>Plug in the charger.</span>
+              </div>
+              <div class="l-os" id="los" hidden>
+                <div class="os-bar"><span>ses@builds</span><span id="lpct">1%</span></div>
+                <div class="os-boot" id="lboot"></div>
+                <div class="os-icons" id="licons" hidden>
+                  <button type="button" class="ico" data-folder="projects" aria-pressed="false"><svg class="fold" viewBox="0 0 44 34" aria-hidden="true"><path d="M3 6a3 3 0 0 1 3-3h10l4 4h18a3 3 0 0 1 3 3v18a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3z"/></svg>Projects</button>
+                  <button type="button" class="ico" data-folder="hackathons" aria-pressed="false"><svg class="fold" viewBox="0 0 44 34" aria-hidden="true"><path d="M3 6a3 3 0 0 1 3-3h10l4 4h18a3 3 0 0 1 3 3v18a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3z"/></svg>Hackathons</button>
+                  <button type="button" class="ico" data-folder="stack" aria-pressed="false"><svg class="fold" viewBox="0 0 44 34" aria-hidden="true"><path d="M3 6a3 3 0 0 1 3-3h10l4 4h18a3 3 0 0 1 3 3v18a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3z"/></svg>Stack</button>
+                </div>
+                <div class="os-term" id="lterm" hidden aria-hidden="true">
+                  <div class="tb">ses@builds:~$</div>
+                  <div class="tt">&gt; build<br>&gt; learn<br>&gt; hack<br>&gt; repeat</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lap-base"><div class="lport" id="lport"></div></div>
+        </div>
+        <div class="lcharge">
+          <div class="ladapter" id="ladapter"><span class="led"></span><span class="lbl">5V</span></div>
+          <p class="lnote">grab the plug, put it in the laptop</p>
+        </div>
+        <button type="button" class="plug" id="lplug" aria-label="Charger plug. Drag it into the laptop, or press Enter to plug in."><span class="tip"></span><span class="pb"></span></button>
+      </div>
+      <button type="button" class="linkbtn lunplug" id="lunplug" hidden>Unplug to replay</button>
+    </div>
+    <div class="lwin" id="lwin" aria-live="polite"></div>
+  </div>
+</template>
+
+<template id="t-lhint">
+  <div class="lhint">
+    <p class="big">Out of battery.</p>
+    <p>The laptop is at 1%. Drag the plug into its port, or tap the plug, and it will show my projects, hackathons and stack.</p>
+    <p><button type="button" class="linkbtn" id="lskip">Skip charging and show me</button></p>
+  </div>
+</template>
+
+<template id="t-f-projects">
+  <div class="win">
+    <div class="win-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span>~/projects</span></div>
+    <div class="win-body">
+      <article class="item">
+        <p class="kick">Live · May 2026 to present · self-founded</p>
+        <h3>GoFocusGen</h3>
+        <p>A study companion where every session is a flight on a domestic Indian route. The session length sets the path.</p>
+        <ul class="facts">
+          <li>Interactive route visualization</li>
+          <li>Coin and streak economy</li>
+          <li>AI study plan generator and Google sign-in</li>
+          <li>Real-time multiplayer Co-Pilots Lounge</li>
+        </ul>
+        <ul class="chips"><li>Next.js</li><li>Mapbox GL JS</li><li>Framer Motion</li><li>Google OAuth</li><li>Web Audio API</li><li>Vercel</li></ul>
+        <p class="links"><a href="https://gofocusgen.vercel.app/" target="_blank" rel="noopener">Live site</a><a href="https://github.com/tsrinath2007/FlightEdu" target="_blank" rel="noopener">Source</a></p>
+      </article>
+      <article class="item">
+        <p class="kick">Live · 2026 to present · new venture</p>
+        <h3>Bujji</h3>
+        <p>Instead of cramming, students explain a concept to Bujji by voice or chat. Bujji builds a concept graph as they talk and points out the links they are missing.</p>
+        <ul class="facts">
+          <li>Concept knowledge graph that grows as you explain</li>
+          <li>Real-time misconception diagnosis</li>
+          <li>Voice sessions</li>
+          <li>Public beta waitlist and survey dashboard</li>
+        </ul>
+        <ul class="chips"><li>Next.js</li><li>Active recall</li><li>Feynman technique</li><li>Knowledge graphs</li><li>Vercel</li></ul>
+        <p class="links"><a href="https://heybujji.vercel.app/" target="_blank" rel="noopener">Live site</a><a href="https://github.com/tsrinath2007/bujji" target="_blank" rel="noopener">Source</a></p>
+      </article>
+    </div>
+  </div>
+</template>
+
+<template id="t-f-hackathons">
+  <div class="win">
+    <div class="win-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span>~/hackathons</span></div>
+    <div class="win-body">
+      <article class="item">
+        <p class="kick">Hacker House Goa 2026 · 10-team selection · team of 3</p>
+        <h3>Three sprint tasks</h3>
+        <div class="sub">
+          <h4>Voice RAG Dashboard</h4>
+          <p>Voice retrieval with ElevenLabs speech-to-text and multi-strategy chunking over ai4bharat/MSMARCO-XI. Built to target sub-200ms latency, deployed on Vercel, with a full UI redesign.</p>
+          <p class="links"><a href="https://goat-task2.vercel.app/" target="_blank" rel="noopener">Live</a><a href="https://github.com/tsrinath2007/Task-2" target="_blank" rel="noopener">Source</a></p>
+        </div>
+        <div class="sub">
+          <h4>Face detection and blockchain CLI</h4>
+          <p>Face detection and reverse image search, with cryptographic state anchoring on the Polygon Amoy testnet. Runs from the command line.</p>
+          <p class="links"><a href="https://github.com/tsrinath2007/task-3" target="_blank" rel="noopener">Source</a></p>
+        </div>
+        <div class="sub">
+          <h4>SENTINEL</h4>
+          <p>An autonomous fraud investigation agent over a 590k-transaction IEEE-CIS graph. It works through 5,565 closed cases and a 20-case benchmark with TigerGraph, MCP and GraphRAG, and returns a JSON verdict per case.</p>
+          <p class="links"><a href="https://task-4-nvan.onrender.com/" target="_blank" rel="noopener">Live</a><a href="https://github.com/tsrinath2007/Task-4" target="_blank" rel="noopener">Source</a></p>
+        </div>
+      </article>
+      <article class="item">
+        <p class="kick">Smart India Hackathon 2026 · SIH26171, ISRO · team of 6 · feasibility lead</p>
+        <h3>Parallax</h3>
+        <p>A Manifest V3 Chrome extension that finds and redacts personal information in screenshots on the device, before anything reaches a cloud AI. OCR runs client-side with Tesseract.js and WebAssembly, and an 80% confidence gate fails safe.</p>
+        <ul class="chips"><li>Manifest V3</li><li>Tesseract.js</li><li>WebAssembly</li><li>IndexedDB</li></ul>
+      </article>
+      <article class="item">
+        <p class="kick">Nexora Hackathon, MIT Bengaluru · solo build</p>
+        <h3>resume_ranker</h3>
+        <p>A resume ranking pipeline that mixes semantic and keyword matching and runs fully offline with no LLM APIs. It includes a job description bias checker and a side-by-side candidate comparison.</p>
+        <ul class="chips"><li>Python</li><li>Streamlit</li><li>Semantic matching</li><li>Bias detection</li></ul>
+      </article>
+      <article class="item">
+        <p class="kick">Scaler OpenEnv Hackathon · Round 2 Finalist</p>
+        <h3>Scaler OpenEnv</h3>
+        <p>An AI-driven telemetry monitoring and life-support simulation sandbox with reinforcement learning and automated failure recovery.</p>
+        <ul class="chips"><li>Python</li><li>FastAPI</li><li>Simulation</li><li>RL</li><li>LoRA</li></ul>
+      </article>
+      <article class="item">
+        <p class="kick">Zuup Hackathon · May 2026</p>
+        <h3>PULSE RAIL</h3>
+        <p>A railway track health monitor. Axle box accelerometers pick up impact vibration, and a Wavelet Packet Transform on the edge node isolates anomaly signatures in real time. A simulated payload relays to India's Kavach anti-collision interfaces.</p>
+        <ul class="chips"><li>C++</li><li>Python</li><li>Wavelet Packet Transform</li><li>Raspberry Pi</li><li>React</li></ul>
+        <p class="links"><a href="https://github.com/tsrinath2007/FarAway" target="_blank" rel="noopener">Source</a></p>
+      </article>
+    </div>
+  </div>
+</template>
+
+<template id="t-f-stack">
+  <div class="win">
+    <div class="win-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span>~/stack</span></div>
+    <div class="win-body" style="gap:0">
+      <div class="srow" style="border-top:0"><h4>Languages</h4><ul class="chips"><li>TypeScript</li><li>JavaScript</li><li>Python</li><li>C++</li><li>C</li><li>Java</li><li>SQL</li><li>HTML/CSS</li></ul></div>
+      <div class="srow"><h4>Frameworks</h4><ul class="chips"><li>Next.js</li><li>React</li><li>Node.js</li><li>FastAPI</li><li>WebSockets</li><li>Streamlit</li><li>Framer Motion</li><li>Tailwind CSS</li></ul></div>
+      <div class="srow"><h4>AI and systems</h4><ul class="chips"><li>GraphRAG</li><li>TigerGraph</li><li>RAG systems</li><li>ElevenLabs STT</li><li>Groq</li><li>Tesseract.js and WASM</li><li>Model Context Protocol</li></ul></div>
+      <div class="srow"><h4>Tools</h4><ul class="chips"><li>Vercel</li><li>Render</li><li>Mapbox GL JS</li><li>Git and GitHub</li><li>Docker</li><li>Polygon Amoy</li><li>PostgreSQL</li><li>IndexedDB</li></ul></div>
+      <div class="srow"><h4>How I work</h4><p>I prototype fast with AI coding tools and ship under hackathon deadlines. I am learning machine learning and AI, with a growing interest in building AI applications.</p></div>
+    </div>
+  </div>
+</template>
+
+<template id="t-blog">
+  <p class="lead">Notes on how I build things. Each book on the desk is one post.</p>
+  <ol class="shelf">
+    <li class="book" style="--spine:var(--tan)"><span class="spine" aria-hidden="true"></span><div><h3>Why GraphRAG for SENTINEL</h3><p>What a graph gives an investigation agent that plain retrieval does not.</p></div><span class="tagd">Draft</span></li>
+    <li class="book" style="--spine:var(--sage)"><span class="spine" aria-hidden="true"></span><div><h3>The 80% OCR gate in Parallax</h3><p>Why an on-device redaction tool should fail safe when it is not sure.</p></div><span class="tagd">Draft</span></li>
+    <li class="book" style="--spine:var(--blue)"><span class="spine" aria-hidden="true"></span><div><h3>Turning study sessions into flights</h3><p>How GoFocusGen draws a session as a route across India.</p></div><span class="tagd">Draft</span></li>
+    <li class="book" style="--spine:var(--peach)"><span class="spine" aria-hidden="true"></span><div><h3>Shipping under a hackathon deadline</h3><p>What I cut, what I keep, and how I use AI coding tools.</p></div><span class="tagd">Draft</span></li>
+  </ol>
+  <p class="k">Draft titles. New posts will appear here as books.</p>
+</template>
+
+<template id="t-now">
+  <article class="pass">
+    <div class="pass-main">
+      <p class="k">Boarding pass · where I am right now</p>
+      <div class="route">
+        <div><b>BLR</b><span class="c">Bengaluru</span></div>
+        <svg class="plane" viewBox="0 0 160 24" preserveAspectRatio="none" aria-hidden="true"><path d="M2 12h120" stroke-dasharray="3 6"/><path d="M128 12h28M148 5l8 7-8 7"/></svg>
+        <div><b>?</b><span class="c">Not decided yet</span></div>
+      </div>
+      <dl class="fields">
+        <div><dt>Passenger</dt><dd>Srinath</dd></div>
+        <div><dt>Studying</dt><dd>B.Tech CS at MAHE, semester 3</dd></div>
+        <div><dt>Building</dt><dd>GoFocusGen and Bujji</dd></div>
+        <div><dt>Learning</dt><dd>Machine learning and AI</dd></div>
+        <div><dt>Looking for</dt><dd>Software engineering, AI/ML systems and startup roles</dd></div>
+      </dl>
+    </div>
+    <div class="pass-stub stub" aria-hidden="true"><div class="bars"></div><span>NEXT STOP</span></div>
+  </article>
+  <section class="focus">
+    <h3>Current focus</h3>
+    <ul><li>Semester 3</li><li>Build projects</li><li>Hackathons</li><li>Explore</li></ul>
+  </section>
+  <div class="row"><button type="button" class="btn solid" data-open="contact">Say hello</button><button type="button" class="btn" data-open="laptop:projects">See what I built</button></div>
+</template>
+
+<template id="t-photos">
+  <p class="lead">A few pictures from outside the code.</p>
+  <div class="polas">
+    <label class="pola" style="--tilt:-2.5deg" for="ph1"><span class="ph"><svg viewBox="0 0 48 40" aria-hidden="true"><rect x="3" y="8" width="42" height="28" rx="4"/><circle cx="24" cy="22" r="7"/><path d="M16 8l3-5h10l3 5"/></svg><img alt="Somewhere in the hills" hidden><span class="add">Add photo</span></span><span class="cap">Somewhere in the hills</span><input class="sr" id="ph1" type="file" accept="image/*"></label>
+    <label class="pola" style="--tilt:2deg" for="ph2"><span class="ph"><svg viewBox="0 0 48 40" aria-hidden="true"><rect x="3" y="8" width="42" height="28" rx="4"/><circle cx="24" cy="22" r="7"/><path d="M16 8l3-5h10l3 5"/></svg><img alt="By the sea" hidden><span class="add">Add photo</span></span><span class="cap">By the sea</span><input class="sr" id="ph2" type="file" accept="image/*"></label>
+    <label class="pola" style="--tilt:-1.5deg" for="ph3"><span class="ph"><svg viewBox="0 0 48 40" aria-hidden="true"><rect x="3" y="8" width="42" height="28" rx="4"/><circle cx="24" cy="22" r="7"/><path d="M16 8l3-5h10l3 5"/></svg><img alt="Hackathon night" hidden><span class="add">Add photo</span></span><span class="cap">Hackathon night</span><input class="sr" id="ph3" type="file" accept="image/*"></label>
+    <label class="pola" style="--tilt:2.5deg" for="ph4"><span class="ph"><svg viewBox="0 0 48 40" aria-hidden="true"><rect x="3" y="8" width="42" height="28" rx="4"/><circle cx="24" cy="22" r="7"/><path d="M16 8l3-5h10l3 5"/></svg><img alt="At my desk" hidden><span class="add">Add photo</span></span><span class="cap">At my desk</span><input class="sr" id="ph4" type="file" accept="image/*"></label>
+  </div>
+  <p class="k">Placeholder frames. Click one to preview a photo from your device.</p>
+</template>
+
+<template id="t-about">
+  <div class="about">
+    <p class="lead">I'm Srinath, a computer science student at MAHE Bengaluru and the founder of GoFocusGen and Bujji.</p>
+    <p>I like applied software: study tools, voice and retrieval systems, on-device privacy and edge sensors. I would rather ship something people use than a demo that stays on my laptop.</p>
+    <p>I prototype fast with AI coding tools, mostly under hackathon deadlines. On a team I am usually the one who coordinates and keeps things moving. Right now I am learning machine learning and AI.</p>
+    <ul class="meta">
+      <li>Bengaluru, India</li>
+      <li>B.Tech Computer Science, MAHE, 2025 to 2029</li>
+      <li>Looking for software engineering, AI/ML systems and startup roles</li>
+    </ul>
+    <div class="row"><button type="button" class="btn solid" data-open="contact">Get in touch</button><button type="button" class="btn" data-open="laptop:projects">See my projects</button></div>
+  </div>
+</template>
+
+<template id="t-contact">
+  <div class="about">
+    <p class="lead">Open to software engineering, AI/ML systems and startup roles, and to good hackathon teams. I reply within 24 hours.</p>
+    <p class="mail" id="mail">sesbuilds@gmail.com</p>
+    <div class="row"><button type="button" class="btn solid" id="copy">Copy email</button></div>
+    <div class="row">
+      <a class="btn" href="https://github.com/tsrinath2007" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/tses/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://x.com/sesbuilds" target="_blank" rel="noopener">X</a>
+      <a class="btn" href="https://sesbuilds.vercel.app/resume.pdf" target="_blank" rel="noopener">Résumé</a>
+    </div>
+  </div>
+</template>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var clamp = function (v, a, b) { return Math.max(a, Math.min(b, v)); };
+  var reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var wide = window.matchMedia('(min-width: 761px)');
+
+  var stage = $('#stage'), scroller = $('#sceneScroll'), scene = $('#scene');
+  var pop = $('#pop'), popK = $('#popK'), popT = $('#popT'), popD = $('#popD'), popL = $('#popL'), popGo = $('#popGo');
+  var sheet = $('#sheet'), panel = $('#sheetPanel'), shT = $('#shT'), shBody = $('#shBody');
+  var hots = $$('.hot');
+
+  /* ---------- What each object says, and where Enter goes ---------- */
+  var ITEMS = {
+    laptop: { k: 'Laptop', t: 'Out of battery', d: 'It needs a charger before it shows my projects, hackathons and stack.', go: 'laptop' },
+    books:  { k: 'Books', t: 'Blog', d: 'Notes on how I build things. One book per post.', go: 'blog' },
+    ticket: { k: 'Boarding pass', t: 'BLR → ?', d: 'Where I am right now, and where I am headed next.', go: 'now' },
+    sticky: { k: 'Sticky note', t: 'Current focus', list: ['Semester 3', 'Build projects', 'Hackathons', 'Explore'], go: 'now' },
+    photo1: { k: 'Photos', t: 'Photos', d: 'A few pictures from outside the code.', go: 'photos' },
+    photo2: { k: 'Photos', t: 'Photos', d: 'A few pictures from outside the code.', go: 'photos' },
+    mug:    { k: 'Mug', t: 'GoFocusGen', d: 'A study app where every session is a flight. Open the project.', go: 'laptop:projects' }
+  };
+  var TITLES = { laptop: 'Laptop', blog: 'Blog', now: 'Now', photos: 'Photos', about: 'About', contact: 'Contact' };
+
+  var cur = null, curBtn = null;
+
+  function place(btn) {
+    if (!wide.matches) { pop.style.left = pop.style.top = ''; pop.removeAttribute('data-side'); return; }
+    var s = stage.getBoundingClientRect(), r = btn.getBoundingClientRect();
+    var pw = pop.offsetWidth, ph = pop.offsetHeight, gap = 18, side = 'right';
+    var x = r.right - s.left + gap;
+    if (x + pw > s.width - 8) { x = r.left - s.left - pw - gap; side = 'left'; }
+    if (x < 8) { x = clamp(r.left - s.left + r.width / 2 - pw / 2, 8, s.width - pw - 8); side = 'none'; }
+    var cy = r.top - s.top + r.height / 2;
+    var y = clamp(cy - ph / 2, 8, Math.max(8, s.height - ph - 8));
+    pop.style.left = x + 'px';
+    pop.style.top = y + 'px';
+    pop.setAttribute('data-side', side);
+    pop.style.setProperty('--ny', clamp(cy - y, 24, Math.max(24, ph - 24)) + 'px');
+  }
+  function select(id, btn) {
+    var d = ITEMS[id];
+    if (!d) return;
+    cur = id; curBtn = btn;
+    hots.forEach(function (h) {
+      var on = h === btn;
+      h.classList.toggle('sel', on);
+      h.classList.remove('nudge');
+      h.setAttribute('aria-expanded', on ? 'true' : 'false');
+    });
+    popK.textContent = d.k;
+    popT.textContent = d.t;
+    popD.textContent = d.d || '';
+    popD.hidden = !d.d;
+    popL.textContent = '';
+    if (d.list) {
+      d.list.forEach(function (x) { var li = document.createElement('li'); li.textContent = x; popL.appendChild(li); });
+    }
+    popL.hidden = !d.list;
+    popGo.setAttribute('aria-label', 'Enter ' + d.k.toLowerCase());
+    pop.hidden = false;
+    pop.classList.remove('in');
+    place(btn);
+    if (!reduce) { void pop.offsetWidth; pop.classList.add('in'); }
+    if (!wide.matches) {
+      var br = btn.getBoundingClientRect(), sr = scroller.getBoundingClientRect();
+      scroller.scrollBy({ left: (br.left + br.width / 2) - (sr.left + sr.width / 2), behavior: reduce ? 'auto' : 'smooth' });
+    }
+    popGo.focus({ preventScroll: true });
+  }
+  function deselect() {
+    pop.hidden = true; cur = null; curBtn = null;
+    hots.forEach(function (h) { h.classList.remove('sel'); h.setAttribute('aria-expanded', 'false'); });
+  }
+  hots.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var id = b.getAttribute('data-id');
+      if (id === 'explore') { select('laptop', $('[data-id="laptop"]')); return; }
+      if (cur === id && curBtn === b && !pop.hidden) { deselect(); return; }
+      select(id, b);
+    });
+  });
+  $('#popX').addEventListener('click', function () { var b = curBtn; deselect(); if (b) b.focus({ preventScroll: true }); });
+  popGo.addEventListener('click', function () {
+    if (!cur) return;
+    var go = ITEMS[cur].go, p = go.split(':');
+    openSheet(p[0], p[1] ? { folder: p[1], skip: true } : { charge: true }, curBtn);
+  });
+  document.addEventListener('pointerdown', function (e) {
+    if (pop.hidden || sheet.open) return;
+    if (pop.contains(e.target) || (e.target.closest && e.target.closest('.hot'))) return;
+    deselect();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !pop.hidden && !sheet.open) { var b = curBtn; deselect(); if (b) b.focus({ preventScroll: true }); }
+  });
+  function relayoutPop() { if (!pop.hidden && curBtn) place(curBtn); }
+  window.addEventListener('resize', relayoutPop);
+  if (wide.addEventListener) wide.addEventListener('change', relayoutPop);
+  if (window.ResizeObserver) new ResizeObserver(relayoutPop).observe(stage);
+
+  /* phone: start with the laptop in view */
+  function centerScene() {
+    if (wide.matches) return;
+    scroller.scrollLeft = scene.scrollWidth * 0.49 - scroller.clientWidth / 2;
+  }
+  centerScene();
+
+  /* a gentle hint on the laptop, then it stops */
+  if (!reduce) { var lt = $('[data-id="laptop"]'); lt.classList.add('nudge'); setTimeout(function () { lt.classList.remove('nudge'); }, 4800); }
+
+  /* ---------- The page that opens ---------- */
+  var returnTo = null, timers = [], raf = 0, lapRO = null, lapOn = false;
+  function clearTimers() { timers.forEach(clearTimeout); timers = []; if (raf) { cancelAnimationFrame(raf); raf = 0; } }
+  function later(fn, ms) { if (reduce) { fn(); return; } timers.push(setTimeout(fn, ms)); }
+
+  function openSheet(name, opts, from) {
+    opts = opts || {};
+    var t = $('#t-' + name);
+    if (!t) return;
+    if (!sheet.open) returnTo = from || document.activeElement;
+    clearTimers();
+    if (lapRO) { lapRO.disconnect(); lapRO = null; }
+    deselect();
+    shBody.replaceChildren(t.content.cloneNode(true));
+    shT.textContent = TITLES[name] || '';
+    panel.classList.toggle('wide', name === 'laptop');
+    if (!sheet.open) { sheet.showModal(); document.body.classList.add('lock'); }
+    panel.scrollTop = 0;
+    if (name === 'laptop') initLaptop(opts);
+    else if (name === 'photos') initPhotos();
+    else if (name === 'contact') initContact();
+  }
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest ? e.target.closest('[data-open],[data-act]') : null;
+    if (!el) return;
+    if (el.getAttribute('data-act') === 'home') { deselect(); if (sheet.open) sheet.close(); window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); return; }
+    var p = el.getAttribute('data-open').split(':');
+    openSheet(p[0], p[1] ? { folder: p[1], skip: true } : {}, el);
+  });
+  $('#shX').addEventListener('click', function () { sheet.close(); });
+  sheet.addEventListener('click', function (e) { if (e.target === sheet) sheet.close(); });
+  sheet.addEventListener('close', function () {
+    clearTimers();
+    if (lapRO) { lapRO.disconnect(); lapRO = null; }
+    document.body.classList.remove('lock');
+    if (returnTo && returnTo.focus) { try { returnTo.focus({ preventScroll: true }); } catch (_) {} }
+    returnTo = null;
+  });
+
+  /* ---------- Photos and contact ---------- */
+  function initPhotos() {
+    $$('.pola input', shBody).forEach(function (inp) {
+      inp.addEventListener('change', function () {
+        var f = inp.files && inp.files[0];
+        if (!f) return;
+        var fr = new FileReader();
+        fr.onload = function () {
+          var box = inp.closest('.pola'), img = $('img', box);
+          img.src = fr.result; img.hidden = false; box.classList.add('has');
+        };
+        fr.readAsDataURL(f);
+      });
+    });
+  }
+  function initContact() {
+    var mail = $('#mail', shBody), copy = $('#copy', shBody);
+    copy.addEventListener('click', function () {
+      var say = function (m) { copy.textContent = m; setTimeout(function () { copy.textContent = 'Copy email'; }, 1800); };
+      var pick = function () {
+        try { var r = document.createRange(); r.selectNodeContents(mail); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); } catch (_) {}
+        say('Selected');
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(mail.textContent.trim()).then(function () { say('Copied'); }, pick);
+      } else pick();
+    });
+  }
+
+  /* ---------- Laptop: drag the plug in, it boots, folders open ---------- */
+  function initLaptop(opts) {
+    var q = function (s) { return $(s, shBody); };
+    var st = q('#lstage'), lap = q('#lap'), plug = q('#lplug'), adapter = q('#ladapter'), port = q('#lport');
+    var cable = q('#lcable'), flow = q('#lflow');
+    var loff = q('#loff'), los = q('#los'), lboot = q('#lboot'), licons = q('#licons'), lterm = q('#lterm');
+    var lwin = q('#lwin'), lpct = q('#lpct'), lunplug = q('#lunplug');
+    var PW = 30, PH = 64, plugged = false, drag = null, pos = { x: 0, y: 0 }, touched = false;
+    var PLUG_LABEL = plug.getAttribute('aria-label');
+
+    function rel(el) {
+      var s = st.getBoundingClientRect(), r = el.getBoundingClientRect();
+      return { left: r.left - s.left, top: r.top - s.top, w: r.width, h: r.height, cx: r.left - s.left + r.width / 2, cy: r.top - s.top + r.height / 2 };
+    }
+    function home() {
+      var s = st.getBoundingClientRect(), a = rel(adapter);
+      return { x: Math.min(s.width - PW - 10, a.cx + Math.min(110, s.width * 0.24) - PW / 2), y: s.height - PH - 30 };
+    }
+    function snapPos() { var p = rel(port); return { x: p.cx - PW / 2, y: p.top + 3 }; }
+    function drawCable() {
+      var a = rel(adapter), A = { x: a.cx, y: a.top + 3 };
+      var P = { x: pos.x + PW / 2, y: pos.y + PH - 2 };
+      var d = Math.hypot(P.x - A.x, P.y - A.y), sag = Math.min(90, 30 + d * 0.18);
+      var s = 'M' + A.x + ' ' + A.y + ' C' + A.x + ' ' + (A.y - sag) + ' ' + P.x + ' ' + (P.y + sag) + ' ' + P.x + ' ' + P.y;
+      cable.setAttribute('d', s); flow.setAttribute('d', s);
+    }
+    function put(p) { pos = { x: p.x, y: p.y }; plug.style.transform = 'translate(' + p.x + 'px,' + p.y + 'px)'; drawCable(); }
+    function tween(from, to, ms, fn, done) {
+      if (reduce) { fn(to); if (done) done(); return; }
+      var t0 = performance.now();
+      (function f(t) {
+        var k = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - k, 3);
+        fn({ x: from.x + (to.x - from.x) * e, y: from.y + (to.y - from.y) * e });
+        if (k < 1) requestAnimationFrame(f); else if (done) done();
+      })(t0);
+    }
+    function showHint() {
+      lwin.replaceChildren($('#t-lhint').content.cloneNode(true));
+      var sk = $('#lskip', lwin);
+      if (sk) sk.addEventListener('click', function () { plugged = true; put(snapPos()); powerOn(false); });
+    }
+    function showFolder(name) {
+      var t = $('#t-f-' + name);
+      if (!t) return;
+      lwin.replaceChildren(t.content.cloneNode(true));
+      $$('.ico', licons).forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-folder') === name ? 'true' : 'false'); });
+    }
+    function finishBoot() {
+      lboot.hidden = true; licons.hidden = false; lterm.hidden = false;
+      lpct.textContent = '100%';
+      showFolder(opts.folder || 'projects');
+    }
+    var BOOT = [['SES OS 2.8.5', 'dim'], ['charging ........ ok', ''], ['mount ~/projects', ''], ['mount ~/hackathons', ''], ['mount ~/stack', ''], ['ready', '']];
+    function powerOn(animate) {
+      lapOn = true;
+      lap.classList.add('on');
+      st.classList.add('is-plugged');
+      loff.hidden = true; los.hidden = false;
+      lunplug.hidden = false;
+      plug.setAttribute('tabindex', '-1');
+      plug.setAttribute('aria-label', 'Charger plugged in');
+      if (!animate || reduce) { finishBoot(); return; }
+      lboot.hidden = false; lboot.textContent = ''; lpct.textContent = '1%';
+      var t = 250;
+      BOOT.forEach(function (l) {
+        later(function () { var d = document.createElement('div'); d.className = 'ln ' + l[1]; d.textContent = '> ' + l[0]; lboot.appendChild(d); }, t);
+        t += 230;
+      });
+      var t0 = performance.now();
+      (function f(now) {
+        var k = Math.min(1, (now - t0) / 2200);
+        lpct.textContent = Math.max(1, Math.round(100 * (1 - Math.pow(1 - k, 2)))) + '%';
+        if (k < 1) raf = requestAnimationFrame(f); else raf = 0;
+      })(t0);
+      later(finishBoot, t + 650);
+    }
+    function connect() {
+      if (plugged) return;
+      plugged = true;
+      plug.classList.remove('near', 'grab');
+      st.classList.add('is-plugged');
+      tween(pos, snapPos(), 320, put, function () { powerOn(true); });
+    }
+    function unplug() {
+      clearTimers();
+      plugged = false; touched = false; lapOn = false;
+      st.classList.remove('is-plugged');
+      lap.classList.remove('on');
+      los.hidden = true; loff.hidden = false; lboot.hidden = true; licons.hidden = true; lterm.hidden = true;
+      lunplug.hidden = true;
+      plug.removeAttribute('tabindex');
+      plug.setAttribute('aria-label', PLUG_LABEL);
+      showHint();
+      tween(pos, home(), 300, put);
+    }
+
+    plug.addEventListener('pointerdown', function (e) {
+      if (plugged) return;
+      var s = st.getBoundingClientRect();
+      drag = { dx: e.clientX - s.left - pos.x, dy: e.clientY - s.top - pos.y, moved: false, sx: e.clientX, sy: e.clientY };
+      try { plug.setPointerCapture(e.pointerId); } catch (_) {}
+      plug.classList.add('grab');
+      e.preventDefault();
+    });
+    plug.addEventListener('pointermove', function (e) {
+      if (!drag) return;
+      if (Math.hypot(e.clientX - drag.sx, e.clientY - drag.sy) > 5) { drag.moved = true; touched = true; }
+      var s = st.getBoundingClientRect();
+      var x = clamp(e.clientX - s.left - drag.dx, 0, s.width - PW);
+      var y = clamp(e.clientY - s.top - drag.dy, 0, s.height - PH);
+      put({ x: x, y: y });
+      var t = snapPos();
+      plug.classList.toggle('near', Math.hypot(x - t.x, y - t.y) < 44);
+    });
+    plug.addEventListener('pointerup', function () {
+      if (!drag) return;
+      var moved = drag.moved; drag = null;
+      plug.classList.remove('grab');
+      var t = snapPos();
+      if (!moved || Math.hypot(pos.x - t.x, pos.y - t.y) < 48) connect(); else plug.classList.remove('near');
+    });
+    plug.addEventListener('pointercancel', function () { drag = null; plug.classList.remove('grab', 'near'); });
+    plug.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); connect(); } });
+    lunplug.addEventListener('click', unplug);
+    licons.addEventListener('click', function (e) {
+      var b = e.target.closest('.ico');
+      if (b) showFolder(b.getAttribute('data-folder'));
+    });
+
+    function relayout() {
+      if (plugged) put(snapPos());
+      else if (!touched) put(home());
+      else { var s = st.getBoundingClientRect(); put({ x: clamp(pos.x, 0, s.width - PW), y: clamp(pos.y, 0, s.height - PH) }); }
+    }
+    relayout();
+    if (window.ResizeObserver) { lapRO = new ResizeObserver(relayout); lapRO.observe(st); }
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(relayout);
+
+    // Going in from the nav, the mug or a button skips the puzzle. Once charged, it stays charged.
+    if (opts.skip || lapOn) {
+      plugged = true; put(snapPos()); powerOn(false);
+      if (opts.folder) showFolder(opts.folder);
+    } else {
+      showHint();
+    }
+  }
+})();
+</script>
+
+</body>
+</html>

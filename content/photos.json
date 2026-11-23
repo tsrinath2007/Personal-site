@@ -1,0 +1,38 @@
+[
+  {
+    "id": "ph1",
+    "src": "",
+    "alt": "Somewhere in the hills",
+    "caption": "Somewhere in the hills",
+    "description": "Quiet weekend in the mountains outside Bangalore.",
+    "location": "Pinned on Wall",
+    "tilt": "-2.5deg"
+  },
+  {
+    "id": "ph2",
+    "src": "",
+    "alt": "By the sea",
+    "caption": "By the sea",
+    "description": "Post-hackathon dawn in Goa.",
+    "location": "Gallery",
+    "tilt": "2deg"
+  },
+  {
+    "id": "ph3",
+    "src": "",
+    "alt": "Hackathon night",
+    "caption": "Hackathon night",
+    "description": "3:00 AM sprint before the final pitch.",
+    "location": "Gallery",
+    "tilt": "-1.5deg"
+  },
+  {
+    "id": "ph4",
+    "src": "",
+    "alt": "At my desk",
+    "caption": "At my desk",
+    "description": "Where everything gets designed and shipped.",
+    "location": "Gallery",
+    "tilt": "2.5deg"
+  }
+]
