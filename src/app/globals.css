@@ -1646,7 +1646,8 @@ dialog[open] .sheet {
   .art-mobile,
   .mobile-hotspots,
   .mobile-desk-dock,
-  .mobile-menu-btn {
+  .mobile-menu-btn,
+  .mobile-live-time {
     display: none !important;
   }
 }
@@ -1667,6 +1668,47 @@ dialog[open] .sheet {
   /* Mobile menu button visible */
   .mobile-menu-btn {
     display: inline-flex !important;
+  }
+
+  /* Mobile live user time badge in header */
+  .mobile-live-time {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--ink);
+    background: rgba(255, 255, 255, 0.88);
+    border: 1.5px solid var(--line, #d9cec0);
+    border-radius: 999px;
+    padding: 6px 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    letter-spacing: -0.01em;
+    user-select: none;
+  }
+
+  .live-clock-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10b981;
+    display: inline-block;
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+    animation: clockPulse 2s infinite ease-in-out;
+  }
+
+  @keyframes clockPulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(0.85);
+      opacity: 0.55;
+    }
   }
 
   /* Mobile slide-out nav links */

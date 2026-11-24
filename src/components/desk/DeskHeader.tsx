@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { OpenDrawerFn } from "@/../content/desk";
 
@@ -11,6 +11,23 @@ interface DeskHeaderProps {
 
 export function DeskHeader({ onOpen, onHome }: DeskHeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [userTime, setUserTime] = useState<string>("");
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      setUserTime(
+        now.toLocaleTimeString([], {
+          hour: "numeric",
+          minute: "2-digit",
+          hour12: true,
+        })
+      );
+    };
+    updateTime();
+    const timer = setInterval(updateTime, 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   const handleNav = (target: string, opts?: { folder?: "projects" | "hackathons" | "stack"; skip?: boolean }) => {
     setMobileMenuOpen(false);
@@ -67,6 +84,14 @@ export function DeskHeader({ onOpen, onHome }: DeskHeaderProps) {
           >
             SES.Builds
           </button>
+
+          {/* Live User Time (visible on phone/mobile screens) */}
+          {userTime && (
+            <div className="mobile-live-time" aria-label={`Current time: ${userTime}`}>
+              <span className="live-clock-dot" aria-hidden="true" />
+              <span>{userTime}</span>
+            </div>
+          )}
 
           {/* Mobile Hamburger Menu Button (visible on mobile only) */}
           <button
@@ -128,10 +153,18 @@ export function DeskHeader({ onOpen, onHome }: DeskHeaderProps) {
               overflowY: "auto"
             }}
           >
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 28 }}>
-              <span style={{ fontFamily: "var(--serif)", fontSize: "1.35rem", fontWeight: 600, color: "var(--ink)" }}>
-                SES.Builds
-              </span>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 24 }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
+                <span style={{ fontFamily: "var(--serif)", fontSize: "1.35rem", fontWeight: 600, color: "var(--ink)" }}>
+                  SES.Builds
+                </span>
+                {userTime && (
+                  <span style={{ fontSize: "0.78rem", fontFamily: "var(--mono)", color: "var(--ink-2)", display: "flex", alignItems: "center", gap: 6 }}>
+                    <span className="live-clock-dot" style={{ width: 6, height: 6 }} />
+                    {userTime}
+                  </span>
+                )}
+              </div>
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(false)}
