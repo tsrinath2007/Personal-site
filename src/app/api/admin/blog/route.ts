@@ -47,10 +47,21 @@ function parseFrontmatter(fileContent: string) {
 // GET all posts
 export async function GET(req: NextRequest) {
   if (!isAuthorized(req)) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401, headers: NO_CACHE_HEADERS });
   }
 
-  // 1. Try Supabase posts table
+  const postMap = new Map<string, {
+    slug: string;
+    title: string;
+    summary: string;
+    date: string;
+    draft: boolean;
+    spineColor: string;
+    relatedHackathon: string;
+    content: string;
+  }>();
+
+  // 1. Fetch from Supabase posts table
   try {
     const { data: supaPosts, error: supaError } = await supabase
       .from("posts")
@@ -58,48 +69,51 @@ export async function GET(req: NextRequest) {
       .order("date", { ascending: false });
 
     if (!supaError && supaPosts && supaPosts.length > 0) {
-      const formatted = supaPosts.map((p) => ({
-        slug: p.slug,
-        title: p.title || p.slug,
-        summary: p.summary || "",
-        date: p.date || new Date().toISOString().split("T")[0],
-        draft: Boolean(p.draft),
-        spineColor: p.spine_color || p.spineColor || "var(--tan)",
-        relatedHackathon: p.related_hackathon || p.relatedHackathon || "",
-        content: (p.content || "").trim()
-      }));
-      return NextResponse.json({ posts: formatted }, { headers: NO_CACHE_HEADERS });
+      for (const p of supaPosts) {
+        postMap.set(p.slug, {
+          slug: p.slug,
+          title: p.title || p.slug,
+          summary: p.summary || "",
+          date: p.date || new Date().toISOString().split("T")[0],
+          draft: Boolean(p.draft),
+          spineColor: p.spine_color || p.spineColor || "var(--tan)",
+          relatedHackathon: p.related_hackathon || p.relatedHackathon || "",
+          content: (p.content || "").trim()
+        });
+      }
     }
   } catch {
-    // Supabase table not created - fall through to local files
+    // Supabase unavailable or table empty
   }
 
-  // 2. Local markdown files fallback
-  if (!fs.existsSync(BLOG_DIR)) {
-    fs.mkdirSync(BLOG_DIR, { recursive: true });
-    return NextResponse.json({ posts: [] });
+  // 2. Read local files (if they exist and aren't already in Supabase)
+  try {
+    if (fs.existsSync(BLOG_DIR)) {
+      const files = fs.readdirSync(BLOG_DIR).filter((file) => file.endsWith(".md") || file.endsWith(".mdx"));
+      for (const file of files) {
+        const slug = file.replace(/\.(md|mdx)$/, "");
+        if (!postMap.has(slug)) {
+          const fullPath = path.join(BLOG_DIR, file);
+          const fileContent = fs.readFileSync(fullPath, "utf-8");
+          const { frontmatter, content } = parseFrontmatter(fileContent);
+          postMap.set(slug, {
+            slug,
+            title: String(frontmatter.title || slug),
+            summary: String(frontmatter.summary || ""),
+            date: String(frontmatter.date || new Date().toISOString().split("T")[0]),
+            draft: Boolean(frontmatter.draft),
+            spineColor: String(frontmatter.spineColor || "var(--tan)"),
+            relatedHackathon: String(frontmatter.relatedHackathon || ""),
+            content: content.trim()
+          });
+        }
+      }
+    }
+  } catch {
+    // Read-only or directory missing
   }
 
-  const files = fs.readdirSync(BLOG_DIR).filter((file) => file.endsWith(".md") || file.endsWith(".mdx"));
-
-  const posts = files.map((file) => {
-    const slug = file.replace(/\.(md|mdx)$/, "");
-    const fullPath = path.join(BLOG_DIR, file);
-    const fileContent = fs.readFileSync(fullPath, "utf-8");
-    const { frontmatter, content } = parseFrontmatter(fileContent);
-
-    return {
-      slug,
-      title: String(frontmatter.title || slug),
-      summary: String(frontmatter.summary || ""),
-      date: String(frontmatter.date || new Date().toISOString().split("T")[0]),
-      draft: Boolean(frontmatter.draft),
-      spineColor: String(frontmatter.spineColor || "var(--tan)"),
-      relatedHackathon: String(frontmatter.relatedHackathon || ""),
-      content: content.trim()
-    };
-  });
-
+  const posts = Array.from(postMap.values());
   posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return NextResponse.json({ posts }, { headers: NO_CACHE_HEADERS });
@@ -125,17 +139,26 @@ export async function POST(req: NextRequest) {
       .replace(/[^a-z0-9_-]/g, "-")
       .replace(/-+/g, "-");
 
-    if (!fs.existsSync(BLOG_DIR)) {
-      fs.mkdirSync(BLOG_DIR, { recursive: true });
+    // 1. ALWAYS save to Supabase FIRST
+    const { error: supaError } = await supabase.from("posts").upsert({
+      slug: cleanSlug,
+      title: title.trim(),
+      summary: (summary || "").trim(),
+      date: date || new Date().toISOString().split("T")[0],
+      draft: Boolean(draft),
+      spine_color: spineColor || "var(--tan)",
+      related_hackathon: relatedHackathon ? String(relatedHackathon).trim() : null,
+      content: (content || "").trim(),
+      updated_at: new Date().toISOString()
+    });
+
+    if (supaError) {
+      console.error("Supabase upsert error:", supaError);
+      return NextResponse.json({ error: `Supabase error: ${supaError.message}` }, { status: 500, headers: NO_CACHE_HEADERS });
     }
 
-    // If slug changed, remove the old file & delete old Supabase record
+    // If slug changed, delete old record from Supabase
     if (oldSlug && oldSlug !== cleanSlug) {
-      const oldMd = path.join(BLOG_DIR, `${oldSlug}.md`);
-      const oldMdx = path.join(BLOG_DIR, `${oldSlug}.mdx`);
-      if (fs.existsSync(oldMd)) fs.unlinkSync(oldMd);
-      if (fs.existsSync(oldMdx)) fs.unlinkSync(oldMdx);
-
       try {
         await supabase.from("posts").delete().eq("slug", oldSlug);
       } catch {
@@ -143,8 +166,20 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // 1. Write local markdown file
-    const fileContent = `---
+    // 2. Try writing local markdown file (wrapped in try/catch to gracefully ignore EROFS in serverless environments like Vercel)
+    try {
+      if (!fs.existsSync(BLOG_DIR)) {
+        fs.mkdirSync(BLOG_DIR, { recursive: true });
+      }
+
+      if (oldSlug && oldSlug !== cleanSlug) {
+        const oldMd = path.join(BLOG_DIR, `${oldSlug}.md`);
+        const oldMdx = path.join(BLOG_DIR, `${oldSlug}.mdx`);
+        if (fs.existsSync(oldMd)) fs.unlinkSync(oldMd);
+        if (fs.existsSync(oldMdx)) fs.unlinkSync(oldMdx);
+      }
+
+      const fileContent = `---
 title: ${title.replace(/\n/g, " ")}
 summary: ${(summary || "").replace(/\n/g, " ")}
 date: ${date || new Date().toISOString().split("T")[0]}
@@ -156,24 +191,10 @@ relatedHackathon: ${relatedHackathon ? String(relatedHackathon).replace(/\n/g, "
 ${(content || "").trim()}
 `;
 
-    const filePath = path.join(BLOG_DIR, `${cleanSlug}.md`);
-    fs.writeFileSync(filePath, fileContent, "utf-8");
-
-    // 2. Sync to Supabase posts table
-    try {
-      await supabase.from("posts").upsert({
-        slug: cleanSlug,
-        title: title.trim(),
-        summary: (summary || "").trim(),
-        date: date || new Date().toISOString().split("T")[0],
-        draft: Boolean(draft),
-        spine_color: spineColor || "var(--tan)",
-        related_hackathon: relatedHackathon ? String(relatedHackathon).trim() : null,
-        content: (content || "").trim(),
-        updated_at: new Date().toISOString()
-      });
+      const filePath = path.join(BLOG_DIR, `${cleanSlug}.md`);
+      fs.writeFileSync(filePath, fileContent, "utf-8");
     } catch {
-      // non-fatal
+      // Serverless (Vercel) filesystem is read-only. Supabase has the post saved, so we safely ignore this!
     }
 
     return NextResponse.json({ success: true, slug: cleanSlug }, { headers: NO_CACHE_HEADERS });
@@ -197,18 +218,21 @@ export async function DELETE(req: NextRequest) {
       return NextResponse.json({ error: "Slug is required" }, { status: 400, headers: NO_CACHE_HEADERS });
     }
 
-    // 1. Delete local markdown file
-    const mdPath = path.join(BLOG_DIR, `${slug}.md`);
-    const mdxPath = path.join(BLOG_DIR, `${slug}.mdx`);
-
-    if (fs.existsSync(mdPath)) fs.unlinkSync(mdPath);
-    if (fs.existsSync(mdxPath)) fs.unlinkSync(mdxPath);
-
-    // 2. Delete from Supabase posts table
+    // 1. Delete from Supabase FIRST
     try {
       await supabase.from("posts").delete().eq("slug", slug);
+    } catch (supaErr) {
+      console.error("Supabase delete error:", supaErr);
+    }
+
+    // 2. Try deleting local file (wrapped in try/catch to avoid EROFS error in serverless)
+    try {
+      const mdPath = path.join(BLOG_DIR, `${slug}.md`);
+      const mdxPath = path.join(BLOG_DIR, `${slug}.mdx`);
+      if (fs.existsSync(mdPath)) fs.unlinkSync(mdPath);
+      if (fs.existsSync(mdxPath)) fs.unlinkSync(mdxPath);
     } catch {
-      // non-fatal
+      // ignore read-only error
     }
 
     return NextResponse.json({ success: true, message: `Deleted ${slug}` }, { headers: NO_CACHE_HEADERS });

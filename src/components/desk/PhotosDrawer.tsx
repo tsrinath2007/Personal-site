@@ -1,13 +1,30 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { photos } from "@/../content/photos";
+import { photos as staticPhotos, PhotoItem } from "@/../content/photos";
+import { supabase } from "@/lib/supabase";
 
 export function PhotosDrawer() {
+  const [photoList, setPhotoList] = useState<PhotoItem[]>(staticPhotos);
+
+  useEffect(() => {
+    supabase
+      .from("photos")
+      .select("*")
+      .order("created_at", { ascending: true })
+      .then(({ data, error }) => {
+        if (!error && data && data.length > 0) {
+          setPhotoList(data as PhotoItem[]);
+        }
+      });
+  }, []);
+
   return (
     <>
       <p className="lead">A few pictures from outside the code.</p>
       <div className="polas">
-        {photos.map((item) => {
+        {photoList.map((item) => {
           const hasImage = Boolean(item.src);
           return (
             <div

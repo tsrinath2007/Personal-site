@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { supabase } from "@/lib/supabase";
 
 export interface BlogPost {
   slug: string;
@@ -38,16 +39,46 @@ function parseFrontmatter(fileContent: string): { frontmatter: Record<string, st
   return { frontmatter, content };
 }
 
-export function getAllPosts(): BlogPost[] {
-  if (!fs.existsSync(BLOG_DIR)) {
+export function getLocalPosts(): BlogPost[] {
+  try {
+    if (!fs.existsSync(BLOG_DIR)) {
+      return [];
+    }
+
+    const files = fs.readdirSync(BLOG_DIR).filter((file) => file.endsWith(".md") || file.endsWith(".mdx"));
+
+    const posts: BlogPost[] = files.map((file) => {
+      const slug = file.replace(/\.(md|mdx)$/, "");
+      const fullPath = path.join(BLOG_DIR, file);
+      const fileContent = fs.readFileSync(fullPath, "utf-8");
+      const { frontmatter, content } = parseFrontmatter(fileContent);
+
+      return {
+        slug,
+        title: String(frontmatter.title || slug),
+        summary: String(frontmatter.summary || ""),
+        date: String(frontmatter.date || ""),
+        draft: Boolean(frontmatter.draft),
+        spineColor: String(frontmatter.spineColor || "var(--tan)"),
+        relatedHackathon: frontmatter.relatedHackathon ? String(frontmatter.relatedHackathon) : undefined,
+        content
+      };
+    });
+
+    return posts;
+  } catch {
     return [];
   }
+}
 
-  const files = fs.readdirSync(BLOG_DIR).filter((file) => file.endsWith(".md") || file.endsWith(".mdx"));
+export function getLocalPostBySlug(slug: string): BlogPost | null {
+  try {
+    const mdPath = path.join(BLOG_DIR, `${slug}.md`);
+    const mdxPath = path.join(BLOG_DIR, `${slug}.mdx`);
+    const fullPath = fs.existsSync(mdPath) ? mdPath : fs.existsSync(mdxPath) ? mdxPath : null;
 
-  const posts: BlogPost[] = files.map((file) => {
-    const slug = file.replace(/\.(md|mdx)$/, "");
-    const fullPath = path.join(BLOG_DIR, file);
+    if (!fullPath) return null;
+
     const fileContent = fs.readFileSync(fullPath, "utf-8");
     const { frontmatter, content } = parseFrontmatter(fileContent);
 
@@ -61,29 +92,72 @@ export function getAllPosts(): BlogPost[] {
       relatedHackathon: frontmatter.relatedHackathon ? String(frontmatter.relatedHackathon) : undefined,
       content
     };
-  });
+  } catch {
+    return null;
+  }
+}
 
+export async function getAllPosts(): Promise<BlogPost[]> {
+  const localPosts = getLocalPosts();
+  const postMap = new Map<string, BlogPost>();
+
+  // Add local posts first
+  for (const post of localPosts) {
+    postMap.set(post.slug, post);
+  }
+
+  // Fetch from Supabase and merge (Supabase takes priority for edits)
+  try {
+    const { data: supaPosts, error } = await supabase
+      .from("posts")
+      .select("*")
+      .order("date", { ascending: false });
+
+    if (!error && supaPosts && supaPosts.length > 0) {
+      for (const p of supaPosts) {
+        postMap.set(p.slug, {
+          slug: p.slug,
+          title: p.title || p.slug,
+          summary: p.summary || "",
+          date: p.date || new Date().toISOString().split("T")[0],
+          draft: Boolean(p.draft),
+          spineColor: p.spine_color || p.spineColor || "var(--tan)",
+          relatedHackathon: p.related_hackathon || p.relatedHackathon || undefined,
+          content: (p.content || "").trim()
+        });
+      }
+    }
+  } catch {
+    // If Supabase fetch fails, rely on local posts
+  }
+
+  const posts = Array.from(postMap.values());
   return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
-export function getPostBySlug(slug: string): BlogPost | null {
-  const mdPath = path.join(BLOG_DIR, `${slug}.md`);
-  const mdxPath = path.join(BLOG_DIR, `${slug}.mdx`);
-  const fullPath = fs.existsSync(mdPath) ? mdPath : fs.existsSync(mdxPath) ? mdxPath : null;
+export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
+  try {
+    const { data: supaPost, error } = await supabase
+      .from("posts")
+      .select("*")
+      .eq("slug", slug)
+      .maybeSingle();
 
-  if (!fullPath) return null;
+    if (!error && supaPost) {
+      return {
+        slug: supaPost.slug,
+        title: supaPost.title || supaPost.slug,
+        summary: supaPost.summary || "",
+        date: supaPost.date || new Date().toISOString().split("T")[0],
+        draft: Boolean(supaPost.draft),
+        spineColor: supaPost.spine_color || supaPost.spineColor || "var(--tan)",
+        relatedHackathon: supaPost.related_hackathon || supaPost.relatedHackathon || undefined,
+        content: (supaPost.content || "").trim()
+      };
+    }
+  } catch {
+    // fallback
+  }
 
-  const fileContent = fs.readFileSync(fullPath, "utf-8");
-  const { frontmatter, content } = parseFrontmatter(fileContent);
-
-  return {
-    slug,
-    title: String(frontmatter.title || slug),
-    summary: String(frontmatter.summary || ""),
-    date: String(frontmatter.date || ""),
-    draft: Boolean(frontmatter.draft),
-    spineColor: String(frontmatter.spineColor || "var(--tan)"),
-    relatedHackathon: frontmatter.relatedHackathon ? String(frontmatter.relatedHackathon) : undefined,
-    content
-  };
+  return getLocalPostBySlug(slug);
 }

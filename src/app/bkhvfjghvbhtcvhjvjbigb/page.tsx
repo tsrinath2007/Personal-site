@@ -2559,10 +2559,21 @@ create table if not exists public.posts (
 
 -- 3. Enable Public Access
 alter table public.photos enable row level security;
+drop policy if exists "Allow all photos" on public.photos;
 create policy "Allow all photos" on public.photos for all using (true) with check (true);
 
 alter table public.posts enable row level security;
-create policy "Allow all posts" on public.posts for all using (true) with check (true);`}
+drop policy if exists "Allow all posts" on public.posts;
+create policy "Allow all posts" on public.posts for all using (true) with check (true);
+
+-- 4. Create portfolio storage bucket for direct phone camera uploads
+insert into storage.buckets (id, name, public)
+values ('portfolio', 'portfolio', true)
+on conflict (id) do nothing;
+
+drop policy if exists "Allow public uploads to portfolio" on storage.objects;
+create policy "Allow public uploads to portfolio" on storage.objects
+  for all using (bucket_id = 'portfolio') with check (bucket_id = 'portfolio');`}
                 </pre>
 
                 <p style={{ color: "#8b949e", fontSize: 12, margin: 0 }}>

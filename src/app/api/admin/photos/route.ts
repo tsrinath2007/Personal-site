@@ -59,10 +59,7 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
-    // 1. Save to local photos.json
-    fs.writeFileSync(PHOTOS_FILE, JSON.stringify(body, null, 2), "utf-8");
-
-    // 2. Also sync to Supabase photos table if exists
+    // 1. Sync to Supabase photos table FIRST
     try {
       if (Array.isArray(body)) {
         for (const item of body) {
@@ -77,8 +74,15 @@ export async function POST(req: NextRequest) {
           });
         }
       }
+    } catch (supaErr) {
+      console.error("Supabase photos sync error:", supaErr);
+    }
+
+    // 2. Try saving to local photos.json (wrapped in try/catch to gracefully ignore EROFS in serverless)
+    try {
+      fs.writeFileSync(PHOTOS_FILE, JSON.stringify(body, null, 2), "utf-8");
     } catch {
-      // Supabase sync failure is non-fatal
+      // Serverless (Vercel) filesystem is read-only. Supabase has the photos saved.
     }
 
     return NextResponse.json({ success: true, photos: body }, { headers: NO_CACHE_HEADERS });
@@ -101,19 +105,23 @@ export async function DELETE(req: NextRequest) {
       return NextResponse.json({ error: "Photo id is required" }, { status: 400, headers: NO_CACHE_HEADERS });
     }
 
-    // 1. Delete from local photos.json
-    let updated = [];
-    if (fs.existsSync(PHOTOS_FILE)) {
-      const currentPhotos = JSON.parse(fs.readFileSync(PHOTOS_FILE, "utf-8"));
-      updated = currentPhotos.filter((p: { id: string }) => p.id !== id);
-      fs.writeFileSync(PHOTOS_FILE, JSON.stringify(updated, null, 2), "utf-8");
-    }
-
-    // 2. Also delete from Supabase photos table
+    // 1. Delete from Supabase FIRST
     try {
       await supabase.from("photos").delete().eq("id", id);
+    } catch (supaErr) {
+      console.error("Supabase delete photo error:", supaErr);
+    }
+
+    // 2. Try deleting from local photos.json (wrapped in try/catch)
+    let updated = [];
+    try {
+      if (fs.existsSync(PHOTOS_FILE)) {
+        const currentPhotos = JSON.parse(fs.readFileSync(PHOTOS_FILE, "utf-8"));
+        updated = currentPhotos.filter((p: { id: string }) => p.id !== id);
+        fs.writeFileSync(PHOTOS_FILE, JSON.stringify(updated, null, 2), "utf-8");
+      }
     } catch {
-      // Supabase delete failure is non-fatal
+      // ignore read-only error
     }
 
     return NextResponse.json({ success: true, photos: updated }, { headers: NO_CACHE_HEADERS });

@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blog";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://sesbuilds.vercel.app";
 
   // Base routes
@@ -21,7 +21,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   // Only include non-draft posts
-  const publishedPosts = getAllPosts().filter((post) => !post.draft);
+  const posts = await getAllPosts();
+  const publishedPosts = posts.filter((post) => !post.draft);
   for (const post of publishedPosts) {
     routes.push({
       url: `${baseUrl}/blog/${post.slug}`,

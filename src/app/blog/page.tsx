@@ -8,8 +8,11 @@ export const metadata: Metadata = {
   description: "Notes on how I build things. Voice RAG, GraphRAG, on-device AI privacy and rapid shipping."
 };
 
-export default function BlogIndexPage() {
-  const posts = getAllPosts();
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+export default async function BlogIndexPage() {
+  const posts = await getAllPosts();
 
   return (
     <div style={{ minHeight: "100vh", background: "var(--wall, #f0e8e1)", color: "var(--ink)" }}>

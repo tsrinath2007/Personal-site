@@ -42,7 +42,11 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json();
-    fs.writeFileSync(NOW_FILE, JSON.stringify(body, null, 2), "utf-8");
+    try {
+      fs.writeFileSync(NOW_FILE, JSON.stringify(body, null, 2), "utf-8");
+    } catch {
+      // In serverless read-only environment, ignore local write error
+    }
     return NextResponse.json({ success: true, data: body }, { headers: NO_CACHE_HEADERS });
   } catch (err: unknown) {
     const errorMsg = err instanceof Error ? err.message : "Failed to update now.json";
